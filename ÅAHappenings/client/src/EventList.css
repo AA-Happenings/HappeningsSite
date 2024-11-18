@@ -1,0 +1,53 @@
+.event-list-container {
+    background-color: transparent;
+    padding: 2rem;
+    border-radius: 12px;
+    max-width: 500px;
+    margin: 0 auto; /* Center the container */
+  }
+  
+  .event-list-container h2 {
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    text-align: center;
+  }
+  
+  .event-card {
+    display: flex;
+    align-items: center;
+    background-color: #f4f4f8;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .event-icon {
+    font-size: 2rem;
+    margin-right: 1rem;
+  }
+  
+  .event-details h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  
+  .event-location {
+    margin: 0.2rem 0;
+    color: #666;
+  }
+  
+  .event-time {
+    margin: 0;
+    color: #888;
+    display: flex;
+    align-items: center;
+  }
+  
+  .event-time::before {
+    content: '';
+    display: inline-block;
+    margin-right: 0.5rem;
+  }
+  
