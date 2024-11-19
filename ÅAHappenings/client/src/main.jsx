@@ -8,18 +8,19 @@ import App from "./App";
 import Record from "./components/Record";
 import RecordList from "./components/RecordList";
 import RecordListContainer from "./components/RecordListContainer";
+import CalendarView from './components/CalendarView';
 
-import Calendarview from "./components/Calendarview";
+import Calendarview from "./components/CalendarView";
 import "./index.css";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: <App />, 
     children: [
       {
         path: "/",
-        element: <RecordListContainer />,
+        element: <CalendarView />,
       },
     ],
   },
