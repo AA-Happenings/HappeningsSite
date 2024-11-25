@@ -1,62 +1,47 @@
-import React from 'react';
+import { useEffect, useState } from 'react';
+import EventCard from './EventCard';
 
-const events = [
-  {
-    title: 'MK Gulistagning',
-    location: 'Campusområdet, start: ASA',
-    date: '6.9',
-    time: '16:00',
-  },
-  {
-    title: 'DaTe Sångsitz',
-    location: 'F',
-    date: '20.9',
-    time: '18:30',
-  },
-  {
-    title: 'ASK Motionstur',
-    location: 'Puolalaskolan, Coolgatan 7',
-    date: '25.9',
-    time: '20:00',
-  },
-  {
-    title: 'RÅA Live',
-    location: 'Kåren, Tavastgatan 22',
-    date: '4-5.10',
-    time: '00:00',
-  },
-  {
-    title: 'RÅA Live',
-    location: 'Kåren, Tavastgatan 22',
-    date: '4-5.10',
-    time: '00:00',
-  },
-];
+export default function EventList() {
+  const [events, setEvents] = useState([]);
 
-const EventCard = ({ event }) => (
-  <div className="event-card">
-    <div className="event-icon">
-      📅 {/* You can replace this with an actual icon if desired */}
-    </div>
-    <div className="event-details">
-      <h3>{event.title}</h3>
-      <p className="event-location">{event.location}</p>
-      <p className="event-time">
-        🕒 {event.date} - {event.time}
-      </p>
-    </div>
-  </div>
-);
+  //fetch events from database
+  useEffect(() => {
+    async function getEvents() {
+      const response = await fetch(`http://localhost:5050/event/`);
+      if (!response.ok) {
+        const message = `An error occurred: ${response.statusText}`;
+        console.error(message);
+        return;
+      }
+      const events = await response.json();
+      setEvents(events);
+    }
+    getEvents();
+    return;
+  }, [events.length]);
 
-const EventList = () => (
-  <div>
-    <h2 className='event-header'>Kommande Evenemang</h2>
-    <div className="event-list-container">
-      {events.map((event, index) => (
-        <EventCard key={index} event={event} />
-      ))}
+
+  //create EventCards for each event
+  function eventList() {
+    return events.map((event) => {
+      return (
+        <EventCard
+        event={event}
+        key={event._id}
+        />
+      );
+    });
+  }
+
+
+  //return event list container with cards
+  return (
+    <div>
+      <h2 className='event-header'>Kommande Evenemang</h2>
+      <div className="event-list-container">
+        {eventList()}
       </div>
-  </div>
-);
+    </div>
 
-export default EventList;
+  );
+}

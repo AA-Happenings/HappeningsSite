@@ -5,10 +5,8 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import App from "./App";
-import Record from "./components/Record";
-import RecordList from "./components/RecordList";
-import RecordListContainer from "./components/RecordListContainer";
 import CalendarView from './components/CalendarView';
+import Event from "./components/Event";
 import "./index.css";
 
 const router = createBrowserRouter([
@@ -23,22 +21,12 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/create",
+    path: "/event/:id",
     element: <App />,
     children: [
       {
-        path: "/create",
-        element: <Record />,
-      },
-    ],
-  },
-  {
-    path: "/edit/:id",
-    element: <App />,
-    children: [
-      {
-        path: "/edit/:id",
-        element: <Record />,
+        path: "/event/:id",
+        element: <Event />,
       },
     ],
   },
