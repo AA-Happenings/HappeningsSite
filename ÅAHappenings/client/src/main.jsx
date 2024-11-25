@@ -9,8 +9,6 @@ import Record from "./components/Record";
 import RecordList from "./components/RecordList";
 import RecordListContainer from "./components/RecordListContainer";
 import CalendarView from './components/CalendarView';
-
-import Calendarview from "./components/CalendarView";
 import "./index.css";
 
 const router = createBrowserRouter([

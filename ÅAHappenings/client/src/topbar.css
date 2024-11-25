@@ -26,25 +26,31 @@
     color:black;
   }
   
-  .navbar-buttons {
-    display: flex;
-    align-items: center;
-    margin-left: auto; /* Aligns buttons to the right */
-  }
-  
-  .login-button {
-    background-color: white;
-    color: black;
-    border: none;
-    border-radius: 8px;
-    padding: 5px 10px;
-    font-size: 1vw;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .login-button:hover {
-    background-color: #bab8b8;
-  }
+  /* Container for Arrangörsinloggning and Logga in button */
+.navbar-buttons {
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  align-items: center; /* Center items horizontally */
+  margin-left: auto; /* Remove this if alignment issues arise */
+  text-align: center;
+}
+
+/* Adjusting the button itself */
+.login-button {
+  background-color: white;
+  color: black;
+  border: none;
+  border-radius: 8px;
+  padding: 5px 10px;
+  font-size: 1vw;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 5px; /* Add spacing between text and button */
+}
+
+.login-button:hover {
+  background-color: #bab8b8;
+}
+
   
   
