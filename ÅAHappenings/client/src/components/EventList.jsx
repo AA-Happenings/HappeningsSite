@@ -20,6 +20,7 @@ export default function EventList() {
     return;
   }, [events.length]);
 
+
   //create EventCards for each event
   function eventList() {
     return events.map((event) => {
@@ -32,11 +33,15 @@ export default function EventList() {
     });
   }
 
+
   //return event list container with cards
   return (
-    <div className="event-list-container">
-      <h2>Kommande Evenemang</h2>
-      {eventList()}
+    <div>
+      <h2 className='event-header'>Kommande Evenemang</h2>
+      <div className="event-list-container">
+        {eventList()}
+      </div>
     </div>
+
   );
 }
