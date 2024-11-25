@@ -25,6 +25,12 @@ const events = [
     date: '4-5.10',
     time: '00:00',
   },
+  {
+    title: 'RÅA Live',
+    location: 'Kåren, Tavastgatan 22',
+    date: '4-5.10',
+    time: '00:00',
+  },
 ];
 
 const EventCard = ({ event }) => (
@@ -43,11 +49,13 @@ const EventCard = ({ event }) => (
 );
 
 const EventList = () => (
-  <div className="event-list-container">
-    <h2>Kommande Evenemang</h2>
-    {events.map((event, index) => (
-      <EventCard key={index} event={event} />
-    ))}
+  <div>
+    <h2 className='event-header'>Kommande Evenemang</h2>
+    <div className="event-list-container">
+      {events.map((event, index) => (
+        <EventCard key={index} event={event} />
+      ))}
+      </div>
   </div>
 );
 

@@ -10,6 +10,7 @@ export default function TopBar() {
 
       {/* Button to navigate to the /create page */}
       <div className="navbar-buttons">
+        <h3 style={{color: 'black'}}>Arrangörsinloggning</h3>
         <NavLink to="/create" className="login-button">
           Logga in
         </NavLink>

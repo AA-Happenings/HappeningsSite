@@ -1,16 +1,26 @@
+.event-header {
+    font-size: 1.4rem;
+    text-align: left;
+    font-family: Syncopate, sans-serif;
+    /*margin: 0 auto;*/
+    margin-bottom: 1rem;
+    max-width: 500px;
+    width: 35vw;
+    padding: 0 2rem; /* Match padding with container */
+}
+
 .event-list-container {
     background-color: transparent;
     padding: 2rem;
     border-radius: 12px;
-    max-width: 500px;
+    max-width: 650px;
     margin: 0 auto; /* Center the container */
-  }
-  
-  .event-list-container h2 {
-    margin-bottom: 1.5rem;
-    font-size: 1.5rem;
-    text-align: center;
-  }
+    width: 40vw;
+    max-height: calc(4 * 7vw + 4 * 1rem + 2rem); /* Adjust height to fit 4 events */
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
   
   .event-card {
     display: flex;
@@ -20,6 +30,7 @@
     padding: 1rem;
     border-radius: 10px;
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    opacity: 70%;
   }
   
   .event-icon {
@@ -51,3 +62,62 @@
     margin-right: 0.5rem;
   }
   
+  .main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full height of the viewport */
+    width: 100vw; /* Full width of the viewport */
+    position: relative; /* Needed if the div inside is positioned */
+    background-color: transparent; /* Or any background styling */
+    overflow-x: hidden;
+    margin-top: 3vw;
+}
+
+.calendar-event-container {
+    display: flex;
+    flex-direction: row; /* Align calendar and events side-by-side */
+    gap: 4rem; /* Space between calendar and event list */
+    background-color: transparent; /* Optional background for better visibility */
+    padding: 2rem;
+    border-radius: 12px;
+    max-width: 90%; /* Prevent it from getting too wide */
+    max-height: 90%; /* Prevent it from getting too tall */
+    overflow: hidden; /* Handle overflow if needed */
+}
+
+/* Custom styling for the Calendar */
+.react-calendar {
+    width: 100%; /* Adjust width to fill container */
+    max-width: 400px; /* Set a max width for larger screens */
+    margin-top: 5vw; /* Adds space above the calendar */
+    border-radius: 12px; /* Round corners */
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); /* Add shadow */
+    border: none; /* Remove default border */
+    padding: 1rem; /* Optional padding */
+}
+
+.react-calendar__month-view__days__day--weekend {
+    color: #d9534f; /* Highlight weekends */
+}
+
+.react-calendar__tile {
+    font-size: 1.2rem; /* Make text larger */
+    padding: 1rem; /* Increase clickable area */
+}
+
+.react-calendar__tile--now {
+    background-color: #1087ff !important; /* Light background for today's date */
+    color: #000 !important; /* Ensure text is visible */
+    border-radius: 8px; /* Rounded corners to match overall design */
+    font-weight: bold; /* Highlight today's date */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Optional shadow */
+}
+
+.react-calendar__tile--now:enabled:hover {
+    background-color: #e0e0e0 !important; /* Highlight on hover */
+}
+
+.react-calendar__tile--now:enabled:focus {
+    background-color: #d6d6d6 !important; /* Highlight on focus */
+}
