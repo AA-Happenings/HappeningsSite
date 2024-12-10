@@ -1,41 +1,34 @@
 import React, { useState } from 'react';
+import '../background.css';
+import { FaUser } from "react-icons/fa";
+import { FaLock } from "react-icons/fa";
+import "../LoginPage.css";
 
 const LoginPage = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Login submitted:', { email, password });
-    // Add your login logic here
-  };
-
   return (
-    <div style={{ padding: '20px' }}>
-      <h2>Login Page</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Email:</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
+    <div className="container">
+      {/* Blurred background layer */}
+      <div className="background-image"></div>
+
+      {/* Main content overlay */}
+        <div className="wrapper">
+          <div className="form-box login">
+            <form action="">
+              <h1>Login</h1>
+              <div className="input-box">
+                <input type="text" placeholder="Username" required />
+                <FaUser className="icon"/>
+              </div>
+              <div className="input-box">
+                <input type="password" placeholder='Password' required />
+                <FaLock className="icon"/>
+              </div>
+            </form>
+          </div>
         </div>
-        <div>
-          <label>Password:</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        <button type="submit">Login</button>
-      </form>
-    </div>
+      </div>        
   );
 };
+
 
 export default LoginPage;

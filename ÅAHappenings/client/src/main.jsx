@@ -7,6 +7,7 @@ import {
 import App from "./App";
 import CalendarView from './components/CalendarView';
 import Event from "./components/Event";
+import LoginPage from "./components/LoginPage";
 import "./index.css";
 
 const router = createBrowserRouter([
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
         element: <Event />,
       },
     ],
+  },
+  {
+    path: "/create",
+    element: <LoginPage />,
   },
 ]);
 
