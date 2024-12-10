@@ -65,13 +65,13 @@
   .main-container {
     display: flex;
     justify-content: center;
-    align-items: center;
+    /*align-items: center;*/
     height: 100vh; /* Full height of the viewport */
     width: 100vw; /* Full width of the viewport */
     position: relative; /* Needed if the div inside is positioned */
     background-color: transparent; /* Or any background styling */
     overflow-x: hidden;
-    margin-top: 3vw;
+    margin-top: 2vw;
 }
 
 .calendar-event-container {
@@ -79,7 +79,7 @@
     flex-direction: row; /* Align calendar and events side-by-side */
     gap: 4rem; /* Space between calendar and event list */
     background-color: transparent; /* Optional background for better visibility */
-    padding: 2rem;
+    /*padding: 2rem;*/
     border-radius: 12px;
     max-width: 90%; /* Prevent it from getting too wide */
     max-height: 90%; /* Prevent it from getting too tall */
@@ -120,4 +120,20 @@
 
 .react-calendar__tile--now:enabled:focus {
     background-color: #d6d6d6 !important; /* Highlight on focus */
+}
+
+.react-calendar__tile--active {
+    background-color: #1087ff !important; /* Blue background for selected date */
+    color: white !important; /* White text for better contrast */
+    border-radius: 8px; /* Rounded corners */
+    font-weight: bold; /* Emphasize selected date */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); /* Optional shadow */
+}
+
+.react-calendar__tile--active:enabled:hover {
+    background-color: #0c6cd7 !important; /* Darker blue on hover */
+}
+
+.react-calendar__tile--active:enabled:focus {
+    background-color: #0b5bb5 !important; /* Slightly darker blue on focus */
 }

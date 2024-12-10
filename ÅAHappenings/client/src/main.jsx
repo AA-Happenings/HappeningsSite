@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 import App from "./App";
 import CalendarView from './components/CalendarView';
+import MainPageView from "./components/MainPageView";
 import Event from "./components/Event";
 import "./index.css";
 
@@ -16,7 +17,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <CalendarView />,
+        element: <MainPageView />,
       },
     ],
   },
