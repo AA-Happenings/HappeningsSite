@@ -4,6 +4,8 @@ import TopBar from "./components/TopBar";
 import "./background.css";
 import "./topbar.css";
 import "./EventList.css";
+import "./FilterButton.css";
+import "./Popup.css";
 
 const App = () => {
   return (
