@@ -1,6 +1,8 @@
 # HappeningsSite
 the front and backend for the ÅAhappenings website
 
+Before running update dependencies with "npm install" in client and server folders
+
 to run:
 1. "node --env-file=config.env server" in server folder
 2. "npm run dev" in client folder
