@@ -42,7 +42,7 @@ export default function Event() {
     }, [params.id, navigate]);
 
     return(
-        <div class="grid grid-cols-1 gap-x-8 gap-y-10 border-b border-slate-900/10 pb-12 md:grid-cols-2">
+        <div class="event-box">
             <div>
                 <h2>
                     TLDR
