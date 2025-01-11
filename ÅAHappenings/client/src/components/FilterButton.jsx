@@ -1,31 +1,23 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
-const FilterButton = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [selectedFilters, setSelectedFilters] = useState([]);
-  const dropdownRef = useRef(null); // Reference for the dropdown menu
-
-  const filters = ["Date", "Location", "Event Type", "Organizer"];
+const FilterButton = ({ position, availableFilters, selectedFilters, onFilterUpdate }) => {
+  const [dropdown, setDropdown] = useState(false);
+  const dropdownRef = useRef(null);
 
   const toggleDropdown = () => {
-    setIsOpen((prev) => !prev);
+    setDropdown((prev) => !prev);
   };
 
-  const addFilter = (filter) => {
+  const handleAddFilter = (filter) => {
     if (!selectedFilters.includes(filter)) {
-      setSelectedFilters([...selectedFilters, filter]);
+      onFilterUpdate(position.toLowerCase(), [...selectedFilters, filter]);
     }
   };
 
-  const removeFilter = (filter) => {
-    setSelectedFilters(selectedFilters.filter((f) => f !== filter));
-  };
-
-  // Close dropdown if clicking outside the component
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setIsOpen(false); // Close the dropdown
+        setDropdown(false);
       }
     };
 
@@ -36,43 +28,58 @@ const FilterButton = () => {
   }, []);
 
   return (
-    <div className="filter-wrapper" ref={dropdownRef}>
+    <div
+      style={{
+        display: "inline-block",
+        margin: "0 10px",
+        position: "relative",
+      }}
+      ref={dropdownRef}
+    >
       {/* Filter Button */}
-      <div className="filter-button-container">
-        <button className="filter-button" onClick={toggleDropdown}>
-          <span className="filter-icon">🔍</span> Filter
-        </button>
+      <button
+        style={{
+          padding: "10px 15px",
+          borderRadius: "8px",
+          border: "1px solid #ccc",
+          background: "#fff",
+          cursor: "pointer",
+        }}
+        onClick={toggleDropdown}
+      >
+        🔍 {position}
+      </button>
 
-        {/* Dropdown for Filters */}
-        {isOpen && (
-          <div className="filter-dropdown">
-            {filters.map((filter) => (
-              <div
-                key={filter}
-                className="filter-dropdown-item"
-                onClick={() => addFilter(filter)}
-              >
-                {filter}
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
-
-      {/* Selected Filters */}
-      <div className="selected-filters">
-        {selectedFilters.map((filter) => (
-          <div key={filter} className="selected-filter">
-            {filter}
-            <span
-              className="remove-filter"
-              onClick={() => removeFilter(filter)}
+      {/* Dropdown */}
+      {dropdown && (
+        <div
+          style={{
+            position: "absolute",
+            top: "100%",
+            left: 0,
+            background: "#fff",
+            boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)",
+            borderRadius: "8px",
+            zIndex: 1000,
+            padding: "10px",
+            width: "200px",
+          }}
+        >
+          {availableFilters.map((filter) => (
+            <div
+              key={filter}
+              style={{
+                padding: "8px",
+                cursor: "pointer",
+                borderBottom: "1px solid #eee",
+              }}
+              onClick={() => handleAddFilter(filter)}
             >
-              ✖
-            </span>
-          </div>
-        ))}
-      </div>
+              {filter}
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

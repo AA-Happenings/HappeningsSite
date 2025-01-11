@@ -5,7 +5,7 @@ import "./background.css";
 import "./topbar.css";
 import "./EventList.css";
 import "./FilterButton.css";
-import "./Popup.css";
+import "./Event.css";
 
 const App = () => {
   return (

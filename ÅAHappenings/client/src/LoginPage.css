@@ -1,0 +1,96 @@
+body {
+    font-family: "Poppins", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+
+
+.wrapper .form-box {
+    width: 100%;
+    padding: 40px;
+}
+
+.input-box {
+    display: flex; 
+    align-items: center; 
+    margin-bottom: 20px; 
+    position: relative;
+  }
+  
+.input-box input {
+    flex: 1; 
+    padding: 10px 10px 10px 40px; 
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.input-box .icon {
+    position: absolute;
+    left: 10px; 
+    font-size: 20px;
+    color: #888; 
+    pointer-events: none; 
+}
+
+
+.form-box {
+    background: #fafafacc;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    width: 400px;
+    margin: 0 auto; 
+}
+
+.form-box h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.loggain-button {
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 12px;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+
+  .loggain-button:hover {
+    background-color: #2b2b2b;
+  }
+
+  button.loggain-button {
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 12px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.i_forgor {
+    background-color: rgb(0, 0, 0);
+    border: none;
+    position: relative; 
+    margin-left: 0; 
+    margin-top: 30px; 
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.disclaimer {
+    margin-top: 60px;
+    font-size: 12px;
+}
