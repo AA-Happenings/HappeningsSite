@@ -41,19 +41,40 @@ export default function Event() {
         return;
     }, [params.id, navigate]);
 
-    return(
-        <div class="event-box">
-            <div>
-                <h2>
-                    TLDR
-                </h2>
+    return (
+        <div className="event-page">
+            {/* Event Title at the Top */}
+            <div className="event-title">
+                <h1>{event.title || "Placeholder Event Title"}</h1>
             </div>
-            <div>
-                <h1>
-                    Event description
-                    <br />
-                    {event.title}
-                </h1>
+    
+            <div className="event-content">
+                {/* TLDR Section */}
+                <div className="event-tldr-section">
+                    <h2 className="section-title">TLDR</h2>
+                    <div className="event-tldr">
+                        <p><strong>Vad?</strong> {event.type || "Placeholder Event Type"}</p>
+                        <p><strong>När?</strong> {event.date || "Placeholder Date"}, kl.{event.time || "Placeholder Time"}</p>
+                        <p><strong>Var?</strong> {event.location || "Placeholder Location"}</p>
+                        <p><strong>Hur?</strong> {event.dresscode || "Placeholder Dresscode"}</p>
+                    </div>
+    
+                    {/* Link to Registration */}
+                    <h2 className="section-title">Länk till anmälan</h2>
+                    <div className="event-link-box">
+                        <p>https://placeholder.url</p>
+                    </div>
+                </div>
+    
+                {/* Description Section */}
+                <div className="event-description-section">
+                    <h2 className="section-title">Evenemangsbeskrivning</h2>
+                    <div className="event-description">
+                        <p>
+                            {event.description || "Här följer en längre evenemangsbeskrivning som kan vara samma text som på anmälningsblanketten/hemsidan."}
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     );
