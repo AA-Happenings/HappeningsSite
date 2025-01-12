@@ -6,6 +6,7 @@ import "./topbar.css";
 import "./EventList.css";
 import "./FilterButton.css";
 import "./Event.css";
+import "./FaqPage.css"
 
 const App = () => {
   return (
