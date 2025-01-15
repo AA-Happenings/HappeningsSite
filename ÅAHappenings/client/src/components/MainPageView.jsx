@@ -1,14 +1,19 @@
 import React, { useState } from "react";
-import CalendarView from "./CalendarView";
 import FilterButton from "./FilterButton";
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
+import EventList from './EventList';
 
 export default function MainPageView() {
+
+  //filter useState
   const [allFilters, setAllFilters] = useState({
     evenemangstyp: [],
     taggar: [],
     förening: [],
   });
 
+  //updating filters
   const handleFilterUpdate = (position, updatedFilters) => {
     setAllFilters((prev) => ({
       ...prev,
@@ -16,10 +21,17 @@ export default function MainPageView() {
     }));
   };
 
+  //Available filters
   const availableFilters = {
     evenemangstyp: ["Sport", "Kultur", "Sittning", "Gratis"],
     taggar: ["Gulisevenemang", "BYOB", "Endast Medlemmar"],
     förening: ["Kemistklubben", "SF-Klubben", "Merkantila Klubben", "Humanistiska Föreningen"],
+  };
+
+  //Date values useState and date chane handler
+  const [value, setValue] = useState(new Date());
+  const handleDateChange = (newValue) => {
+    setValue(newValue); // Update the selected date
   };
 
   return (
@@ -29,6 +41,7 @@ export default function MainPageView() {
         flexDirection: "column",
         alignItems: "center",
         padding: "20px",
+        margin: "10px",
       }}
     >
       {/* Filter Buttons */}
@@ -89,10 +102,13 @@ export default function MainPageView() {
           ))
         )}
       </div>
-
-      {/* Calendar */}
-      <div style= {{marginTop: '-1vw'}}>
-        <CalendarView />
+      <div className="calendar-event-container">
+          <Calendar
+                  onChange={handleDateChange}
+                  value={value}
+                  className="react-calendar" /* Apply custom styling */
+              />
+          <EventList />
       </div>
     </div>
   );
