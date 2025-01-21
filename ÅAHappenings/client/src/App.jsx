@@ -7,6 +7,7 @@ import "./EventList.css";
 import "./FilterButton.css";
 import "./Event.css";
 import "./FaqPage.css"
+import "./RulesPage.css";
 
 const App = () => {
   return (

@@ -10,6 +10,7 @@ import MainPageView from "./components/MainPageView";
 import Event from "./components/Event";
 import LoginPage from "./components/LoginPage";
 import FaqPage from "./components/FaqPage"; // Import FaqPage
+import RulesPage from "./components/RulesPage"; // Import the RulesPage
 import "./index.css";
 
 const router = createBrowserRouter([
@@ -44,6 +45,16 @@ const router = createBrowserRouter([
       {
         path: "/faq",
         element: <FaqPage />
+      },
+    ],
+  },
+  {
+    path: "/rules",
+    element: <App />,
+    children: [
+      {
+        path: "/rules",
+        element: <RulesPage />,
       },
     ],
   },

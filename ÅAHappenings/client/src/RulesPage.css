@@ -1,0 +1,64 @@
+/* Main Rules Page */
+.rules-page {
+    background: none; /* Removes the white background */
+    min-height: 100vh; /* Full page height */
+    font-family: Arial, sans-serif;
+    padding-top: 6vw; /* Space for the fixed top bar */
+    overflow-y: auto;
+}
+  
+/* Fixed Rules Header */
+.event-title {
+    text-align: center;
+    margin-bottom: 0px; /* Add spacing below the title */
+    font-size: 3rem;
+    font-weight: bold;
+    margin-top: -40px;
+} 
+  
+/* Rules Sections */
+.event-tldr-section,
+.event-description-section {
+    margin-bottom: 20px; /* Space between sections */
+}
+  
+/* Rules Items Styling */
+.event-tldr {
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Shadow for visual depth */
+    margin-bottom: 20px; /* Space below each rule item */
+}
+  
+.event-description {
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+  
+/* Section Titles */
+.section-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+}
+  
+/* Mobile and Small Screens */
+@media (max-width: 768px) {
+    .event-title {
+        font-size: 2rem; /* Smaller font size for small screens */
+        padding: 8px 0;
+    }
+  
+    .event-content {
+        margin-top: 14vw; /* Adjust space for smaller screens */
+        padding: 10px; /* Smaller padding */
+    }
+  
+    .event-tldr, .event-description {
+        padding: 10px; /* Adjust padding for small screens */
+    }
+}
