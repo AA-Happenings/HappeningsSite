@@ -11,6 +11,7 @@ import Event from "./components/Event";
 import LoginPage from "./components/LoginPage";
 import FaqPage from "./components/FaqPage"; // Import FaqPage
 import RulesPage from "./components/RulesPage"; // Import the RulesPage
+import RegisterPage from "./components/RegisterPage"; // Import the RegisterPage
 import "./index.css";
 
 const router = createBrowserRouter([
@@ -57,6 +58,10 @@ const router = createBrowserRouter([
         element: <RulesPage />,
       },
     ],
+  },
+  {
+    path: "/register",
+    element: <RegisterPage />,
   },
 ]);
 
