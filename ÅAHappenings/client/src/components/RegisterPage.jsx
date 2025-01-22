@@ -20,7 +20,7 @@ const RegisterPage = () => {
         <div className="wrapper">
           <div className="form-box register">
             <form>
-              <h1 className='event-header'>REGISTRERA</h1>
+              <h1 className='event-header'>REGISTRERA MIG</h1>
               <h2>Email</h2>
               <div className="input-box">
                 <input type="email" placeholder="Email" required />
