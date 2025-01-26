@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import FilterButton from "./FilterButton";
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
@@ -7,25 +7,39 @@ import EventList from './EventList';
 export default function MainPageView() {
 
   //filter useState
-  const [allFilters, setAllFilters] = useState({
-    evenemangstyp: [],
-    taggar: [],
-    förening: [],
-  });
+  const [selectedFilters, setSelectedFilters] = useState([]);
+  const [apiEvents, setApiEvents] = useState([]);
+  const [filteredEvents, setFilteredEvents] = useState([]);
+
+  useEffect(() => {
+    async function getEvents() {
+      const response = await fetch(`http://localhost:5050/event/`);
+      if (!response.ok) {
+        const message = `An error occurred: ${response.statusText}`;
+        console.error(message);
+        return;
+      }
+      const events = await response.json();
+      setApiEvents(events);
+      setFilteredEvents(events);
+    }
+    getEvents();
+    return;
+  }, []);
 
   //updating filters
-  const handleFilterUpdate = (position, updatedFilters) => {
-    setAllFilters((prev) => ({
-      ...prev,
-      [position]: updatedFilters,
-    }));
+  const handleFilterUpdate = (updatedFilters) => {
+    setSelectedFilters(updatedFilters);
+
+    const filtered = apiEvents.filter((event) => selectedFilters.every((tag) => event.tags.includes(tag)));
+    setFilteredEvents(filtered);
   };
 
   //Available filters
   const availableFilters = {
     evenemangstyp: ["Sport", "Kultur", "Sittning", "Gratis"],
     taggar: ["Gulisevenemang", "BYOB", "Endast Medlemmar"],
-    förening: ["Kemistklubben", "SF-Klubben", "Merkantila Klubben", "Humanistiska Föreningen"],
+    förening: ["Kemistklubben", "SF-Klubben", "Merkantila Klubben", "Humanistiska Föreningen"]
   };
 
   //Date values useState and date chane handler
@@ -47,29 +61,28 @@ export default function MainPageView() {
       {/* Filter Buttons */}
       <div style={{ display: "flex", justifyContent: "center", marginBottom: "0.2vw" , marginTop: '4.2vw'}}>
         <FilterButton
-          position="Evenemangstyp"
+          name="Evenemangstyp"
           availableFilters={availableFilters.evenemangstyp}
-          selectedFilters={allFilters.evenemangstyp}
+          selectedFilters={selectedFilters}
           onFilterUpdate={handleFilterUpdate}
         />
         <FilterButton
-          position="Taggar"
+          name="Taggar"
           availableFilters={availableFilters.taggar}
-          selectedFilters={allFilters.taggar}
+          selectedFilters={selectedFilters}
           onFilterUpdate={handleFilterUpdate}
         />
         <FilterButton
-          position="Förening"
+          name="Förening"
           availableFilters={availableFilters.förening}
-          selectedFilters={allFilters.förening}
+          selectedFilters={selectedFilters}
           onFilterUpdate={handleFilterUpdate}
         />
       </div>
 
       {/* Selected Filters */}
       <div style={{ display: "flex", justifyContent: "center", flexWrap: "wrap" }}>
-        {Object.entries(allFilters).map(([position, filters]) =>
-          filters.map((filter) => (
+        {selectedFilters.map((filter) => (
             <div
               key={filter}
               style={{
@@ -90,17 +103,14 @@ export default function MainPageView() {
                   fontWeight: "bold",
                 }}
                 onClick={() =>
-                  handleFilterUpdate(
-                    position,
-                    filters.filter((f) => f !== filter)
-                  )
+                  handleFilterUpdate(selectedFilters.filter((f) => f !== filter))
                 }
               >
                 ✖
               </span>
             </div>
           ))
-        )}
+        }
       </div>
       <div className="calendar-event-container">
           <Calendar
@@ -108,7 +118,7 @@ export default function MainPageView() {
                   value={value}
                   className="react-calendar" /* Apply custom styling */
               />
-          <EventList />
+          <EventList events={filteredEvents}/>
       </div>
     </div>
   );
