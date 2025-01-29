@@ -9,8 +9,11 @@ import CalendarView from './components/CalendarView';
 import MainPageView from "./components/MainPageView";
 import Event from "./components/Event";
 import LoginPage from "./components/LoginPage";
+import FaqPage from "./components/FaqPage"; // Import FaqPage
+import LoggedInUser from "./components/LoggedInUser";
 import SAinfo from "./components/SAinfo";
 import "./index.css";
+import "./DialogButton.css";
 
 const router = createBrowserRouter([
   {
@@ -36,6 +39,20 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <LoginPage />,
+  },
+  {
+    path: "/faq", // FAQ route definition
+    element: <App />,
+    children: [
+      {
+        path: "/faq",
+        element: <FaqPage />
+      },
+    ],
+  },
+  {
+    path: "/loggedin",
+    element: <LoggedInUser />,
   },
   {
     path: "/info",
