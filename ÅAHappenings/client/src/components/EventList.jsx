@@ -1,48 +1,38 @@
-import { useEffect, useState } from 'react';
-import EventCard from './EventCard';
+import { Link } from "react-router-dom";
 
-export default function EventList() {
-  const [events, setEvents] = useState([]);
+const EventCard = (props) => (
+  <Link to={`/event/${props.event._id}`}>
+              <div className="event-card">
+              <div className="event-icon">
+                  📅 {/* You can replace this with an actual icon if desired */}
+              </div>
+              <div className="event-details">
+                  <h3>{props.event.title}</h3>
+                  <p className="event-location">{props.event.location}</p>
+                  <p className="event-time">
+                  🕒 {props.event.date} - {props.event.time}
+                  </p>
+              </div>
+              </div>
+          </Link>
+);
 
-  //fetch events from database
-  useEffect(() => {
-    async function getEvents() {
-      const response = await fetch(`http://localhost:5050/event/`);
-      if (!response.ok) {
-        const message = `An error occurred: ${response.statusText}`;
-        console.error(message);
-        return;
-      }
-      const events = await response.json();
-      setEvents(events);
-    }
-    getEvents();
-    return;
-  }, [events.length]);
-
-
-  //create EventCards for each event
-  function eventList() {
-    return events.map((event) => {
-      return (
-        <EventCard
-        event={event}
-        key={event._id}
-        />
-      );
-    });
-  }
-
+const EventList = ({events}) => {
 
   //return event list container with cards
   return (
-    <div>
-      <h2 className='event-header'>Kommande Evenemang</h2>
       <div className="event-list-container">
-        {eventList()}
+        {events.map((event) => {
+          return (
+            <EventCard
+            event={event}
+            key={event._id}
+            />
+          );
+        })
+        }
       </div>
-    </div>
-
   );
 }
 
+export default EventList;
