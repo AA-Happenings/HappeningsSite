@@ -1,14 +1,87 @@
-.event-box {
-width: 800px;
-height: 500px;
-background-color: white;
-margin-top: 7vw;
-margin-left: auto;
-margin-right: auto;
-opacity: 70%;
-padding: 1rem;
-box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-border-radius: 10px;
-align-content: center;
-text-align: center;
+/* Entire Page */
+.event-page {
+    font-family: Arial, sans-serif;
+    margin: 0 auto; /* Center the content horizontally */
+    padding-top: 20px; /* Add padding at the top */
+    max-width: 1200px; /* Set a maximum width for the page */
 }
+
+/* Event Title Styling */
+.event-title {
+    text-align: center;
+    margin-bottom: 40px; /* Add spacing below the title */
+    font-size: 3rem;
+    font-weight: bold;
+    margin-top: 0;
+}
+
+/* Content Section */
+.event-content {
+    display: grid;
+    grid-template-columns: 1fr 2fr; /* Divide into two columns: TLDR and Description */
+    gap: 20px; /* Space between columns */
+}
+
+/* TLDR Section */
+.event-tldr-section {
+    max-width: 100%; /* Full width within the grid */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Space between elements inside this section */
+}
+
+/* TLDR Section */
+.event-tldr {
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex; /* Enable flexbox for alignment */
+    flex-direction: column; /* Stack items vertically */
+    align-items: flex-start; /* Align text to the start of each row */
+    justify-content: center; /* Center content vertically */
+    text-align: center; /* Ensure text is left-aligned inside the box */
+    gap: 5px; /* Add spacing between rows */
+}
+
+
+/* Description Section */
+.event-description-section {
+    max-width: 100%; /* Full width within the grid */
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Space between elements inside this section */
+}
+
+.event-description {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Link Section */
+.event-link-box {
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #eef7ff;
+    margin-top: 0px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    font-size: 1rem;
+    color: #333;
+    text-align: left;
+}
+
+/* Section Titles */
+.section-title {
+    font-size: 1.5rem;
+    font-weight: bold; /* Ensure headers are bold */
+    margin-bottom: 0px;
+    text-align: center;
+}
+

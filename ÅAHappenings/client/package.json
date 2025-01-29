@@ -10,11 +10,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@headlessui/react": "^2.2.0",
     "flowbite": "^2.5.2",
     "react": "^18.2.0",
     "react-admin": "^5.4.0",
     "react-calendar": "^5.1.0",
-    "react-dom": "^18.2.0"
+    "react-dialog-element": "^1.1.0",
+    "react-dom": "^18.2.0",
+    "react-native-dialog": "^9.3.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.43",

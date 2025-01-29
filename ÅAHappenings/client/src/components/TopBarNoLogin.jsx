@@ -4,7 +4,7 @@ export default function TopBar() {
   return (
     <div className="navbar">
       {/* Title that links to the homepage */}
-      <NavLink to="/" className="navbar-title">
+      <NavLink to="/" className="navbar-title-login">
         <span>ÅA-Happenings</span>
       </NavLink>
 
