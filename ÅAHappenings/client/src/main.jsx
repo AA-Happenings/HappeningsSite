@@ -12,7 +12,10 @@ import LoginPage from "./components/LoginPage";
 import FaqPage from "./components/FaqPage"; // Import FaqPage
 import RulesPage from "./components/RulesPage"; // Import the RulesPage
 import RegisterPage from "./components/RegisterPage"; // Import the RegisterPage
+import LoggedInUser from "./components/LoggedInUser";
+import SAinfo from "./components/SAinfo";
 import "./index.css";
+import "./DialogButton.css";
 
 const router = createBrowserRouter([
   {
@@ -62,6 +65,16 @@ const router = createBrowserRouter([
   {
     path: "/register",
     element: <RegisterPage />,
+
+  },
+  {
+    path: "/loggedin",
+    element: <LoggedInUser />,
+  },
+  {
+    path: "/info",
+    element: <SAinfo />,
+
   },
 ]);
 
