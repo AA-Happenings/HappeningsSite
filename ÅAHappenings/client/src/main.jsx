@@ -10,7 +10,9 @@ import MainPageView from "./components/MainPageView";
 import Event from "./components/Event";
 import LoginPage from "./components/LoginPage";
 import FaqPage from "./components/FaqPage"; // Import FaqPage
+import LoggedInUser from "./components/LoggedInUser";
 import "./index.css";
+import "./DialogButton.css";
 
 const router = createBrowserRouter([
   {
@@ -46,6 +48,10 @@ const router = createBrowserRouter([
         element: <FaqPage />
       },
     ],
+  },
+  {
+    path: "/loggedin",
+    element: <LoggedInUser />,
   },
 ]);
 

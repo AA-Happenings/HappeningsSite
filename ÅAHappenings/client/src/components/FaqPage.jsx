@@ -6,9 +6,6 @@ import TopBar from "./TopBar"; // Import the TopBar component
 export default function FaqPage() {
   return (
     <div className="faq-page">
-      {/* Top Bar */}
-      <TopBar />
-
       {/* Main FAQ Content */}
       <div className="event-page">
         {/* Title */}

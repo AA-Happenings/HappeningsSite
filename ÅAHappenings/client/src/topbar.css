@@ -1,9 +1,10 @@
 /* Main navbar container */
+/* Navbar CSS */
 .navbar {
   display: flex;
   justify-content: space-between; /* Distribute items to left and right */
   align-items: center;
-  position: fixed;
+  position: fixed; /* Fix it at the top */
   top: 0;
   left: 0;
   width: 100%;
@@ -16,12 +17,31 @@
   z-index: 10;
 }
 
+/* Add space for the navbar */
+body {
+  margin: 0; /* Remove default margin */
+  padding-top: 5.5vw; /* Add padding equivalent to the navbar's height */
+  box-sizing: border-box; /* Prevent layout overflow */
+}
+
+
 /* Centered title in the navbar */
 .navbar-title {
   font-family: Syncopate, sans-serif;
   font-size: 3vw;
   font-weight: bold;
   color: black;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.navbar-title-login {
+  font-family: Syncopate, sans-serif;
+  font-size: 3vw;
+  font-weight: bold;
+  color: black;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* Container for the FAQ button on the left */
@@ -63,6 +83,8 @@
   background-color: white;
   color: black;
   border: none;
+  width: 7vw;
+  text-align: center;
   border-radius: 8px;
   padding: 5px 10px;
   font-size: 1vw;

@@ -32,7 +32,7 @@ export default function MainPageView() {
       }}
     >
       {/* Filter Buttons */}
-      <div style={{ display: "flex", justifyContent: "center", marginBottom: "0.2vw" , marginTop: '4.2vw'}}>
+      <div style={{ display: "flex", justifyContent: "center", marginBottom: "0.2vw"}}>
         <FilterButton
           position="Evenemangstyp"
           availableFilters={availableFilters.evenemangstyp}
