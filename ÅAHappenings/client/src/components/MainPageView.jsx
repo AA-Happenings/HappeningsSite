@@ -8,7 +8,9 @@ export default function MainPageView() {
 
   //filter useState
   const [selectedFilters, setSelectedFilters] = useState([]);
+  const [selectedAssociation, setSelectedAssociation] = useState([]);
   const [apiEvents, setApiEvents] = useState([]);
+  const [associationEvents, setAssociationEvents] = useState([]);
   const [filteredEvents, setFilteredEvents] = useState([]);
 
   useEffect(() => {
@@ -30,8 +32,7 @@ export default function MainPageView() {
   //updating filters
   const handleFilterUpdate = (updatedFilters) => {
     setSelectedFilters(updatedFilters);
-
-    const filtered = apiEvents.filter((event) => selectedFilters.every((tag) => event.tags.includes(tag)));
+    const filtered = apiEvents.filter((event) => updatedFilters.every((tag) => event.tags.includes(tag)));
     setFilteredEvents(filtered);
   };
 
@@ -39,7 +40,7 @@ export default function MainPageView() {
   const availableFilters = {
     evenemangstyp: ["Sport", "Kultur", "Sittning", "Gratis"],
     taggar: ["Gulisevenemang", "BYOB", "Endast Medlemmar"],
-    förening: ["Kemistklubben", "SF-Klubben", "Merkantila Klubben", "Humanistiska Föreningen"]
+    förening: ["Kemistklubben", "DaTe", "SF-Klubben", "Merkantila Klubben", "Humanistiska Föreningen"]
   };
 
   //Date values useState and date chane handler
