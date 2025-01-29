@@ -1,10 +1,9 @@
 /* Main navbar container */
-/* Navbar CSS */
 .navbar {
   display: flex;
-  justify-content: space-between; /* Distribute items to left and right */
+  justify-content: center; /* Distribute items to left and right */
   align-items: center;
-  position: fixed; /* Fix it at the top */
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -17,22 +16,14 @@
   z-index: 10;
 }
 
-/* Add space for the navbar */
-body {
-  margin: 0; /* Remove default margin */
-  padding-top: 5.5vw; /* Add padding equivalent to the navbar's height */
-  box-sizing: border-box; /* Prevent layout overflow */
-}
-
-
 /* Centered title in the navbar */
 .navbar-title {
   font-family: Syncopate, sans-serif;
   font-size: 3vw;
   font-weight: bold;
   color: black;
-  margin-left: auto;
-  margin-right: auto;
+
+  position: absolute;
 }
 
 .navbar-title-login {
@@ -49,6 +40,8 @@ body {
   display: flex;
   justify-content: flex-start; /* Align FAQ button to the left */
   align-items: center;
+  position: absolute;
+  left: 20px;
 }
 
 /* Style for the FAQ button */
@@ -75,7 +68,9 @@ body {
   flex-direction: column; /* Stack items vertically */
   align-items: flex-end; /* Align items to the right */
   text-align: right; /* Align text to the right */
+  right: 20px;
   gap: 5px; /* Add spacing between the text and button */
+  position: absolute;
 }
 
 /* Login button styling */
