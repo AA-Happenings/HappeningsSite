@@ -81,7 +81,7 @@ body {
 }
 
 .i_forgor {
-    background-color: rgb(0, 0, 0);
+    background-color: transparent;
     border: none;
     position: relative; 
     margin-left: 0; 

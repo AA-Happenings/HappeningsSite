@@ -22,7 +22,8 @@
   font-size: 3vw;
   font-weight: bold;
   color: black;
-
+  position: absolute;
+}
   position: absolute;
 }
 
@@ -34,7 +35,6 @@
   margin-left: auto;
   margin-right: auto;
 }
-
 /* Container for the FAQ button on the left */
 .navbar-left-buttons {
   display: flex;

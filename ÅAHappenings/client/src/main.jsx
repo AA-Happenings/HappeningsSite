@@ -11,6 +11,7 @@ import LoginPage from "./components/LoginPage";
 import FaqPage from "./components/FaqPage"; // Import FaqPage
 import RulesPage from "./components/RulesPage"; // Import the RulesPage
 import RegisterPage from "./components/RegisterPage"; // Import the RegisterPage
+import ForgotPasswordPage from "./components/ForgotPasswordPage"; // Import the ForgotPasswordPage
 import MyEvents from "./components/MyEvents";
 import SAinfo from "./components/SAinfo";
 import "./index.css";
@@ -42,6 +43,11 @@ const router = createBrowserRouter([
     element: <LoginPage />,
   },
   {
+    path: "/forgot-password", // Add route for Forgot Password Page
+    element: <ForgotPasswordPage />,
+  },
+  {
+
     path: "/faq", // FAQ route definition
     element: <App />,
     children: [
@@ -64,7 +70,6 @@ const router = createBrowserRouter([
   {
     path: "/register",
     element: <RegisterPage />,
-
   },
   {
     path: "/myevents",
@@ -73,7 +78,6 @@ const router = createBrowserRouter([
   {
     path: "/info",
     element: <SAinfo />,
-
   },
 ]);
 
