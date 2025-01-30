@@ -22,9 +22,9 @@ const RegisterPage = () => {
           <div className="form-box register">
             <form>
               <h1 className='event-header'>REGISTRERA MIG</h1>
-              <h2>Studentförening</h2>
+              <h2>Ämnesförening</h2>
               <div className="input-box">
-                <input type="text" placeholder="Studentföreningens namn" required />
+                <input type="text" placeholder="Ämnesföreningens namn" required />
                 <FaBuilding className="icon" /> 
               </div>
 
