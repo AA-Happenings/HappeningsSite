@@ -4,6 +4,7 @@ import { FaUser } from "react-icons/fa";
 import { FaLock } from "react-icons/fa";
 import "../LoginPage.css";
 import TopBarNoLogin from "./TopBarNoLogin";
+import { NavLink } from "react-router-dom" /* for linking to Forgot Password page */
 
 const LoginPage = () => {
   return (
@@ -34,9 +35,9 @@ const LoginPage = () => {
                   Logga in
                 </button>
                 <div>
-                <button className="i_forgor" type="button">
+                <NavLink to="/forgot-password" className="i_forgor">
                   Glömt lösenordet?
-                </button>
+                </NavLink>
                 </div>
               </div>
             </form>
