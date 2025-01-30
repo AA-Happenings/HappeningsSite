@@ -2,38 +2,18 @@ import React, { useState } from 'react';
 import '../background.css';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-import EventList from './EventList';
-import FilterButton from "./FilterButton";
 import TopBarLoggedIn from "./TopBarLoggedIn";
 import { Dialog } from 'react-dialog-element';
 
-export default function LoggedInUser(){
-  const [allFilters, setAllFilters] = useState({
-    evenemangstyp: [],
-    taggar: [],
-    förening: [],
-  });
-
+export default function MyEvents(){
+  
   const [isOpen, setOpen] = useState(false);
-
-  const handleFilterUpdate = (position, updatedFilters) => {
-    setAllFilters((prev) => ({
-      ...prev,
-      [position]: updatedFilters,
-    }));
-  };
 
   const [value, setValue] = useState(new Date());
   
     const handleDateChange = (newValue) => {
       setValue(newValue); // Update the selected date
     };
-
-  const availableFilters = {
-    evenemangstyp: ["Sport", "Kultur", "Sittning", "Gratis"],
-    taggar: ["Gulisevenemang", "BYOB", "Endast Medlemmar"],
-    förening: ["Kemistklubben", "SF-Klubben", "Merkantila Klubben", "Humanistiska Föreningen"],
-  };
 
   return (
     <>
@@ -68,7 +48,32 @@ export default function LoggedInUser(){
             <label className="dialog-label">Beskrivning:</label>
             <textarea placeholder="Ge ditt evenemang en beskrivning" className="dialog-textarea"></textarea>
 
-            {/* Members Only Checkbox */}
+            {/* Price Field */}
+            <label className="dialog-label">Pris:</label>
+            <input type="text" placeholder="Ange priset för ditt evenemang" className="dialog-input" />
+
+            {/* Location Field */}
+            <label className="dialog-label">Plats:</label>
+            <input type="text" placeholder="Ge platsen för ditt evenemang" className="dialog-input" />
+
+            {/* How Field */}
+            <label className="dialog-label">Hur:</label>
+            <input type="text" placeholder="Ge ett tema/dresscode" className="dialog-input" />
+
+            {/* Link Field */}
+            <label className="dialog-label">Länk:</label>
+            <input type="text" placeholder="Lägg till en länk" className="dialog-input" />
+            </div>
+
+            <div className="item-container-right">
+              {/* Co-organizer Dropdown */}
+            <label className="dialog-label">Välj medorganisatör</label>
+              <select className="dialog-select">
+                <option value="">Välj</option>
+                {/* Add more options dynamically if needed */}
+              </select>
+
+              {/* Members Only Checkbox */}
             <div className="dialog-checkbox">
               <input type="checkbox" id="members-only" />
               <label htmlFor="members-only">Endast för medlemmar</label>
@@ -77,20 +82,12 @@ export default function LoggedInUser(){
             {/* Date Section */}
             <div className="dialog-date">
               <label className="dialog-label" htmlFor="date">*Välj datum</label>
-              <input required type="datetime-local" id="date" className="dialog-input" format-value="yyyy-MM-ddThh:mm" />
+              <input required type="date" id="date" className="dialog-input" format-value="yyyy-MM-dd" />
             </div>
-            </div>
-            <div className="item-container-right">
-              {/* Co-organizer Dropdown */}
-              <label className="dialog-label">Välj medorganisatör</label>
-              <select className="dialog-select">
-                <option value="">Välj</option>
-                {/* Add more options dynamically if needed */}
-              </select>
 
-              {/* Location Field */}
-            <label className="dialog-label">Plats:</label>
-            <input type="text" placeholder="Ange platsen för ditt evenemang" className="dialog-input" />
+            {/* Time Field */}
+            <label className="dialog-label">Tid:</label>
+            <input type="text" placeholder="Ge ett klockslag" className="dialog-input" />
 
               {/* Checkbox Options */}
               <div className="dialog-checkbox-container">
@@ -131,78 +128,15 @@ export default function LoggedInUser(){
         </Dialog>
       )}
     </div>
-      {/* Filter Buttons */}
-      <div style={{ display: "flex", justifyContent: "center", marginBottom: "0.2vw"}}>
-        <FilterButton
-          position="Evenemangstyp"
-          availableFilters={availableFilters.evenemangstyp}
-          selectedFilters={allFilters.evenemangstyp}
-          onFilterUpdate={handleFilterUpdate}
-        />
-        <FilterButton
-          position="Taggar"
-          availableFilters={availableFilters.taggar}
-          selectedFilters={allFilters.taggar}
-          onFilterUpdate={handleFilterUpdate}
-        />
-        <FilterButton
-          position="Förening"
-          availableFilters={availableFilters.förening}
-          selectedFilters={allFilters.förening}
-          onFilterUpdate={handleFilterUpdate}
-        />
-      </div>
-
-      {/* Selected Filters */}
-      <div style={{ display: "flex", justifyContent: "center", flexWrap: "wrap" }}>
-        {Object.entries(allFilters).map(([position, filters]) =>
-          filters.map((filter) => (
-            <div
-              key={filter}
-              style={{
-                display: "inline-block",
-                margin: "4px",
-                padding: "6px 12px",
-                borderRadius: "8px",
-                background: "#f5f5f5",
-                border: "1px solid #ddd",
-              }}
-            >
-              {filter}
-              <span
-                style={{
-                  marginLeft: "8px",
-                  color: "#888",
-                  cursor: "pointer",
-                  fontWeight: "bold",
-                }}
-                onClick={() =>
-                  handleFilterUpdate(
-                    position,
-                    filters.filter((f) => f !== filter)
-                  )
-                }
-              >
-                ✖
-              </span>
-            </div>
-          ))
-        )}
-      </div>
       <div className="calendar-event-container">
           <Calendar
                   onChange={handleDateChange}
                   value={value}
                   className="react-calendar" /* Apply custom styling */
               />
-          <EventList
-            filters={allFilters}
-          />
       </div>
     </div>
     </div>
     </>
   );
 }
-
-
