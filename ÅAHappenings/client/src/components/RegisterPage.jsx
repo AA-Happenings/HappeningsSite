@@ -26,7 +26,7 @@ const RegisterPage = () => {
               <h2>Studentförening</h2>
               <div className="input-box">
                 <input type="text" placeholder="Studentföreningens namn" required />
-                <FaBuilding className="icon" /> {/* Building icon for organization name */}
+                <FaBuilding className="icon" /> 
               </div>
 
               <h2>Email</h2>
