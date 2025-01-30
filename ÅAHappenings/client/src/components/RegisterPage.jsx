@@ -3,6 +3,7 @@ import '../background.css';
 import { FaUser } from "react-icons/fa";
 import { FaLock } from "react-icons/fa";
 import { FaEnvelope } from "react-icons/fa";
+import { FaBuilding } from "react-icons/fa";
 import "../RegisterPage.css";
 import TopBarNoLogin from "./TopBarNoLogin";
 
@@ -21,6 +22,13 @@ const RegisterPage = () => {
           <div className="form-box register">
             <form>
               <h1 className='event-header'>REGISTRERA MIG</h1>
+
+              <h2>Studentförening</h2>
+              <div className="input-box">
+                <input type="text" placeholder="Studentföreningens namn" required />
+                <FaBuilding className="icon" /> {/* Building icon for organization name */}
+              </div>
+
               <h2>Email</h2>
               <div className="input-box">
                 <input type="email" placeholder="Email" required />
