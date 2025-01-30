@@ -8,7 +8,6 @@ export default function FaqPage() {
     <div className="faq-page">
       {/* Top Bar */}
       <TopBar />
-
       {/* Main FAQ Content */}
       <div className="event-page">
         {/* Title */}

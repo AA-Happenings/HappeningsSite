@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 
-const FilterButton = ({ position, availableFilters, selectedFilters, onFilterUpdate }) => {
+const FilterButton = ({ name, availableFilters, selectedFilters, onFilterUpdate }) => {
   const [dropdown, setDropdown] = useState(false);
   const dropdownRef = useRef(null);
 
@@ -10,7 +10,7 @@ const FilterButton = ({ position, availableFilters, selectedFilters, onFilterUpd
 
   const handleAddFilter = (filter) => {
     if (!selectedFilters.includes(filter)) {
-      onFilterUpdate(position.toLowerCase(), [...selectedFilters, filter]);
+      onFilterUpdate([...selectedFilters, filter]);
     }
   };
 
@@ -47,7 +47,7 @@ const FilterButton = ({ position, availableFilters, selectedFilters, onFilterUpd
         }}
         onClick={toggleDropdown}
       >
-        🔍 {position}
+        🔍 {name}
       </button>
 
       {/* Dropdown */}

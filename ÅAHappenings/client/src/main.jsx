@@ -5,7 +5,6 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import App from "./App";
-import CalendarView from './components/CalendarView';
 import MainPageView from "./components/MainPageView";
 import Event from "./components/Event";
 import LoginPage from "./components/LoginPage";
@@ -13,7 +12,10 @@ import FaqPage from "./components/FaqPage"; // Import FaqPage
 import RulesPage from "./components/RulesPage"; // Import the RulesPage
 import RegisterPage from "./components/RegisterPage"; // Import the RegisterPage
 import ForgotPasswordPage from "./components/ForgotPasswordPage"; // Import the ForgotPasswordPage
+import MyEvents from "./components/MyEvents";
+import SAinfo from "./components/SAinfo";
 import "./index.css";
+import "./DialogButton.css";
 
 const router = createBrowserRouter([
   {
@@ -45,6 +47,7 @@ const router = createBrowserRouter([
     element: <ForgotPasswordPage />,
   },
   {
+
     path: "/faq", // FAQ route definition
     element: <App />,
     children: [
@@ -67,6 +70,14 @@ const router = createBrowserRouter([
   {
     path: "/register",
     element: <RegisterPage />,
+  },
+  {
+    path: "/myevents",
+    element: <MyEvents />,
+  },
+  {
+    path: "/info",
+    element: <SAinfo />,
   },
 ]);
 

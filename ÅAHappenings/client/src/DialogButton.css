@@ -1,0 +1,147 @@
+.button-style {
+    background-color: white;
+    color: black;
+    border: 1px solid gray;
+    border-radius: 8px;
+    padding: 5px 10px;
+    font-size: 1vw;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-decoration: none; /* Removes underline */
+    margin-right: 10px; /* Space between button and edge */
+}
+
+.button-style-cancel {
+    background-color: rgb(199, 199, 199);
+    color: black;
+    border: none;
+    border-radius: 8px;
+    padding: 5px 10px;
+    font-size: 1vw;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-decoration: none; /* Removes underline */
+    margin-right: 10px; /* Space between button and edge */
+}
+
+.dialog-container {
+    display: flex;
+    gap: 20px; /* Space between the two item containers */
+    padding: 20px;
+    width: 800px;
+    flex-wrap: wrap; /* Wrap content on smaller screens */
+    background-color: #EDEDED;
+  }
+  
+  .dialog-footer {
+    display: flex;
+    justify-content: space-between; /* Align buttons on left and right */
+    padding: 10px 20px; /* Inner spacing */
+    border-top: 1px solid #CCC; /* Optional: separates the footer visually */
+    background-color: #EDEDED; /* Matches the dialog's background */
+    margin: 0; /* Ensure no extra margin */
+    box-sizing: border-box; /* Include padding in dimensions */
+  }
+  
+  
+.item-container-left {
+    padding: 20px;
+    padding-left: 30px;
+    margin-right: auto;
+    width: 40%;
+}
+
+.item-container-right {
+    padding: 20px;
+    padding-right: 30px;
+    margin-left: auto;
+    width: 40%;
+}
+
+.dialog-header {
+    font-size: 2.2rem; /* Large, prominent header */
+    font-weight: bold; /* Emphasize title */
+    text-align: center; /* Center-align text */
+    background-color: #EDEDED;
+}
+
+.dialog-label {
+    display: block; /* Ensure inputs stack vertically */
+    font-size: 1rem;
+    margin-bottom: 5px; /* Space between label and input */
+}
+
+.dialog-input,
+.dialog-textarea,
+.dialog-select {
+    width: 100%; /* Full width for inputs */
+    padding: 10px; /* Inner spacing for usability */
+    border: 1px solid #EDEDED; /* Subtle border */
+    border-radius: 5px; /* Rounded edges for softness */
+    font-size: 1rem;
+    box-sizing: border-box; /* Avoid overflow */
+    margin-bottom: 15px; /* Space between inputs */
+}
+
+.dialog-textarea {
+    min-height: 80px; /* Custom height for textarea */
+    max-height: 350px;
+    max-width: 400px;
+    min-width: 100%;
+    resize: both; /*Allow resizing */
+}
+
+.dialog-checkbox-container {
+    margin-bottom: 20px; /* Space between checkbox groups */
+    display: flex;
+    flex-direction: column; /* Stack checkboxes vertically */
+}
+
+.dialog-checkbox {
+    display: flex;
+    align-items: center; /* Align checkbox and text */
+    margin-bottom: 10px; /* Space between checkboxes */
+}
+
+.dialog-checkbox input {
+    margin-right: 10px; /* Space between box and label */
+}
+
+.dialog-date {
+    background-color: #F7F7FF; /* Light purple for date section */
+    padding: 15px; /* Space inside section */
+    border-radius: 10px; /* Rounded corners */
+    margin-bottom: 20px; /* Space below section */
+}
+
+.dialog-date input[type="date"] {
+    width: 100%; /* Full width for date input */
+    padding: 10px; /* Spacing for usability */
+    border-radius: 5px; /* Rounded edges */
+    border: 1px solid #CCC; /* Consistent border style */
+}
+
+.dialog-buttons {
+    display: flex;
+    justify-content: space-between; /* Space out buttons */
+    background-color: #EDEDED;
+    padding: 10px 20px; /* Inner spacing */
+}
+
+.dialog-buttons .button-style {
+    flex-grow: 1; /* Ensure equal-sized buttons */
+    margin: 0 5px; /* Space between buttons */
+    font-size: 1rem; /* Consistent button size */
+    padding: 10px; /* Comfortable click area */
+}
+
+.dialog-buttons .button-style-cancel {
+    flex-grow: 1; /* Ensure equal-sized buttons */
+    margin: 0 5px; /* Space between buttons */
+    font-size: 1rem; /* Consistent button size */
+    padding: 10px; /* Comfortable click area */
+}
+
+.dialog-buttons .button-style:hover {
+    background-color: #DDD; /* Subtle hover effect */
+}
