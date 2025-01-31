@@ -1,0 +1,84 @@
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    filter: opacity(80%);
+  }
+  
+  .profile-pic-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .profile-pic-box {
+    width: 250px;  
+    height: 250px; 
+    object-fit: contain; 
+    border-radius: 10px; 
+    border: 1px solid #333; 
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); 
+    filter: none;
+  }
+  
+  .profile-pic {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .placeholder-text {
+    font-size: 14px;
+    color: #aaa;
+    text-align: center;
+  }
+  
+  .profile-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 300px;
+  }
+  
+  .profile-input,
+  .profile-textarea {
+    width: 100%;
+    padding: 8px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .profile-textarea {
+    height: 100px;
+    resize: none;
+    background-color: white !important;
+  }
+  
+  .color-picker-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .color-picker-container input {
+    width: 50px;
+    height: 30px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .chooseFile {
+    width: 300px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    font-size: 12px;
+    padding-left: 70px;
+  }
