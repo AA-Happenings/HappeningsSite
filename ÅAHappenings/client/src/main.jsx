@@ -17,6 +17,8 @@ import SAinfo from "./components/SAinfo";
 import "./index.css";
 import "./DialogButton.css";
 import Profile from "./components/profile";
+import AdminPage from "./components/AdminPage"
+
 
 const router = createBrowserRouter([
   {
@@ -83,6 +85,10 @@ const router = createBrowserRouter([
   {
     path: "/profile",
     element: <Profile />,
+  },
+  {
+    path: "/adminpage",
+    element: <AdminPage />,
   },
 ]);
 
