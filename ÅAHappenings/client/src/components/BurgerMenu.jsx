@@ -1,10 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { stack as Menu } from 'react-burger-menu';
 import "../BurgerMenu.css";
-import { CgHome } from "react-icons/cg";
-import { CgCalendarDates } from "react-icons/cg";
-import { CgUser } from "react-icons/cg";
-import { CgClipboard } from "react-icons/cg";
+import { GoHome } from "react-icons/go";
+import { GoCalendar } from "react-icons/go";
+import { GoPerson } from "react-icons/go";
+import { GoChecklist } from "react-icons/go";
+import { GoSignOut } from "react-icons/go";
 
 const BurgerMenu = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -42,27 +43,33 @@ const BurgerMenu = () => {
             <a 
                 className="bm-item" 
                 href="/">
-                <CgHome style={{ verticalAlign: "middle" }} />
+                <GoHome style={{ verticalAlign: "middle" }} />
                 <span>Hem</span>
             </a>
 
             <a 
                 className="bm-item" 
                 href="/myevents">
-                <CgCalendarDates style={{ verticalAlign: "middle" }} />
+                <GoCalendar style={{ verticalAlign: "middle" }} />
                 <span>Mina Evenemang</span>
             </a>
             <a 
                 className="bm-item" 
                 href="/info" >
-                <CgUser style={{ verticalAlign: "middle" }} />
+                <GoPerson style={{ verticalAlign: "middle" }} />
                 <span>Min Info</span>
             </a>
             <a 
                 className="bm-item" 
                 href="/rules">
-                <CgClipboard style={{ verticalAlign: "middle" }} />
+                <GoChecklist style={{ verticalAlign: "middle" }} />
                 <span>Regler</span>
+            </a>
+            <a 
+                className="bm-item" 
+                href="/">
+                <GoSignOut style={{ verticalAlign: "middle" }} />
+                <span>Logga ut</span>
             </a>
           </nav>
         </div>
