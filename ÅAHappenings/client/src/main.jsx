@@ -15,6 +15,7 @@ import MyEvents from "./components/MyEvents";
 import SAinfo from "./components/SAinfo";
 import "./index.css";
 import "./DialogButton.css";
+import "./BurgerMenu.css";
 
 const router = createBrowserRouter([
   {

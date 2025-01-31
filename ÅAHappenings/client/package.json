@@ -14,6 +14,7 @@
     "flowbite": "^2.5.2",
     "react": "^18.2.0",
     "react-admin": "^5.4.0",
+    "react-burger-menu": "^3.1.0",
     "react-calendar": "^5.1.0",
     "react-dialog-element": "^1.1.0",
     "react-dom": "^18.2.0",
