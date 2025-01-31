@@ -43,7 +43,7 @@
   
   /* General sidebar styles */
   .bm-menu {
-    background: #4f5054;
+    background: #696b70;
     padding: 1em 1em 0;
     font-size: 1.15em;
     height: 100%;
@@ -82,7 +82,7 @@
   }
   
   .bm-item:hover {
-    color: red; /* Change both text and icon color on hover */
+    color: rgb(0, 0, 0); /* Change both text and icon color on hover */
   }
   
   
