@@ -3,6 +3,8 @@ import FilterButton from "./FilterButton";
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import EventList from './EventList';
+import { NavLink } from "react-router-dom";
+import "../MainPageView.css"
 
 export default function MainPageView() {
 
@@ -121,6 +123,12 @@ export default function MainPageView() {
               />
           <EventList events={filteredEvents}/>
       </div>
+      <div className="faq-container">
+        <NavLink to="/faq" className="faq-button">
+          FAQ
+        </NavLink>
     </div>
+    </div>
+    
   );
 }

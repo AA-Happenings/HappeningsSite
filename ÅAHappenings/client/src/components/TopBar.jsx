@@ -3,12 +3,7 @@ import { NavLink } from "react-router-dom";
 export default function TopBar() {
   return (
     <div className="navbar">
-      {/* FAQ Button */}
-      <div className="navbar-left-buttons">
-        <NavLink to="/faq" className="faq-button">
-          FAQ
-        </NavLink>
-      </div>
+      
 
       {/* Title */}
       <NavLink to="/" className="navbar-title">

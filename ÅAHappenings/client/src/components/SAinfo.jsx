@@ -24,6 +24,9 @@ const SAinfo = () => {
               alt="Logo of the chosen student association" 
               className="info-image" 
             />
+            <div className='namebox'>
+                Name of the Student Association
+            </div>
             
             {/* Textbox */}
             <div className='info-displaybox'>
