@@ -1,26 +1,47 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import EventForm from "./EventForm";
+
 
 export default function Event() {
+    const isEO = true;
+    const [isOpen, setOpen] = useState(false);
+    const handleOpenChange = (newValue) => {
+        setOpen(newValue);
+    }
 
     //event object to store information
     const [event, setEvent] = useState({
         title: "",
+        description: "",
+        what: "",
         location: "",
         date: "",
-        time:""
+        time: "",
+        how: "",
+        price: "",
+        link: ""
     });
 
-    const [isNew, setIsNew] = useState(true);
     const params = useParams();
     const navigate = useNavigate();
+
+    function editEvent() {
+        if(isEO) {
+            return (
+                <div>
+                <button onClick={() => setOpen(true)} className="button-style">Edit event</button>
+                <EventForm isOpen={isOpen} setOpen={handleOpenChange} isNew={false}/>
+                </div>
+            );
+        }
+    }
 
     //fetches data for an event by id from the db 
     useEffect(() => {
         async function fetchData() {
             const id = params.id?.toString() || undefined;
             if(!id) return;
-            setIsNew(false);
             const response = await fetch(
                 `http://localhost:5050/event/${params.id.toString()}`
             );
@@ -53,16 +74,16 @@ export default function Event() {
                 <div className="event-tldr-section">
                     <h2 className="section-title">TLDR</h2>
                     <div className="event-tldr">
-                        <p><strong>Vad?</strong> {event.type || "Placeholder Event Type"}</p>
+                        <p><strong>Vad?</strong> {event.what || "Placeholder Event Type"}</p>
                         <p><strong>När?</strong> {event.date || "Placeholder Date"}, kl.{event.time || "Placeholder Time"}</p>
                         <p><strong>Var?</strong> {event.location || "Placeholder Location"}</p>
-                        <p><strong>Hur?</strong> {event.dresscode || "Placeholder Dresscode"}</p>
+                        <p><strong>Hur?</strong> {event.how || "Placeholder Dresscode"}</p>
                     </div>
     
                     {/* Link to Registration */}
                     <h2 className="section-title">Länk till anmälan</h2>
                     <div className="event-link-box">
-                        <p>https://placeholder.url</p>
+                        <p>{event.link || "https://placeholder.url"}</p>
                     </div>
                 </div>
     
@@ -74,6 +95,11 @@ export default function Event() {
                             {event.description || "Här följer en längre evenemangsbeskrivning som kan vara samma text som på anmälningsblanketten/hemsidan."}
                         </p>
                     </div>
+                </div>
+
+                {/* Edit button for logged in */}
+                <div>
+                    {editEvent()}
                 </div>
             </div>
         </div>
