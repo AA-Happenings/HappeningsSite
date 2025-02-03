@@ -34,7 +34,7 @@ router.post("/", async (req, res) => {
         price: req.body.price,
         link: req.body.link,
         membersOnly: req.body.membersOnly,
-        tags: req.body.tags
+        tags: req.body.tags,
       };
       let collection = await db.collection("events");
       let result = await collection.insertOne(newDocument);

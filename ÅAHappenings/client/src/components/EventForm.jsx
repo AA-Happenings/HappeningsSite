@@ -160,7 +160,7 @@ export default function EventForm({isOpen, setOpen, isNew}) {
 
                     {/* Members Only Checkbox */}
                     <div className="dialog-checkbox">
-                    <input type="checkbox" id="members-only" value={form.membersOnly} onChange={(e) => updateForm({membersOnly: e.target.value})}/>
+                    <input type="checkbox" id="members-only" checked={form.membersOnly} onChange={(e) => updateForm({membersOnly: e.target.checked})}/>
                     <label htmlFor="members-only">Endast för medlemmar</label>
                     </div>
 
