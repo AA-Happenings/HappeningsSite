@@ -16,7 +16,10 @@ import MyEvents from "./components/MyEvents";
 import SAinfo from "./components/SAinfo";
 import "./index.css";
 import "./DialogButton.css";
+import Profile from "./components/profile";
+import AdminPage from "./components/AdminPage"
 import "./BurgerMenu.css";
+
 
 const router = createBrowserRouter([
   {
@@ -79,6 +82,14 @@ const router = createBrowserRouter([
   {
     path: "/info",
     element: <SAinfo />,
+  },
+  {
+    path: "/profile",
+    element: <Profile />,
+  },
+  {
+    path: "/adminpage",
+    element: <AdminPage />,
   },
 ]);
 
