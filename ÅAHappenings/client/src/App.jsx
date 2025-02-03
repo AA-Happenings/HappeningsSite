@@ -9,6 +9,7 @@ import "./Event.css";
 import "./FaqPage.css"
 import "./RulesPage.css";
 import "./RegisterPage.css";
+import "./BurgerMenu.css";
 
 const App = () => {
   return (
