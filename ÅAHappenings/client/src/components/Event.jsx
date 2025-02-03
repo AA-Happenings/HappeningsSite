@@ -14,13 +14,14 @@ export default function Event() {
     const [event, setEvent] = useState({
         title: "",
         description: "",
-        what: "",
         location: "",
         date: "",
         time: "",
         how: "",
         price: "",
-        link: ""
+        link: "",
+        membersOnly: "",
+        tags: {}
     });
 
     const params = useParams();
@@ -74,10 +75,11 @@ export default function Event() {
                 <div className="event-tldr-section">
                     <h2 className="section-title">TLDR</h2>
                     <div className="event-tldr">
-                        <p><strong>Vad?</strong> {event.what || "Placeholder Event Type"}</p>
-                        <p><strong>När?</strong> {event.date || "Placeholder Date"}, kl.{event.time || "Placeholder Time"}</p>
-                        <p><strong>Var?</strong> {event.location || "Placeholder Location"}</p>
-                        <p><strong>Hur?</strong> {event.how || "Placeholder Dresscode"}</p>
+                        <p><strong>Var?</strong> {event.location || "-"}</p>
+                        <p><strong>När?</strong> {event.date || "-"}, kl.{event.time || "-"}</p>
+                        <p><strong>Hur?</strong> {event.how || "Ingen klädkod"}</p>
+                        <p><strong>Pris?</strong> {event.price || "Inget pris uppgett"}</p>
+                        <p><strong>{event.membersOnly ? "Endast för medlemmar" : ""}</strong></p>
                     </div>
     
                     {/* Link to Registration */}

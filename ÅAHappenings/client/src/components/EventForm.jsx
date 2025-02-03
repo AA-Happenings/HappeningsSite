@@ -7,13 +7,14 @@ export default function EventForm({isOpen, setOpen, isNew}) {
     const [form, setForm] = useState({
         title: "",
         description: "",
-        what: "",
         location: "",
         date: "",
         time: "",
         how: "",
         price: "",
         link: "",
+        membersOnly: "",
+        tags: {}
     });
 
     const params = useParams();
@@ -23,7 +24,6 @@ export default function EventForm({isOpen, setOpen, isNew}) {
         async function fetchData() {
           const id = params.id?.toString() || undefined;
           if(id == undefined) return;
-          setIsNew(false);
           const response = await fetch(
             `http://localhost:5050/event/${params.id.toString()}`
           );
@@ -33,6 +33,7 @@ export default function EventForm({isOpen, setOpen, isNew}) {
             return;
           }
           const event = await response.json();
+          console.log(event)
           if (!event) {
             console.warn(`Record with id ${id} not found`);
             navigate("/");
@@ -42,7 +43,7 @@ export default function EventForm({isOpen, setOpen, isNew}) {
         }
         fetchData();
         return;
-      }, [params.id, navigate]);
+    }, [params.id, navigate]);
 
     function updateForm(value) {
         return setForm((prev) => {
@@ -80,7 +81,7 @@ export default function EventForm({isOpen, setOpen, isNew}) {
         } catch (error) {
         console.error('A problem occurred adding or updating a record: ', error);
         } finally {
-            setForm({title: "", description: "", what: "", location: "", date: "", time: "", how: "", price: "", link: ""})
+            setForm({title: "", description: "", location: "", date: "", time: "", how: "", price: "", link: "", membersOnly: "", tags: {}})
             navigate("/");
         }
     }
@@ -90,7 +91,7 @@ export default function EventForm({isOpen, setOpen, isNew}) {
             {/* Dialog component */}
             {isOpen && (
                 <Dialog isOpen={isOpen} setOpen={setOpen} style={{borderRadius: "10px"}}>
-                <h1 className="dialog-header">Skapa Evenemang</h1>
+                <h1 className="dialog-header">Skapa Ditt Evenemang</h1>
                 <div className="dialog-container">
                     <div className="item-container-left">
 
@@ -111,15 +112,6 @@ export default function EventForm({isOpen, setOpen, isNew}) {
                         className="dialog-textarea" 
                         value={form.description}
                         onChange={(e) => updateForm({description: e.target.value})}
-                    />
-
-                    {/* What Field */}
-                    <label className="dialog-label">Vad:</label>
-                    <input 
-                        type="text" placeholder="Ange priset för ditt evenemang" 
-                        className="dialog-input"
-                        value={form.what}
-                        onChange={(e) => updateForm({price: e.target.value})}
                     />
 
                     {/* Price Field */}
@@ -143,7 +135,7 @@ export default function EventForm({isOpen, setOpen, isNew}) {
                     {/* How Field */}
                     <label className="dialog-label">Hur:</label>
                     <input 
-                        type="text" placeholder="Ge ett tema/dresscode" 
+                        type="text" placeholder="Ge ett tema/klädkod" 
                         className="dialog-input" 
                         value={form.how}
                         onChange={(e) => updateForm({how: e.target.value})}
@@ -168,7 +160,7 @@ export default function EventForm({isOpen, setOpen, isNew}) {
 
                     {/* Members Only Checkbox */}
                     <div className="dialog-checkbox">
-                    <input type="checkbox" id="members-only" />
+                    <input type="checkbox" id="members-only" value={form.membersOnly} onChange={(e) => updateForm({membersOnly: e.target.value})}/>
                     <label htmlFor="members-only">Endast för medlemmar</label>
                     </div>
 
@@ -180,6 +172,7 @@ export default function EventForm({isOpen, setOpen, isNew}) {
                         id="date" 
                         className="dialog-input" 
                         format-value="yyyy-MM-dd"
+                        value={form.date}
                         onChange={(e) => updateForm({date: e.target.value})}
                         />
                     </div>
@@ -187,14 +180,14 @@ export default function EventForm({isOpen, setOpen, isNew}) {
                     {/* Time Field */}
                     <label className="dialog-label">Tid:</label>
                     <input 
-                        type="text" 
+                        type="time" 
                         placeholder="Ge ett klockslag" 
                         className="dialog-input"
                         value={form.time}
                         onChange={(e) => updateForm({time: e.target.value})}
                     />
 
-                    {/* Checkbox Options */}
+                    {/* Tags */}
                     <div className="dialog-checkbox-container">
                     <div className="dialog-checkbox">
                         <input type="checkbox" id="sport" />
