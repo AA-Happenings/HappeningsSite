@@ -34,7 +34,7 @@ const LoginPage = () => {
                 <button className="loggain-button" type="button">
                   Logga in
                 </button>
-                <div>
+                <div className="forgot-password-link">
                 <NavLink to="/forgot-password" className="i_forgor">
                   Glömt lösenordet?
                 </NavLink>

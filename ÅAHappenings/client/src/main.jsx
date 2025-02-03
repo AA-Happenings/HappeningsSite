@@ -18,6 +18,7 @@ import "./index.css";
 import "./DialogButton.css";
 import Profile from "./components/profile";
 import AdminPage from "./components/AdminPage"
+import "./BurgerMenu.css";
 
 
 const router = createBrowserRouter([

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../background.css';
 import Calendar from 'react-calendar';
+import BurgerMenu from './BurgerMenu';
 import 'react-calendar/dist/Calendar.css';
 import TopBarLoggedIn from "./TopBarLoggedIn";
 import { Dialog } from 'react-dialog-element';
@@ -17,6 +18,7 @@ export default function MyEvents(){
 
   return (
     <>
+    <BurgerMenu />
     <TopBarLoggedIn />
     <div className="container">
       {/* Blurred background layer */}
