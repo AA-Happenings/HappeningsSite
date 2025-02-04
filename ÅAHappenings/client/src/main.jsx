@@ -19,6 +19,9 @@ import "./DialogButton.css";
 import Profile from "./components/profile";
 import AdminPage from "./components/AdminPage"
 import "./BurgerMenu.css";
+import { AuthContextProvider } from "./context/authContext";
+import Login from "./pages/login";
+import Signup from "./pages/signup";
 
 
 const router = createBrowserRouter([
@@ -91,10 +94,20 @@ const router = createBrowserRouter([
     path: "/adminpage",
     element: <AdminPage />,
   },
+  {
+    path: "/logintest",
+    element: <Login />,
+  },
+  {
+    path: "/signuptest",
+    element: <Signup />,
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
+    <AuthContextProvider>
     <RouterProvider router={router} />
+    </AuthContextProvider>
   </React.StrictMode>
 );
