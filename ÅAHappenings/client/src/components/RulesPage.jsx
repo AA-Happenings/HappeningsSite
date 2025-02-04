@@ -1,13 +1,19 @@
 import React from "react";
-import TopBar from "./TopBar"; // Import the TopBar component
+import '../background.css';
+import TopBarLoggedIn from "./TopBarLoggedIn";
+import BurgerMenu from './BurgerMenu';
 import "../RulesPage.css"; // Import the corresponding CSS file
 
 const RulesPage = () => {
   return (
-    <div className="rules-page">
-      {/* Top Bar */}
-      <TopBar />
+    <>
+      <BurgerMenu />
+      
+      <TopBarLoggedIn />
 
+      <div className="background-image"></div>
+
+    <div className="rules-page">
       {/* Main Rules Content */}
       <div className="event-page">
         {/* Title */}
@@ -27,6 +33,7 @@ const RulesPage = () => {
           </div>
         </div>
       </div>
+    </>
   );
 };
 
