@@ -3,7 +3,11 @@ html, body {
     margin: 0;
     overflow-y: auto;
     padding-top: 0px;
-    margin-top: 60px;
+    margin-top: 30px; /* Pushes page info down on all pages */
+  }
+
+  .admin-page {
+    margin-top: 30px; 
   }
 
   .admin-container {
