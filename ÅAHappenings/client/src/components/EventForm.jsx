@@ -14,7 +14,7 @@ export default function EventForm({isOpen, setOpen, isNew}) {
         price: "",
         link: "",
         membersOnly: "",
-        tags: {}
+        tags: [],
     });
 
     const params = useParams();
@@ -48,6 +48,15 @@ export default function EventForm({isOpen, setOpen, isNew}) {
     function updateForm(value) {
         return setForm((prev) => {
             return { ...prev, ...value };
+        });
+    }
+
+    function updateTags(tag, checked) {
+        console.log(tag, checked)
+        const oldTags = form.tags;
+        const newTags = checked ? [...oldTags, tag] : oldTags.filter((t) => t != tag);
+        return setForm((prev) => {
+            return { ...prev, tags: newTags };
         });
     }
 
@@ -185,32 +194,52 @@ export default function EventForm({isOpen, setOpen, isNew}) {
                         className="dialog-input"
                         value={form.time}
                         onChange={(e) => updateForm({time: e.target.value})}
-                    />
 
+                    />
                     {/* Tags */}
                     <div className="dialog-checkbox-container">
                     <div className="dialog-checkbox">
-                        <input type="checkbox" id="sport" />
+                        <input 
+                            type="checkbox" id="sport" 
+                            checked={form.tags.includes("sport")} 
+                            onChange={(e) => updateTags("sport", e.target.checked)}
+                        />
                         <label htmlFor="sport">Sport</label>
                         </div>
                         <div className="dialog-checkbox">
-                        <input type="checkbox" id="kultur" />
+                        <input 
+                            type="checkbox" id="kultur" 
+                            checked={form.tags.includes("kultur")} 
+                            onChange={(e) => updateTags("kultur", e.target.checked)}
+                        />
                         <label htmlFor="kultur">Kultur</label>
                         </div>
                         <div className="dialog-checkbox">
-                        <input type="checkbox" id="sittning" />
+                        <input 
+                            type="checkbox" id="sittning"
+                            checked={form.tags.includes("sittning")} 
+                            onChange={(e) => updateTags("sittning", e.target.checked)}
+                        />
                         <label htmlFor="sittning">Sittning</label>
                         </div>
                         <div className="dialog-checkbox">
-                        <input type="checkbox" id="gulisevenemang" />
+                        <input 
+                            type="checkbox" id="gulisevenemang" 
+                            checked={form.tags.includes("gulisevenemang")} 
+                            onChange={(e) => updateTags("gulisevenemang", e.target.checked)}
+                        />
                         <label htmlFor="gulisevenemang">Gulisevenemang</label>
                         </div>
                         <div className="dialog-checkbox">
-                        <input type="checkbox" id="byob" />
+                        <input 
+                            type="checkbox" id="byob" 
+                            checked={form.tags.includes("byob")} 
+                            onChange={(e) => updateTags("byob", e.target.checked)}
+                        />
                         <label htmlFor="byob">BYOB</label>
                         </div>
                         <div className="dialog-checkbox">
-                        <input type="checkbox" id="gratis" />
+                        <input type="checkbox" id="gratis" checked={form.tags.includes("gratis")} onChange={(e) => updateTags("gratis", e.target.checked)} />
                         <label htmlFor="gratis">Gratis</label>
                         </div>
                         {/* Add other checkboxes following the same pattern */}
