@@ -47,6 +47,7 @@ const AdminPage = () => {
   return (
     <>
       <TopBarNoLogin />
+      <div className="admin-page">
       <div className="admin-title">
         <h2>Admin Dashboard</h2>
       </div>
@@ -98,8 +99,7 @@ const AdminPage = () => {
             ))}
           </ul>
         </div>
-
-        
+      </div>  
       </div>
 
       

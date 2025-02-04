@@ -1,6 +1,7 @@
 import React from 'react';
 import '../background.css';
 import "../LoginPage.css";
+import BurgerMenu from './BurgerMenu';
 import TopBarNoLogin from "./TopBarNoLogin";
 
 //This page is sharing css with loginpage!
@@ -8,6 +9,8 @@ import TopBarNoLogin from "./TopBarNoLogin";
 const SAinfo = () => {
   return (
     <>
+      <BurgerMenu />
+      
       {/* Include the TopBar without Logga In button at the top of the page */}
       <TopBarNoLogin />
       
