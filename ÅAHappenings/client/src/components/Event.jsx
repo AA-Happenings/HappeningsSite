@@ -21,7 +21,7 @@ export default function Event() {
         price: "",
         link: "",
         membersOnly: "",
-        tags: {}
+        tags: [""]
     });
 
     const params = useParams();

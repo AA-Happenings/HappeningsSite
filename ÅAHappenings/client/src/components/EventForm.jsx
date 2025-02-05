@@ -14,7 +14,7 @@ export default function EventForm({isOpen, setOpen, isNew}) {
         price: "",
         link: "",
         membersOnly: "",
-        tags: [],
+        tags: [""],
     });
 
     const params = useParams();

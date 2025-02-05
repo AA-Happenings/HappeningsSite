@@ -34,7 +34,7 @@ export default function MainPageView() {
     const search_filtered = textSearchFilter(apiEvents);
     const association_filtered = selectedAssociationsFilter(search_filtered);
     const tag_filtered = filterByTags(association_filtered);
-
+    console.log(searchQuery);
     setFilteredEvents(tag_filtered);
   }, [searchQuery, selectedTags, selectedAssociations]);
 
@@ -87,6 +87,26 @@ export default function MainPageView() {
     >
       {/* Filter Buttons */}
       <div style={{ display: "flex", justifyContent: "center", marginBottom: "0.2vw"}}>
+      <div
+          style={{
+            display: "inline-block",
+            margin: "0 10px",
+            position: "relative",
+          }}
+        >
+        <input 
+          style={{
+            padding: "10px 15px",
+            borderRadius: "8px",
+            border: "1px solid #ccc",
+            background: "#fff",
+          }}
+          placeholder="Type to search"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        >
+        </input>
+      </div>
         <FilterButton
           name="Evenemangstyp"
           availableFilters={availableFilters.evenemangstyp}
