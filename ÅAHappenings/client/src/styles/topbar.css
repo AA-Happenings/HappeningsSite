@@ -1,0 +1,90 @@
+/* Main navbar container */
+.navbar {
+  display: flex;
+  justify-content: center; /* Distribute items to left and right */
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 6vw; /* Adjust the height as needed */
+  padding: 0 20px;
+  background-color: rgba(0, 0, 0, 0.48);
+  color: white;
+  font-family: Arial, sans-serif;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+}
+
+/* Centered title in the navbar */
+.navbar-title {
+  font-family: Syncopate, sans-serif;
+  font-size: 3vw;
+  font-weight: bold;
+  color: black;
+  position: absolute;
+}
+
+.navbar-title-no-login {
+  font-family: Syncopate, sans-serif;
+  font-size: 3vw;
+  font-weight: bold;
+  color: black;
+  margin-left: auto;
+  margin-right: auto;
+}
+/* Container for the FAQ button on the left */
+.navbar-left-buttons {
+  display: flex;
+  justify-content: flex-start; /* Align FAQ button to the left */
+  align-items: center;
+  position: absolute;
+  left: 20px;
+}
+
+/* Style for the FAQ button */
+.faq-button {
+  background-color: white;
+  color: black;
+  border: none;
+  border-radius: 8px;
+  padding: 5px 10px;
+  font-size: 1vw;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  text-decoration: none; /* Removes underline */
+  margin-right: 10px; /* Space between button and edge */
+}
+
+.faq-button:hover {
+  background-color: #bab8b8;
+}
+
+/* Container for Arrangörsinloggning and Logga in button */
+.navbar-buttons {
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  align-items: flex-end; /* Align items to the right */
+  text-align: right; /* Align text to the right */
+  right: 20px;
+  gap: 5px; /* Add spacing between the text and button */
+  position: absolute;
+}
+
+/* Login button styling */
+.login-button {
+  background-color: white;
+  color: black;
+  border: none;
+  width: 7vw;
+  text-align: center;
+  border-radius: 8px;
+  padding: 5px 10px;
+  font-size: 1vw;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.login-button:hover {
+  background-color: #bab8b8;
+}

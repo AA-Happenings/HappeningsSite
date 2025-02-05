@@ -1,5 +1,4 @@
 import { NavLink } from "react-router-dom";
-import BurgerMenu from "./BurgerMenu";
 
 export default function TopBar() {
   return (
