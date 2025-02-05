@@ -1,6 +1,6 @@
 import React from 'react';
-import '../background.css';
-import "../LoginPage.css";
+import '../styles/background.css';
+import "../styles/LoginPage.css";
 import TopBarNoLogin from "../components/TopBarNoLogin";
 
 //This page is sharing css with loginpage!

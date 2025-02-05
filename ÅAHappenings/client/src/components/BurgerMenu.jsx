@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { stack as Menu } from 'react-burger-menu';
-import "../BurgerMenu.css";
+import "../styles/BurgerMenu.css";
 import { GoHome } from "react-icons/go";
 import { GoCalendar } from "react-icons/go";
 import { GoPerson } from "react-icons/go";

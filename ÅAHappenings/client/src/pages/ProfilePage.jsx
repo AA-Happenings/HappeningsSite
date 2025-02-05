@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import "../background.css";
-import "../profile.css"; // Ensure this CSS file exists
+import "../styles/background.css";
+import "../styles/profile.css"; // Ensure this CSS file exists
 import TopBarNoLogin from "../components/TopBarNoLogin";
 
 const profilepage = () => {

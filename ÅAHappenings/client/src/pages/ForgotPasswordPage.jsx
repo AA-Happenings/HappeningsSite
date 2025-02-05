@@ -1,7 +1,7 @@
 import React from 'react';
-import '../background.css';
+import '../styles/background.css';
 import { FaEnvelope } from "react-icons/fa";
-import "../ForgotPasswordPage.css";
+import "../styles/ForgotPasswordPage.css";
 import TopBarNoLogin from "../components/TopBarNoLogin";
 import { NavLink } from "react-router-dom";
 

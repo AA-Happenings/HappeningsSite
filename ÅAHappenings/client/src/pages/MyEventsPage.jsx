@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../background.css';
+import '../styles/background.css';
 import Calendar from 'react-calendar';
 import BurgerMenu from '../components/BurgerMenu';
 import 'react-calendar/dist/Calendar.css';

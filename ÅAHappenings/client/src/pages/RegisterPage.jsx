@@ -1,10 +1,10 @@
 import React from 'react';
-import '../background.css';
+import '../styles/background.css';
 import { FaUser } from "react-icons/fa";
 import { FaLock } from "react-icons/fa";
 import { FaEnvelope } from "react-icons/fa";
 import { FaBuilding } from "react-icons/fa";
-import "../RegisterPage.css";
+import "../styles/RegisterPage.css";
 import TopBarNoLogin from "../components/TopBarNoLogin";
 import  { useState} from 'react'
 

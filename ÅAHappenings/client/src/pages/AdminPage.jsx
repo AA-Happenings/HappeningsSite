@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import "../background.css";
-import "../AdminPage.css";
+import "../styles/background.css";
+import "../styles/AdminPage.css";
 import TopBarNoLogin from "../components/TopBarNoLogin";
 
 const AdminPage = () => {

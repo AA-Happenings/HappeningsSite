@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import '../background.css';
+import '../styles/background.css';
 import { FaUser } from "react-icons/fa";
 import { FaLock } from "react-icons/fa";
-import "../LoginPage.css";
+import "../styles/LoginPage.css";
 import TopBarNoLogin from "../components/TopBarNoLogin";
 import { NavLink } from "react-router-dom" /* for linking to Forgot Password page */
 

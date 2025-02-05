@@ -1,6 +1,6 @@
 import React from "react";
 import TopBar from "../components/TopBar"; // Import the TopBar component
-import "../RulesPage.css"; // Import the corresponding CSS file
+import "../styles/RulesPage.css"; // Import the corresponding CSS file
 
 const RulesPage = () => {
   return (
