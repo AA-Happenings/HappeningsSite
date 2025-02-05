@@ -23,88 +23,6 @@ import { AuthContextProvider } from "./context/authContext";
 import Login from "./pages/LoginTestPage";
 import Signup from "./pages/SignupTestPage";
 
-/*
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <App />, 
-    children: [
-      {
-        path: "/",
-        element: <MainPageView />,
-      },
-    ],
-  },
-  {
-    path: "/event/:id",
-    element: <App />,
-    children: [
-      {
-        path: "/event/:id",
-        element: <Event />,
-      },
-    ],
-  },
-  {
-    path: "/login",
-    element: <LoginPage />,
-  },
-  {
-    path: "/forgot-password", // Add route for Forgot Password Page
-    element: <ForgotPasswordPage />,
-  },
-  {
-
-    path: "/faq", // FAQ route definition
-    element: <App />,
-    children: [
-      {
-        path: "/faq",
-        element: <FaqPage />
-      },
-    ],
-  },
-  {
-    path: "/rules",
-    element: <App />,
-    children: [
-      {
-        path: "/rules",
-        element: <RulesPage />,
-      },
-    ],
-  },
-  {
-    path: "/register",
-    element: <RegisterPage />,
-  },
-  {
-    path: "/myevents",
-    element: <MyEvents />,
-  },
-  {
-    path: "/info",
-    element: <SAinfo />,
-  },
-  {
-    path: "/profile",
-    element: <Profile />,
-  },
-  {
-    path: "/adminpage",
-    element: <AdminPage />,
-  },
-  {
-    path: "/logintest",
-    element: <Login />,
-  },
-  {
-    path: "/signuptest",
-    element: <Signup />,
-  },
-]);
-*/
-
 const router = createBrowserRouter([
   {
     path: "/",
@@ -118,13 +36,13 @@ const router = createBrowserRouter([
       { path: "info", element: <SAinfo /> },
       { path: "profile", element: <Profile /> },
       { path: "adminpage", element: <AdminPage /> },
+      { path: "/login", element: <LoginPage /> },
+      { path: "/forgot-password", element: <ForgotPasswordPage /> },
+      { path: "/register", element: <RegisterPage /> },
+      { path: "/logintest", element: <Login /> },
+      { path: "/signuptest", element: <Signup /> },
     ],
   },
-  { path: "/login", element: <LoginPage /> },
-  { path: "/forgot-password", element: <ForgotPasswordPage /> },
-  { path: "/register", element: <RegisterPage /> },
-  { path: "/logintest", element: <Login /> },
-  { path: "/signuptest", element: <Signup /> },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
