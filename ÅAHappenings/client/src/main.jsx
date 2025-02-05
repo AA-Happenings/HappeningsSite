@@ -5,23 +5,23 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import App from "./App";
-import MainPageView from "./components/MainPageView";
-import Event from "./components/Event";
-import LoginPage from "./components/LoginPage";
-import FaqPage from "./components/FaqPage"; // Import FaqPage
-import RulesPage from "./components/RulesPage"; // Import the RulesPage
-import RegisterPage from "./components/RegisterPage"; // Import the RegisterPage
-import ForgotPasswordPage from "./components/ForgotPasswordPage"; // Import the ForgotPasswordPage
-import MyEvents from "./components/MyEvents";
-import SAinfo from "./components/SAinfo";
+import MainPageView from "./pages/MainPageView";
+import Event from "./pages/EventPage";
+import LoginPage from "./pages/LoginPag";
+import FaqPage from "./pages/FaqPage"; // Import FaqPage
+import RulesPage from "./pages/RulesPage"; // Import the RulesPage
+import RegisterPage from "./pages/RegisterPage"; // Import the RegisterPage
+import ForgotPasswordPage from "./pages/ForgotPasswordPage"; // Import the ForgotPasswordPage
+import MyEvents from "./pages/MyEventsPage";
+import SAinfo from "./pages/SAinfo";
 import "./index.css";
 import "./DialogButton.css";
-import Profile from "./components/profile";
-import AdminPage from "./components/AdminPage"
+import Profile from "./pages/ProfilePage";
+import AdminPage from "./pages/AdminPage"
 import "./BurgerMenu.css";
 import { AuthContextProvider } from "./context/authContext";
-import Login from "./pages/login";
-import Signup from "./pages/signup";
+import Login from "./pages/LoginTestPage";
+import Signup from "./pages/SignupTestPage";
 
 
 const router = createBrowserRouter([
