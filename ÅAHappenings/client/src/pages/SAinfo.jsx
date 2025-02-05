@@ -1,7 +1,7 @@
 import React from 'react';
 import '../styles/background.css';
 import "../styles/LoginPage.css";
-import BurgerMenu from './components/BurgerMenu';
+import BurgerMenu from '../components/BurgerMenu';
 import TopBarNoLogin from "../components/TopBarNoLogin";
 
 //This page is sharing css with loginpage!

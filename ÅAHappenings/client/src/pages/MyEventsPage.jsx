@@ -4,7 +4,7 @@ import Calendar from 'react-calendar';
 import BurgerMenu from '../components/BurgerMenu';
 import 'react-calendar/dist/Calendar.css';
 import TopBarLoggedIn from "../components/TopBarLoggedIn";
-import EventForm from './EventForm';
+import EventForm from '../components/EventForm';
 
 export default function MyEvents(){
   

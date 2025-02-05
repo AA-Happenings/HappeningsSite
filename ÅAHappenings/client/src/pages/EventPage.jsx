@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import EventForm from "./EventForm";
+import EventForm from "../components/EventForm";
 
 
 export default function Event() {
