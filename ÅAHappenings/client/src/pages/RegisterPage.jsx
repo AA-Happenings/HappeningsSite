@@ -20,62 +20,52 @@ const RegisterPage = () => {
       } 
 
   return (
-    <>
-      {/* Include the TopBar without Logga In button at the top of the page */}
-      <TopBarNoLogin />
-    
-      <div className="container">
-        {/* Blurred background layer */}
-        <div className="background-image"></div>
-        
-        {/* Main content overlay */}
-        <div className="wrapper">
-          <div className="form-box register">
-            <form className="signup" onSubmit={handleSubmit}>
-              <h1 className='event-header'>REGISTRERA MIG</h1>
-              <h2>Ämnesförening</h2>
-              <div className="input-box">
-                <input 
-                type="text" placeholder="Ämnesföreningens namn" required 
-                onChange= {(e) => setUsername(e.target.value)}
-                value={username}
-                />
-                <FaBuilding className="icon" /> 
-              </div>
-
-
-              <h2>Email</h2>
-              <div className="input-box">
-                <input 
-                  type="email" placeholder="Email" required 
-                  onChange= {(e) => setEmail(e.target.value)}
-                  value={email}
-                />
-                <FaEnvelope className="icon" />
-              </div>
-
-            
-
-              <h2>Bekräfta Lösenord</h2>
-              <div className="input-box">
-                <input 
-                type="password" placeholder="Bekräfta Lösenord" required 
-                onChange= {(e) => setPassword(e.target.value)}
-                value={password}
-                />
-                <FaLock className="icon" />
-              </div>
-
-              <div>
-                <button className="register-button" type="submit">
-                  Registrera
-                </button>
-              </div>
-            </form>
+    //Needs topbar without login
+    <div className="wrapper">
+      <div className="form-box register">
+        <form className="signup" onSubmit={handleSubmit}>
+          <h1 className='event-header'>REGISTRERA MIG</h1>
+          <h2>Ämnesförening</h2>
+          <div className="input-box">
+            <input 
+            type="text" placeholder="Ämnesföreningens namn" required 
+            onChange= {(e) => setUsername(e.target.value)}
+            value={username}
+            />
+            <FaBuilding className="icon" /> 
           </div>
-        </div>
+
+
+          <h2>Email</h2>
+          <div className="input-box">
+            <input 
+              type="email" placeholder="Email" required 
+              onChange= {(e) => setEmail(e.target.value)}
+              value={email}
+            />
+            <FaEnvelope className="icon" />
+          </div>
+
+        
+
+          <h2>Bekräfta Lösenord</h2>
+          <div className="input-box">
+            <input 
+            type="password" placeholder="Bekräfta Lösenord" required 
+            onChange= {(e) => setPassword(e.target.value)}
+            value={password}
+            />
+            <FaLock className="icon" />
+          </div>
+
+          <div>
+            <button className="register-button" type="submit">
+              Registrera
+            </button>
+          </div>
+        </form>
       </div>
-    </>
+    </div>
   );
 };
 
