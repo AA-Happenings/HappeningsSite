@@ -9,10 +9,10 @@ import "../MainPageView.css"
 export default function MainPageView() {
 
   //filter useState
-  const [selectedFilters, setSelectedFilters] = useState([]);
-  const [selectedAssociation, setSelectedAssociation] = useState([]);
   const [apiEvents, setApiEvents] = useState([]);
-  const [associationEvents, setAssociationEvents] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedAssociations, setSelectedAssociations] = useState([]);
+  const [selectedTags, setSelectedTags] = useState([]);
   const [filteredEvents, setFilteredEvents] = useState([]);
 
   useEffect(() => {
@@ -31,18 +31,44 @@ export default function MainPageView() {
     return;
   }, []);
 
-  //updating filters
-  const handleFilterUpdate = (updatedFilters) => {
-    setSelectedFilters(updatedFilters);
-    const filtered = apiEvents.filter((event) => updatedFilters.every((tag) => event.tags.includes(tag)));
-    setFilteredEvents(filtered);
-  };
+  //filters every time searchquery, tags or association is updated
+  useEffect(() => {
+    const search_filtered = textSearchFilter(apiEvents);
+    const association_filtered = selectedAssociationsFilter(search_filtered);
+    const tag_filtered = filterByTags(association_filtered);
+    console.log(searchQuery);
+    setFilteredEvents(tag_filtered);
+  }, [searchQuery, selectedTags, selectedAssociations]);
+
+  //filter by searchquery
+  const textSearchFilter = (eventsToFilter) => {
+    if(searchQuery.length != 0) {
+      return eventsToFilter.filter((event) => event.title.includes(searchQuery));
+    }
+    return eventsToFilter;
+  }
+
+  //filters by association
+  const selectedAssociationsFilter = (eventsToFilter) => {
+    if(selectedAssociations.length != 0) {
+      return eventsToFilter.filter((event) => selectedAssociations.some((association) => event.tags.includes(association)));
+    }
+    return eventsToFilter;
+  }
+
+  //filters by tags
+  const filterByTags = (eventsToFilter) => {
+    if(selectedTags.length != 0) {
+      return eventsToFilter.filter((event) => selectedTags.every((tag) => event.tags.includes(tag)));
+    }
+    return eventsToFilter;
+  }
 
   //Available filters
   const availableFilters = {
-    evenemangstyp: ["Sport", "Kultur", "Sittning", "Gratis"],
+    evenemangstyp: ["sport", "kultur", "sittning", "gratis"],
     taggar: ["Gulisevenemang", "BYOB", "Endast Medlemmar"],
-    förening: ["Kemistklubben", "DaTe", "SF-Klubben", "Merkantila Klubben", "Humanistiska Föreningen"]
+    förening: ["KK", "DaTe", "SF-Klubben", "MK", "Humanistiska Föreningen"]
   };
 
   //Date values useState and date chane handler
@@ -63,29 +89,49 @@ export default function MainPageView() {
     >
       {/* Filter Buttons */}
       <div style={{ display: "flex", justifyContent: "center", marginBottom: "0.2vw"}}>
+      <div
+          style={{
+            display: "inline-block",
+            margin: "0 10px",
+            position: "relative",
+          }}
+        >
+        <input 
+          style={{
+            padding: "10px 15px",
+            borderRadius: "8px",
+            border: "1px solid #ccc",
+            background: "#fff",
+          }}
+          placeholder="Type to search"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        >
+        </input>
+      </div>
         <FilterButton
           name="Evenemangstyp"
           availableFilters={availableFilters.evenemangstyp}
-          selectedFilters={selectedFilters}
-          onFilterUpdate={handleFilterUpdate}
+          selectedFilters={selectedTags}
+          onFilterUpdate={setSelectedTags}
         />
         <FilterButton
           name="Taggar"
           availableFilters={availableFilters.taggar}
-          selectedFilters={selectedFilters}
-          onFilterUpdate={handleFilterUpdate}
+          selectedFilters={selectedTags}
+          onFilterUpdate={setSelectedTags}
         />
         <FilterButton
           name="Förening"
           availableFilters={availableFilters.förening}
-          selectedFilters={selectedFilters}
-          onFilterUpdate={handleFilterUpdate}
+          selectedFilters={selectedAssociations}
+          onFilterUpdate={setSelectedAssociations}
         />
       </div>
 
       {/* Selected Filters */}
       <div style={{ display: "flex", justifyContent: "center", flexWrap: "wrap" }}>
-        {selectedFilters.map((filter) => (
+        {selectedTags.map((filter) => (
             <div
               key={filter}
               style={{
@@ -106,7 +152,37 @@ export default function MainPageView() {
                   fontWeight: "bold",
                 }}
                 onClick={() =>
-                  handleFilterUpdate(selectedFilters.filter((f) => f !== filter))
+                  setSelectedTags(selectedTags.filter((f) => f !== filter))
+                }
+              >
+                ✖
+              </span>
+            </div>
+          ))
+        }
+        {
+          selectedAssociations.map((filter) => (
+            <div
+              key={filter}
+              style={{
+                display: "inline-block",
+                margin: "4px",
+                padding: "6px 12px",
+                borderRadius: "8px",
+                background: "#f5f5f5",
+                border: "1px solid #ddd",
+              }}
+            >
+              {filter}
+              <span
+                style={{
+                  marginLeft: "8px",
+                  color: "#888",
+                  cursor: "pointer",
+                  fontWeight: "bold",
+                }}
+                onClick={() =>
+                  setSelectedAssociations(selectedAssociations.filter((a) => a !== filter))
                 }
               >
                 ✖
