@@ -2,15 +2,14 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import EventForm from "../components/EventForm";
 
-
 export default function Event() {
     const isEO = true;
     const [isOpen, setOpen] = useState(false);
     const handleOpenChange = (newValue) => {
         setOpen(newValue);
-    }
+    };
 
-    //event object to store information
+    // Event object to store information
     const [event, setEvent] = useState({
         title: "",
         description: "",
@@ -28,24 +27,24 @@ export default function Event() {
     const navigate = useNavigate();
 
     function editEvent() {
-        if(isEO) {
+        if (isEO) {
             return (
                 <div>
-                <button onClick={() => setOpen(true)} className="button-style">Edit event</button>
-                <EventForm isOpen={isOpen} setOpen={handleOpenChange} isNew={false}/>
+                    <button onClick={() => setOpen(true)} className="button-style">
+                        Edit event
+                    </button>
+                    <EventForm isOpen={isOpen} setOpen={handleOpenChange} isNew={false} />
                 </div>
             );
         }
     }
 
-    //fetches data for an event by id from the db 
+    // Fetches data for an event by id from the db
     useEffect(() => {
         async function fetchData() {
             const id = params.id?.toString() || undefined;
-            if(!id) return;
-            const response = await fetch(
-                `http://localhost:5050/event/${params.id.toString()}`
-            );
+            if (!id) return;
+            const response = await fetch(`http://localhost:5050/event/${params.id.toString()}`);
             if (!response.ok) {
                 const message = `An error has occurred: ${response.statusText}`;
                 console.error(message);
@@ -60,7 +59,6 @@ export default function Event() {
             setEvent(event);
         }
         fetchData();
-        return;
     }, [params.id, navigate]);
 
     return (
@@ -69,39 +67,66 @@ export default function Event() {
             <div className="event-title">
                 <h1>{event.title || "Placeholder Event Title"}</h1>
             </div>
-    
+
             <div className="event-content">
-                {/* TLDR Section */}
-                <div className="event-tldr-section">
-                    <h2 className="section-title">TLDR</h2>
-                    <div className="event-tldr">
-                        <p><strong>Var?</strong> {event.location || "-"}</p>
-                        <p><strong>När?</strong> {event.date || "-"}, kl.{event.time || "-"}</p>
-                        <p><strong>Hur?</strong> {event.how || "Ingen klädkod"}</p>
-                        <p><strong>Pris?</strong> {event.price || "Inget pris uppgett"}</p>
-                        <p><strong>{event.membersOnly ? "Endast för medlemmar" : ""}</strong></p>
+                {/* Left Sidebar: Organizer Info & TLDR */}
+                <div className="event-sidebar">
+                    {/* Organizer Info */}
+                    <div className="event-organizer-section">
+                        <h2 className="section-title">PLACEHOLDER FOR EO NAME</h2>
+                        <img
+                            src="https://www.studyinfinland.fi/sites/default/files/styles/logo_image/public/2019-09/Abo%20Akademi%20UUSI.png?itok=mDVmnidZ"
+                            alt="Event Organizer"
+                            className="organizer-image"
+                        />
                     </div>
-    
-                    {/* Link to Registration */}
-                    <h2 className="section-title">Länk till anmälan</h2>
-                    <div className="event-link-box">
-                        <p>{event.link || "https://placeholder.url"}</p>
-                    </div>
-                </div>
-    
-                {/* Description Section */}
-                <div className="event-description-section">
-                    <h2 className="section-title">Evenemangsbeskrivning</h2>
-                    <div className="event-description">
-                        <p>
-                            {event.description || "Här följer en längre evenemangsbeskrivning som kan vara samma text som på anmälningsblanketten/hemsidan."}
-                        </p>
+
+                    {/* TLDR Section */}
+                    <div className="event-tldr-section">
+                        <h2 className="section-title">TLDR</h2>
+                        <div className="event-tldr">
+                            <p>
+                                <strong>Var?</strong> {event.location || "-"}
+                            </p>
+                            <p>
+                                <strong>När?</strong> {event.date || "-"}, kl. {event.time || "-"}
+                            </p>
+                            <p>
+                                <strong>Hur?</strong> {event.how || "Ingen klädkod"}
+                            </p>
+                            <p>
+                                <strong>Pris?</strong> {event.price || "Inget pris uppgett"}
+                            </p>
+                            <p>
+                                <strong>{event.membersOnly ? "Endast för medlemmar" : ""}</strong>
+                            </p>
+                        </div>
                     </div>
                 </div>
 
-                {/* Edit button for logged in */}
-                <div>
-                    {editEvent()}
+                {/* Right Main: Event Description & Registration Link */}
+                <div className="event-main">
+                    {/* Description Section (Top in the right column) */}
+                    <div className="event-description-section">
+                        <h2 className="section-title">Evenemangsbeskrivning</h2>
+                        <div className="event-description">
+                            <p>
+                                {event.description ||
+                                    "Här följer en längre evenemangsbeskrivning som kan vara samma text som på anmälningsblanketten/hemsidan."}
+                            </p>
+                        </div>
+                    </div>
+
+                    {/* Registration Link Section (Below the description) */}
+                    <div className="event-link-section">
+                        <h2 className="section-title">Länk till anmälan</h2>
+                        <div className="event-link-box">
+                            <p>{event.link || "https://placeholder.url"}</p>
+                        </div>
+                    </div>
+
+                    {/* Edit button for logged in */}
+                    <div>{editEvent()}</div>
                 </div>
             </div>
         </div>

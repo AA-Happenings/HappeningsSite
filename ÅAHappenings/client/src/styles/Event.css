@@ -1,59 +1,92 @@
-/* Entire Page */
+/* Keep your overall container */
 .event-page {
     font-family: Arial, sans-serif;
-    margin: 0 auto; /* Center the content horizontally */
-    padding-top: 20px; /* Add padding at the top */
-    max-width: 1200px; /* Set a maximum width for the page */
+    margin: 0 auto;
+    padding-top: 20px;
+    max-width: 1200px;
 }
 
-/* Event Title Styling */
+/* Title */
 .event-title {
     text-align: center;
-    margin-bottom: 40px; /* Add spacing below the title */
+    margin-bottom: 40px;
     font-size: 3rem;
     font-weight: bold;
     margin-top: 0;
 }
 
-/* Content Section */
+/* Set up a two-column grid for content */
 .event-content {
     display: grid;
-    grid-template-columns: 1fr 2fr; /* Divide into two columns: TLDR and Description */
-    gap: 20px; /* Space between columns */
+    grid-template-columns: 1fr 2fr;  /* Left sidebar and right main */
+    gap: 20px;
 }
 
-/* TLDR Section */
-.event-tldr-section {
-    max-width: 100%; /* Full width within the grid */
-    text-align: center;
+/* New left sidebar for organizer & TLDR */
+.event-sidebar {
     display: flex;
     flex-direction: column;
-    gap: 20px; /* Space between elements inside this section */
+    gap: 20px;
 }
 
-/* TLDR Section */
+/* Organizer section styling */
+.event-organizer-section {
+    text-align: center;
+}
+.organizer-image {
+    max-width: 150px;
+    /*border-radius: 100%;  /* Optional: makes the image circular */
+    display: block;
+    margin: 10px auto 0;
+}
+
+/* TLDR Section (moved within sidebar) */
+.event-tldr-section {
+    text-align: center;
+}
+
+/* Make the TLDR box narrower */
 .event-tldr {
     padding: 15px;
     border: 1px solid #ccc;
     border-radius: 8px;
     background-color: #f9f9f9;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    display: flex; /* Enable flexbox for alignment */
-    flex-direction: column; /* Stack items vertically */
-    align-items: flex-start; /* Align text to the start of each row */
-    justify-content: center; /* Center content vertically */
-    text-align: center; /* Ensure text is left-aligned inside the box */
-    gap: 5px; /* Add spacing between rows */
-}
-
-
-/* Description Section */
-.event-description-section {
-    max-width: 100%; /* Full width within the grid */
-    text-align: left;
     display: flex;
     flex-direction: column;
-    gap: 20px; /* Space between elements inside this section */
+    align-items: flex-start;
+    justify-content: center;
+    gap: 5px;
+    max-width: 300px;  /* Reduced width */
+    margin: 0 auto;
+}
+
+/* New right main container */
+.event-main {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Registration Link section styling */
+.event-link-section {
+    text-align: left;  /* or center if you prefer */
+}
+
+/* You can keep your existing link box styles */
+.event-link-box {
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #eef7ff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    font-size: 1rem;
+    color: #333;
+}
+
+/* Description Section remains the same */
+.event-description-section {
+    text-align: left;
 }
 
 .event-description {
@@ -64,24 +97,10 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Link Section */
-.event-link-box {
-    padding: 15px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background-color: #eef7ff;
-    margin-top: 0px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    font-size: 1rem;
-    color: #333;
-    text-align: left;
-}
-
 /* Section Titles */
 .section-title {
     font-size: 1.5rem;
-    font-weight: bold; /* Ensure headers are bold */
+    font-weight: bold;
     margin-bottom: 0px;
     text-align: center;
 }
-
