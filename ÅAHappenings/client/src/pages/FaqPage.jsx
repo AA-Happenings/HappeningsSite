@@ -15,9 +15,8 @@ export default function FaqPage() {
         {/* FAQ Content */}
         <div className="event-content">
           {/* General Questions */}
-          <div className="event-tldr-section">
-            <h2 className="section-title">Frågor</h2>
-            <div className="event-tldr">
+          <div className="faq-section">
+            <div className="faq-content">
               <p><strong>Vad är ÅA-Happenings?</strong></p>
               <p>ÅA-Happenings är en plattform för att upptäcka evenemang som ordnas av specialföreningar vid Åbo Akademi.</p>
 
