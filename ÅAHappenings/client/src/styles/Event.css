@@ -6,7 +6,7 @@
     max-width: 1200px;
 }
 
-/* Title */
+/* Name of the event */
 .event-title {
     text-align: center;
     margin-bottom: 40px;
@@ -43,7 +43,10 @@
 /* TLDR Section (moved within sidebar) */
 .event-tldr-section {
     text-align: center;
+    padding-top: 20px;
 }
+
+
 
 /* Make the TLDR box narrower */
 .event-tldr {
@@ -70,18 +73,19 @@
 
 /* Registration Link section styling */
 .event-link-section {
-    text-align: left;  /* or center if you prefer */
+    text-align: center;  /* or center if you prefer */
 }
 
 /* You can keep your existing link box styles */
 .event-link-box {
+    display: inline-block;
+    width: auto;
     padding: 15px;
     border: 1px solid #ccc;
     border-radius: 8px;
-    background-color: #eef7ff;
+    background-color: #ffffff;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     font-size: 1rem;
-    color: #333;
 }
 
 /* Description Section remains the same */
@@ -103,4 +107,11 @@
     font-weight: bold;
     margin-bottom: 0px;
     text-align: center;
+}
+
+.edit-button {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    font-weight: bold;
 }

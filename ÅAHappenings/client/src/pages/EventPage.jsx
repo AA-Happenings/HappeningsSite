@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import EventForm from "../components/EventForm";
+import { GoPencil } from "react-icons/go";
 
 export default function Event() {
     const isEO = true;
@@ -30,8 +31,11 @@ export default function Event() {
         if (isEO) {
             return (
                 <div>
-                    <button onClick={() => setOpen(true)} className="button-style">
-                        Edit event
+                    <button 
+                        onClick={() => setOpen(true)} 
+                        className="button-style flex items-center gap-2"
+                    >
+                        Edit <GoPencil size={18} />
                     </button>
                     <EventForm isOpen={isOpen} setOpen={handleOpenChange} isNew={false} />
                 </div>
@@ -75,6 +79,7 @@ export default function Event() {
                     <div className="event-organizer-section">
                         <h2 className="section-title">PLACEHOLDER FOR EO NAME</h2>
                         <img
+                            /* Insert picture for actual event */
                             src="https://www.studyinfinland.fi/sites/default/files/styles/logo_image/public/2019-09/Abo%20Akademi%20UUSI.png?itok=mDVmnidZ"
                             alt="Event Organizer"
                             className="organizer-image"
@@ -101,7 +106,11 @@ export default function Event() {
                                 <strong>{event.membersOnly ? "Endast för medlemmar" : ""}</strong>
                             </p>
                         </div>
+                        
                     </div>
+                    {/* Edit button for logged in */}
+                    <div className="edit-button">
+                        {editEvent()}</div>
                 </div>
 
                 {/* Right Main: Event Description & Registration Link */}
@@ -118,15 +127,21 @@ export default function Event() {
                     </div>
 
                     {/* Registration Link Section (Below the description) */}
+                    {/* RKrävs att länken startar med "https://" för att redirect ska funka */}
                     <div className="event-link-section">
                         <h2 className="section-title">Länk till anmälan</h2>
                         <div className="event-link-box">
-                            <p>{event.link || "https://placeholder.url"}</p>
+                            <a
+                                href={event.link || "https://placeholder.url"}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                {event.link || "https://placeholder.url"}
+                            </a>
                         </div>
                     </div>
 
-                    {/* Edit button for logged in */}
-                    <div>{editEvent()}</div>
+                    
                 </div>
             </div>
         </div>
