@@ -1,70 +1,89 @@
 /* Main FAQ Page */
 .faq-page {
-    background: none; /* Removes the white background */
-    min-height: 100vh; /* Full page height */
-    font-family: Arial, sans-serif;
-    padding-top: 6vw; /* Space for the fixed top bar */
-    overflow-y: auto;
-  }
-  
-  /* Fixed FAQ Header */
-  .event-title {
-    text-align: center;
-    margin-bottom: 0px; /* Add spacing below the title */
-    font-size: 3rem;
-    font-weight: bold;
-    margin-top: -40px;
-  }
-  
-  /* Scrollable Content Section */
+  background: none; /* Removes the white background */
+  min-height: 100vh; /* Full page height */
+  font-family: Arial, sans-serif;
+  padding-top: 6vw; /* Space for the fixed top bar */
+  overflow-y: auto;
+}
+
+/* Fixed FAQ Header */
+.event-title {
+  text-align: center;
+  margin-bottom: 0;
+  font-size: 3rem;
+  font-weight: bold;
+  margin-top: -40px;
+}
+
+/* Scrollable Content Section */
+/* Force a block layout so children stack vertically */
 .event-content {
-    padding: 20px; /* Content padding */
-    overflow-y: auto; /* Ensure content within scrolls properly */
+  display: block;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+/* --- QUESTIONS SECTION (Edge-to-Edge) --- */
+.faq-section {
+  width: 100%;
+  margin-bottom: 20px;
+  padding-bottom: 100px;
+}
+
+.faq-section .section-title {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.faq-content {
+  background-color: #fff;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* --- CONTACT SECTION (Centered, Not Edge-to-Edge) --- */
+.event-description-section {
+  max-width: 600px;            /* Constrain the width */
+  margin: 0 auto 20px auto;     /* Center it horizontally */
+}
+
+.event-description-section .section-title {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.event-description {
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* --- Mobile and Small Screens --- */
+@media (max-width: 768px) {
+  .event-title {
+    font-size: 2rem;
+    padding: 8px 0;
   }
   
-  /* FAQ Sections */
-  .event-tldr-section,
-  .event-description-section {
-    margin-bottom: 20px; /* Space between sections */
+  .event-content {
+    padding: 10px;
   }
   
-  /* FAQ Items Styling */
-  .event-tldr {
-    padding: 15px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Shadow for visual depth */
-    margin-bottom: 20px; /* Space below each FAQ item */
-  }
-  
+  .faq-content,
   .event-description {
-    padding: 15px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 10px;
   }
   
-  /* Section Titles */
-  .section-title {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 10px;
-    text-align: center;
+  .event-description-section {
+    max-width: 100%;
+    margin: 0 auto 20px auto;
   }
-  
-  /* Mobile and Small Screens */
-  @media (max-width: 768px) {
-    .event-title {
-      font-size: 2rem; /* Smaller font size for small screens */
-      padding: 8px 0;
-    }
-  
-    .event-content {
-      margin-top: 14vw; /* Adjust space for smaller screens */
-      padding: 10px; /* Smaller padding */
-    }
-  
-    .event-tldr, .event-description {
-      padding: 10px; /* Adjust padding for small screens */
-    }
-  }
+}
