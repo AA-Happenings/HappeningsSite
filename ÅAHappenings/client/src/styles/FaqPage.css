@@ -1,9 +1,9 @@
 /* FAQ Page Styles Scoped to .faq-page */
 .faq-page {
   background: none; /* Removes the white background */
-  min-height: 100vh; /* Full page height */
+  /*min-height: 100vh; /* Full page height */             /* Makes page scrollable */
   font-family: Arial, sans-serif;
-  padding-top: 6vw; /* Space for the fixed top bar */
+  /*padding-top: 0; /* Space for the fixed top bar */
   overflow-y: auto;
 }
 
