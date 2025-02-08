@@ -24,8 +24,8 @@ const RegisterPage = () => {
     <div className="wrapper">
       <div className="form-box register">
         <form className="signup" onSubmit={handleSubmit}>
-          <h1 className='event-header'>REGISTRERA MIG</h1>
-          <h2>Ämnesförening</h2>
+          <h1 className='event-header'>REGISTRERA EN NY FÖRENING</h1>
+          <h2>Ämnesföreningens namn</h2>
           <div className="input-box">
             <input 
             type="text" placeholder="Ämnesföreningens namn" required 
@@ -36,10 +36,10 @@ const RegisterPage = () => {
           </div>
 
 
-          <h2>Email</h2>
+          <h2>Epost</h2>
           <div className="input-box">
             <input 
-              type="email" placeholder="Email" required 
+              type="email" placeholder="Epost" required 
               onChange= {(e) => setEmail(e.target.value)}
               value={email}
             />
@@ -47,11 +47,21 @@ const RegisterPage = () => {
           </div>
 
         
-
-          <h2>Bekräfta Lösenord</h2>
+          <h2>Lösenord</h2>
           <div className="input-box">
             <input 
-            type="password" placeholder="Bekräfta Lösenord" required 
+            type="password" placeholder="Lösenord" required 
+            onChange= {(e) => setPassword(e.target.value)}
+            value={password}
+            />
+            <FaLock className="icon" />
+          </div>
+
+
+          <h2>Bekräfta lösenord</h2>
+          <div className="input-box">
+            <input 
+            type="password" placeholder="Bekräfta lösenord" required 
             onChange= {(e) => setPassword(e.target.value)}
             value={password}
             />
