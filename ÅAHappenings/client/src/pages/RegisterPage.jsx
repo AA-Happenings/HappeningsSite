@@ -11,10 +11,16 @@ import  { useState} from 'react'
 const RegisterPage = () => {
   const [email, setEmail] = useState('')
       const [password, setPassword] = useState('')
+      const [confirmPassword, setConfirmPassword] = useState('')
       const [username, setUsername] = useState('')
   
       const handleSubmit = async (e) => {
           e.preventDefault()
+
+          if (password !== confirmPassword) {
+            alert("Lösenorden matchar inte!"); // "Passwords do not match!"
+            return;
+          }
   
           console.log(email, username, password)
       } 
@@ -62,15 +68,15 @@ const RegisterPage = () => {
           <div className="input-box">
             <input 
             type="password" placeholder="Bekräfta lösenord" required 
-            onChange= {(e) => setPassword(e.target.value)}
-            value={password}
+            onChange={(e) => setConfirmPassword(e.target.value)} // Use setConfirmPassword here
+            value={confirmPassword} // Display confirmPassword state here
             />
             <FaLock className="icon" />
           </div>
 
           <div>
-            <button className="register-button" type="submit">
-              Registrera
+            <button className="register-button" type="submit">   {/* Den här ska säkert ändras till en redirect */}
+              Registrera      
             </button>
           </div>
         </form>
