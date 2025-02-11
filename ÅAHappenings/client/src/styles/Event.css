@@ -1,56 +1,63 @@
-/* Keep your overall container */
-.event-page {
-    font-family: Arial, sans-serif;
-    max-width: 1200px;
-}
-
-/* Name of the event */
-.event-title {
+/* New styling for the event title outside the main container */
+.event-title-outside {
     text-align: center;
-    margin-bottom: 0;
     font-size: 3rem;
     font-weight: bold;
-    margin-top: 0;
+    margin: 20px 0;
+    padding-top: 40px;      /* This stuff should be fixed with the navbar */
 }
 
-/* Set up a two-column grid for content */
+/* Container that holds the event content */
+.event-container {
+    background-color: #fff;
+    width: 95%;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    border: 5px solid #000000a6;
+    border-radius: 20px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Grid layout for the two-column content inside the container */
 .event-content {
     display: grid;
-    grid-template-columns: 1fr 2fr;  /* Left sidebar and right main */
+    grid-template-columns: 1fr 2fr;
     gap: 20px;
 }
 
-/* New left sidebar for organizer & TLDR */
+/* Left column: Student association info and TLDR */
 .event-sidebar {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    border: 2px solid #c7c7c7;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Organizer section styling */
 .event-organizer-section {
     text-align: center;
+    padding-left: 10px;
 }
+
 .organizer-image {
     max-width: 150px;
-    /*border-radius: 100%;  /* Optional: makes the image circular */
     display: block;
     margin: 10px auto 0;
+    
 }
 
-/* TLDR Section (moved within sidebar) */
 .event-tldr-section {
     text-align: center;
-    padding-top: 20px;
+    padding-top: 20px;    
 }
 
-
-
-/* Make the TLDR box narrower */
 .event-tldr {
     padding: 15px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
+    border: 5px solid #0a0a0a;
+    border-radius: 10px;
     background-color: #f9f9f9;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     display: flex;
@@ -58,37 +65,28 @@
     align-items: flex-start;
     justify-content: center;
     gap: 5px;
-    max-width: 300px;  /* Reduced width */
+    max-width: 300px;
     margin: 0 auto;
 }
 
-/* New right main container */
+/* Right column: Description and registration link */
 .event-main {
     display: flex;
     flex-direction: column;
     gap: 20px;
-}
-
-/* Registration Link section styling */
-.event-link-section {
-    text-align: center;  /* or center if you prefer */
-}
-
-/* You can keep your existing link box styles */
-.event-link-box {
-    display: inline-block;
-    width: auto;
-    padding: 15px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background-color: #ffffff;
+    border: 2px solid #c7c7c7;
+    border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    font-size: 1rem;
 }
 
-/* Description Section remains the same */
 .event-description-section {
     text-align: left;
+    margin: 10px;
+    
+    /*border: 5px solid #000000;
+    border-radius: 20px;*/
+
+    max-width: 800px;
 }
 
 .event-description {
@@ -97,6 +95,24 @@
     border-radius: 8px;
     background-color: #f9f9f9;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    
+}
+
+.event-link-section {
+    text-align: center;
+    
+
+}
+
+.event-link-box {
+    display: inline-block;
+    width: auto;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    font-size: 1rem;
 }
 
 /* Section Titles */
@@ -107,9 +123,12 @@
     text-align: center;
 }
 
+/* Edit button fixed in the bottom left */
 .edit-button {
     position: fixed;
     bottom: 20px;
     left: 20px;
     font-weight: bold;
+    
+    
 }
