@@ -43,7 +43,7 @@ export default function MainPageView() {
   //filter by searchquery
   const textSearchFilter = (eventsToFilter) => {
     if(searchQuery.length != 0) {
-      return eventsToFilter.filter((event) => event.title.includes(searchQuery));
+      return eventsToFilter.filter((event) => (event.title.toLowerCase()).includes(searchQuery.toLowerCase()));
     }
     return eventsToFilter;
   }
@@ -76,6 +76,39 @@ export default function MainPageView() {
   const handleDateChange = (newValue) => {
     setValue(newValue); // Update the selected date
   };
+
+  const getEventsForDate = (date) => {
+    const formattedDate = formatDateAsLocal(date); // Format the date as local YYYY-MM-DD
+    return apiEvents.filter(event => event.date === formattedDate); // Match against event dates
+  };
+  
+  // Helper function to format a Date object as YYYY-MM-DD in local time
+  const formatDateAsLocal = (date) => {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  }; 
+
+  // Render dots for tiles with events
+  const renderTileContent = ({ date }) => {
+    const events = getEventsForDate(date); // Get events for the current tile date
+    if (events.length > 0) {
+      let dotsToShow = events.length === 3 ? events : events.slice(0, 2); // Show 3 dots if exactly 3 events, otherwise 2 dots
+      
+      return (
+        <div className="tile-dots">
+          {dotsToShow.map((_, index) => (
+            <span key={index} className="dot"></span>
+          ))}
+          {events.length > 3 && <span className="more-dots">+{events.length - 2}</span>} {/* Show +N if 4 or more */}
+        </div>
+      );
+    }
+    return null;
+  };
+  
+  
 
   return (
     <div
@@ -196,6 +229,7 @@ export default function MainPageView() {
                   onChange={handleDateChange}
                   value={value}
                   className="react-calendar" /* Apply custom styling */
+                  tileContent={renderTileContent} // Add tile content
               />
           <EventList events={filteredEvents}/>
       </div>

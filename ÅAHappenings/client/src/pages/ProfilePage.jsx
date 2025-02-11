@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "../styles/background.css";
 import "../styles/profile.css"; // Ensure this CSS file exists
-import TopBarNoLogin from "../components/TopBarNoLogin";
 
 const profilepage = () => {
   const [name, setName] = useState("");
@@ -23,7 +22,6 @@ const profilepage = () => {
 
   return (
     <>
-      <TopBarNoLogin />
       <div className="background-image"></div>
       <div className="profile-container">
         {/* Profile Picture Box */}
