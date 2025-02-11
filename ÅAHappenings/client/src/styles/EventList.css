@@ -66,40 +66,55 @@
 .calendar-event-container {
     display: flex;
     flex-direction: row; /* Align calendar and events side-by-side */
-    gap: 4rem; /* Space between calendar and event list */
+    gap: 10rem; /* Space between calendar and event list */
     background-color: transparent; /* Optional background for better visibility */
     /*padding: 2rem;*/
     border-radius: 12px;
     max-width: 90%; /* Prevent it from getting too wide */
     max-height: 90%; /* Prevent it from getting too tall */
-    overflow: hidden; /* Handle overflow if needed */
+    overflow: show; /* Handle overflow if needed */
+}
+
+:root {
+  --calendar-scale-factor: 1.4; /* Adjust to control scaling */
 }
 
 /* Custom styling for the Calendar */
 .react-calendar {
-    max-width: 400px; /* Set a max width for larger screens */
-    max-height: 310px;
-    margin-top: 1rem; /* Adds space above the calendar */
-    border-radius: 12px; /* Round corners */
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); /* Add shadow */
-    padding: 1rem; /* Optional padding */
-}
-
-.react-calendar__month-view__days__day--weekend {
-    color: #d9534f; /* Highlight weekends */
+  transform: scale(var(--calendar-scale-factor)); /* Scale the calendar */
+  transform-origin: top left; /* Anchor scaling to the top-left corner */
+  margin-top: 3rem; /* Space above the calendar */
+  border-radius: 12px; /* Rounded corners */
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); /* Add shadow */
+  padding: 0.8rem; /* Reduce padding to avoid excess height */
+  max-height: 300px; /* Constrain maximum height */
+  overflow: hidden; /* Prevent overflow */
 }
 
 .react-calendar__tile {
-    font-size: 1.2rem; /* Make text larger */
-    padding: 1rem; /* Increase clickable area */
+  position: relative; /* Ensure the tile is a positioning context for dots */
+  font-size: 1rem; /* Keep date text size consistent */
+  padding: 1rem; /* Adjust padding to avoid overlaps */
 }
 
 .react-calendar__tile--now {
-    background-color: #1087ff !important; /* Light background for today's date */
-    color: #000 !important; /* Ensure text is visible */
-    border-radius: 8px; /* Rounded corners to match overall design */
-    font-weight: bold; /* Highlight today's date */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Optional shadow */
+  background-color: #1087ff !important; /* Highlight today's date */
+  color: #000 !important;
+  border-radius: 8px;
+  font-weight: bold;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Optional shadow */
+}
+
+.react-calendar__tile--active {
+  background-color: #1087ff !important; /* Blue background for selected date */
+  color: white !important; /* White text */
+  border-radius: 8px;
+  font-weight: bold;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); /* Optional shadow */
+}
+
+.react-calendar__month-view__days__day--weekend {
+  color: #d9534f; /* Highlight weekends */
 }
 
 .react-calendar__tile--now:enabled:hover {
@@ -110,14 +125,6 @@
     background-color: #d6d6d6 !important; /* Highlight on focus */
 }
 
-.react-calendar__tile--active {
-    background-color: #1087ff !important; /* Blue background for selected date */
-    color: white !important; /* White text for better contrast */
-    border-radius: 8px; /* Rounded corners */
-    font-weight: bold; /* Emphasize selected date */
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); /* Optional shadow */
-}
-
 .react-calendar__tile--active:enabled:hover {
     background-color: #0c6cd7 !important; /* Darker blue on hover */
 }
@@ -125,3 +132,31 @@
 .react-calendar__tile--active:enabled:focus {
     background-color: #0b5bb5 !important; /* Slightly darker blue on focus */
 }
+
+.tile-dots {
+  display: flex;
+  justify-content: center; /* Center the dots horizontally */
+  gap: 1.5px; /* Consistent spacing between dots */
+  position: absolute;
+  bottom: 4px; /* Position the dots below the date */
+  left: 0;
+  right: 0;
+}
+
+.dot {
+  width: 4px;
+  height: 4px;
+  background-color: #000000;
+  border-radius: 50%; /* Ensure the dots are circular */
+  margin: 0; /* Remove any default margin */
+  padding: 0; /* Remove any default padding */
+  box-sizing: border-box; /* Ensure size is consistent */
+}
+
+.more-dots {
+  font-size: 0.5rem; /* Smaller font size for the "+" indicator */
+  color: #000000; /* Match dot color */
+  margin-left: 1px; /* Add a gap after the last dot */
+  line-height: 0.5; /* Align the "+" vertically */
+}
+

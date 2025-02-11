@@ -22,7 +22,6 @@ export default function MyEvents(){
   return (
     <>
     <BurgerMenu />
-    <TopBarLoggedIn />
     <div className="container">
       {/* Blurred background layer */}
       <div className="background-image"></div>
