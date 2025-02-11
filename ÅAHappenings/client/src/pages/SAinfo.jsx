@@ -2,22 +2,12 @@ import React from 'react';
 import '../styles/background.css';
 import "../styles/LoginPage.css";
 import BurgerMenu from '../components/BurgerMenu';
-import TopBarNoLogin from "../components/TopBarNoLogin";
 
 //This page is sharing css with loginpage!
 
 const SAinfo = () => {
   return (
     <>
-      <BurgerMenu />
-      
-      {/* Include the TopBar without Logga In button at the top of the page */}
-      <TopBarNoLogin />
-      
-      <div className="container">
-        {/* Blurred background layer */}
-        <div className="background-image"></div>
-        
         {/* Main content overlay */}
         <div className="wrapper">
           <div className="form-box infobox">
@@ -37,7 +27,6 @@ const SAinfo = () => {
             </div>
           </div>
         </div>
-      </div>
     </>       
   );
 };

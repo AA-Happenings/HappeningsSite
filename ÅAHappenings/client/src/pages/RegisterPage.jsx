@@ -5,7 +5,6 @@ import { FaLock } from "react-icons/fa";
 import { FaEnvelope } from "react-icons/fa";
 import { FaBuilding } from "react-icons/fa";
 import "../styles/RegisterPage.css";
-import TopBarNoLogin from "../components/TopBarNoLogin";
 import  { useState} from 'react'
 
 const RegisterPage = () => {

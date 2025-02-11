@@ -1,6 +1,8 @@
 import { NavLink } from "react-router-dom";
+import BurgerMenu from '../components/BurgerMenu';
 
 export default function TopBar() {
+  const loggedIn = true;
   return (
     <div className="navbar">
       {/* Title */}
@@ -8,12 +10,9 @@ export default function TopBar() {
         <span>ÅA-Happenings</span>
       </NavLink>
 
-      {/* Login Section */}
+      {/* Right content Section */}
       <div className="navbar-buttons">
-        <h3 style={{ color: "black" }}>Arrangörsinloggning</h3>
-        <NavLink to="/login" className="login-button">
-          Logga in
-        </NavLink>
+        {loggedIn ? <BurgerMenu /> : <NavLink to="/login" className="login-button"> Logga in</NavLink> }
       </div>
     </div>
   );

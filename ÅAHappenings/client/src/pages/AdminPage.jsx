@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../styles/background.css";
 import "../styles/AdminPage.css";
-import TopBarNoLogin from "../components/TopBarNoLogin";
 
 const AdminPage = () => {
   const [events, setEvents] = useState([]);
