@@ -5,12 +5,19 @@ body {
     align-items: center;
     min-height: 100vh;
   }
+
+  .event-header {
+    font-weight: bold;
+    font-size: 20px;
+  }
   
+  /* rubrikerna */
   .wrapper .form-box {
     width: 100%;
     padding: 40px;
   }
   
+  /* texten inne i textrutorna */
   .input-box {
     display: flex;
     align-items: center;

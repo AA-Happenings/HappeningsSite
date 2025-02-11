@@ -1,12 +1,11 @@
 import React from "react";
-import '../styles/background.css';
-import TopBarLoggedIn from "../components/TopBarLoggedIn";
 import BurgerMenu from '../components/BurgerMenu';
 import "../styles/RulesPage.css"; // Import the corresponding CSS file
 
 const RulesPage = () => {
   return (
     <>
+
     <div className="rules-page">
       {/* Main Rules Content */}
       <div className="event-page">
