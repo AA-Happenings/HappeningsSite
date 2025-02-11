@@ -43,7 +43,7 @@ export default function MainPageView() {
   //filter by searchquery
   const textSearchFilter = (eventsToFilter) => {
     if(searchQuery.length != 0) {
-      return eventsToFilter.filter((event) => event.title.includes(searchQuery));
+      return eventsToFilter.filter((event) => (event.title.toLowerCase()).includes(searchQuery.toLowerCase()));
     }
     return eventsToFilter;
   }
