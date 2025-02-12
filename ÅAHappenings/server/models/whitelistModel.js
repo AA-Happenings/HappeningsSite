@@ -42,13 +42,13 @@ whitelistSchema.statics.remove = async function(email){
         throw Error ('Email is not found in whitelist')
     }
 
-    const whitelist = await this.remove({email})
+    const whitelist = await this.deleteOne({email})
 
     return whitelist
 }
 
 
 
-//module.exports = mongoose.model('Whitelist', whitelistSchema);
+
 const Whitelist = mongoose.model('Whitelist', whitelistSchema);
 export default Whitelist;

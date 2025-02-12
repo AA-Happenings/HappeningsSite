@@ -6,7 +6,7 @@ const addEmail = async (req, res) => {
 
     try {
         const whitelist = await Whitelist.add(email)
-        res.status(200).json({email})
+        res.status(200).json({email, whitelist})
     } catch (error) {
         res.status(400).json({error: error.message})
     }

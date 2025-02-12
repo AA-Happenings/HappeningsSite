@@ -3,7 +3,7 @@ import cors from "cors";
 import mongoose from "mongoose"
 import events from "./routes/event.js";
 import organizer from "./routes/organizer.js";
-import whitelist from "./models/whitelistModel.js";
+import whitelist from "./routes/whitelist.js";
 
 const PORT = process.env.PORT || 5050;
 const app = express();
