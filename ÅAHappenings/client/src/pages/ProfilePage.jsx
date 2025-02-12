@@ -7,10 +7,19 @@ const profilepage = () => {
   const [link, setLink] = useState("");
   const [profilePic, setProfilePic] = useState(null);
   const [color, setColor] = useState("#3498db"); // Default color
+  const [error, setError] = useState("");
 
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
+    const validImageTypes = ["image/png", "image/jpeg", "image/jpg"]; // Allowed image formats
+
     if (file) {
+      if (!validImageTypes.includes(file.type)) {
+        setError("Endast bildfiler (PNG, JPEG, JPG) är tillåtna.");
+        return; 
+      }
+
+      setError(""); 
       const reader = new FileReader();
       reader.onloadend = () => {
         setProfilePic(reader.result);
@@ -32,8 +41,9 @@ const profilepage = () => {
             )}
           </div>
           <div className="chooseFile">
-          <input type="file" accept="image/*" onChange={handleImageUpload} />
+            <input type="file" accept="image/png, image/jpeg, image/jpg" onChange={handleImageUpload} />
           </div>
+          {error && <p className="error-message">{error}</p>} {/* Error message display */}
         </div>
 
         {/* Textboxes for Profile Info */}

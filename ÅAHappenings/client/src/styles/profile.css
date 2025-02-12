@@ -32,6 +32,13 @@
     height: 100%;
     object-fit: cover;
   }
+
+  .error-message {   /* Error message styling for wrong file format. Might need some further styling?? */
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+    text-align: center;
+  }
   
   .placeholder-text {
     font-size: 14px;
