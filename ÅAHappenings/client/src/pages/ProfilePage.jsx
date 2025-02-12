@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import "../styles/background.css";
-import "../styles/profile.css"; // Ensure this CSS file exists
+import "../styles/profile.css"; 
 
 const profilepage = () => {
   const [name, setName] = useState("");
@@ -22,7 +21,6 @@ const profilepage = () => {
 
   return (
     <>
-      <div className="background-image"></div>
       <div className="profile-container">
         {/* Profile Picture Box */}
         <div className="profile-pic-container">
@@ -55,7 +53,7 @@ const profilepage = () => {
           />
           <input
             type="text"
-            placeholder="Link"
+            placeholder="Länk"
             value={link}
             onChange={(e) => setLink(e.target.value)}
             className="profile-input"
