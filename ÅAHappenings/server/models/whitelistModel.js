@@ -1,13 +1,53 @@
 //const mongoose = require('mongoose');
 import mongoose from 'mongoose'
+import validator from 'validator';
 
-const whitelistSchema = new mongoose.Schema({
+
+const Schema = mongoose.Schema
+
+const whitelistSchema = new Schema({
     email: {
         type: String,
         required: true,
         unique: true
     }
 });
+
+
+whitelistSchema.statics.add = async function(email){
+    if (!validator.isEmail(email)){
+        throw Error('Email is not valid')
+    }
+
+    const emailExists = await this.findOne({ email });
+
+    if (emailExists){
+        throw Error ('Email already in use')
+    }
+
+    const whitelist = await this.create({email})
+
+    return whitelist
+}
+
+
+whitelistSchema.statics.remove = async function(email){
+    if (!validator.isEmail(email)){
+        throw Error('Email is not valid')
+    }
+
+    const emailExists = await this.findOne({ email });
+
+    if (!emailExists){
+        throw Error ('Email is not found in whitelist')
+    }
+
+    const whitelist = await this.remove({email})
+
+    return whitelist
+}
+
+
 
 //module.exports = mongoose.model('Whitelist', whitelistSchema);
 const Whitelist = mongoose.model('Whitelist', whitelistSchema);

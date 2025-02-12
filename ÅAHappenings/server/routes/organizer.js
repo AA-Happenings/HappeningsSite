@@ -1,7 +1,4 @@
-//const express = require('express')
 import express from "express";
-
-
 import {loginOrganizer, signupOrganizer} from '../controllers/organizerController.js'
 
 const router = express.Router()
