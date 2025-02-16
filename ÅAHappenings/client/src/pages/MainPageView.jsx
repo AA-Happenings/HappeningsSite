@@ -111,12 +111,13 @@ export default function MainPageView() {
   
 
   return (
+    <div className="main-container">
     <div
       style={{
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        padding: "20px",
+        padding: "50px",
         margin: "10px",
       }}
     >
@@ -237,6 +238,7 @@ export default function MainPageView() {
         <NavLink to="/faq" className="faq-button">
           FAQ
         </NavLink>
+    </div>
     </div>
     </div>
     
