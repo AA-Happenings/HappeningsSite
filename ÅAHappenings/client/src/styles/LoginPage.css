@@ -143,3 +143,20 @@ body {
     border-radius: 8px;
     width: 90%;
   }
+  .error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 8px;
+    text-align: center;
+  }
+  div.error {
+    padding: 10px;
+    background: #ffefef;
+    border: 1px solid var(--error);
+    color: var(--error);
+    border-radius: 4px;
+    margin: 20px 0;
+  }
+  input.error {
+    border: 1px solid var(--error);
+  }
