@@ -24,5 +24,10 @@ const removeEmail = async (req, res) => {
     }
 } 
 
+const getEmails = async (req, res) => {
+    const emails = await Whitelist.find({})
+    res.status(200).json(emails)
+}
 
-export { addEmail, removeEmail };
+
+export { addEmail, removeEmail, getEmails };

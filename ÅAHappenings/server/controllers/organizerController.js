@@ -42,5 +42,11 @@ const signupOrganizer = async (req, res) => {
     }
 }
 
+const getOrganizers = async (req, res) => {
+    const organizers = await Organizer.find({})
+    res.status(200).json(organizers)
+    
+}
+
 //module.exports = {signupOrganizer, loginOrganizer}
-export { signupOrganizer, loginOrganizer };
+export { signupOrganizer, loginOrganizer, getOrganizers };

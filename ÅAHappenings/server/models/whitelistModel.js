@@ -11,7 +11,9 @@ const whitelistSchema = new Schema({
         required: true,
         unique: true
     }
-});
+},
+{timestamps: true}
+);
 
 
 whitelistSchema.statics.add = async function(email){
