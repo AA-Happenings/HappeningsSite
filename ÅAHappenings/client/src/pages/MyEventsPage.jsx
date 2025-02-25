@@ -62,10 +62,6 @@ export default function MyEvents(){
 
   return (
     <>
-    <BurgerMenu />
-    <div className="container">
-      {/* Blurred background layer */}
-      <div className="background-image"></div>
     <div
       style={{
         display: "flex",
@@ -88,7 +84,6 @@ export default function MyEvents(){
                   locale="sv"
               />
       </div>
-    </div>
     </div>
     </>
   );
