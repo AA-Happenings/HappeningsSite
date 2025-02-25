@@ -4,19 +4,17 @@
     font-size: 3rem;
     font-weight: bold;
     margin: 20px 0;
-    padding-top: 40px;      /* This stuff should be fixed with the navbar */
 }
 
 /* Container that holds the event content */
 .event-container {
-    background-color: #fff;
+    background-color: #f9f9f9;
     width: 95%;
     margin: 0 auto;
     padding: 20px;
     font-family: Arial, sans-serif;
     border: 5px solid #929292;
     border-radius: 20px;
-    background-color: #f9f9f9;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
@@ -107,28 +105,46 @@
     font-size: 1rem;
 }
 
-  .edit-button {
-    background-color: #ffffff;
+/* Fixed buttons container for EO (Edit & Remove) */
+.fixed-buttons {
     position: fixed;
     bottom: 20px;
     left: 20px;
-    font-size: 16px;
-    font-weight: bold;
-    display: inline-block;
-    border: 5px solid #929292;
-    border-radius: 20px;
-    padding: 0; 
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 1000;
 }
 
-.edit-button button {
-    border: none;              /* Remove default border */
-    border-radius: inherit;
-    background: transparent;   /* Remove default background */
-    margin: 0;                 /* Remove default margins */
-    padding: 10px 15px;        /* Adjust as needed for spacing */
-    outline: none;
+.edit-button {
+    display: inline-flex;      /* Use flexbox for inline alignment */
+    align-items: center;         /* Vertically center the content */
+    gap: 8px;
+    background-color: #ffffff;
+    border: 5px solid #929292;
+    border-radius: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
 .edit-button:hover {
     background-color: #d6d6d6;
-  }
+}
+
+.remove-button {
+    background-color: #e29898;
+    border: 5px solid #929292;
+    padding: 10px 15px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.remove-button:hover {
+    background-color: rgb(204, 61, 61);
+}
