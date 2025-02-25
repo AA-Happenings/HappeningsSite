@@ -79,6 +79,10 @@
 }
 
 /* Custom styling for the Calendar */
+.react-calendar__navigation__label {
+  text-transform: capitalize;
+}
+
 .react-calendar {
   transform: scale(var(--calendar-scale-factor)); /* Scale the calendar */
   transform-origin: top left; /* Anchor scaling to the top-left corner */

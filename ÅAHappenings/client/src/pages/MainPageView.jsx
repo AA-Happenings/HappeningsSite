@@ -5,6 +5,7 @@ import 'react-calendar/dist/Calendar.css';
 import EventList from '../components/EventList';
 import { NavLink } from "react-router-dom";
 import "../styles/MainPageView.css"
+import { sv } from "date-fns/locale";
 
 export default function MainPageView() {
 
@@ -75,7 +76,17 @@ export default function MainPageView() {
   const [value, setValue] = useState(new Date());
   const handleDateChange = (newValue) => {
     setValue(newValue); // Update the selected date
+
+    // Format the selected date
+    const selectedDate = formatDateAsLocal(newValue);
+
+    // Filter events based on the selected date
+    const filteredByDate = apiEvents.filter(event => event.date === selectedDate);
+
+    // Update the filtered events state
+    setFilteredEvents(filteredByDate);
   };
+
 
   const getEventsForDate = (date) => {
     const formattedDate = formatDateAsLocal(date); // Format the date as local YYYY-MM-DD
@@ -107,8 +118,6 @@ export default function MainPageView() {
     }
     return null;
   };
-  
-  
 
   return (
     <div
@@ -230,6 +239,7 @@ export default function MainPageView() {
                   value={value}
                   className="react-calendar" /* Apply custom styling */
                   tileContent={renderTileContent} // Add tile content
+                  locale="sv"
               />
           <EventList events={filteredEvents}/>
       </div>
