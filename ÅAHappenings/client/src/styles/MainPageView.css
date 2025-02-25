@@ -8,31 +8,14 @@
   background-color: #ffffff;
   color: rgb(0, 0, 0);
   padding: 10px 15px;
-  /*border-radius: 8px;*/
   text-decoration: none;
   font-size: 16px;
   font-weight: bold;
   display: inline-block;
-  border: 5px solid #000000a6;
+  border: 5px solid #929292;
   border-radius: 20px;
 }
 
 .faq-button:hover {
-  background-color: #d6d6d6;
-}
-.filter-button {
-  background-color: #ffffff;
-  color: rgb(0, 0, 0);
-  padding: 10px 15px;
-  /*border-radius: 8px;*/
-  text-decoration: none;
-  font-size: 16px;
-  font-weight: bold;
-  display: inline-block;
-  border: 5px solid #000000a6;
-  border-radius: 20px;
-}
-
-.filter-button:hover {
   background-color: #d6d6d6;
 }
