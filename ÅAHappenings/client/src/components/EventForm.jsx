@@ -239,8 +239,20 @@ export default function EventForm({isOpen, setOpen, isNew}) {
                         <label htmlFor="byob">BYOB</label>
                         </div>
                         <div className="dialog-checkbox">
-                        <input type="checkbox" id="gratis" checked={form.tags.includes("gratis")} onChange={(e) => updateTags("gratis", e.target.checked)} />
+                        <input
+                            type="checkbox" id="gratis"
+                            checked={form.tags.includes("gratis")}
+                            onChange={(e) => updateTags("gratis", e.target.checked)}
+                        />
                         <label htmlFor="gratis">Gratis</label>
+                        </div>
+                        <div className="dialog-checkbox">
+                        <input
+                            type="checkbox" id="aö"
+                            checked={form.tags.includes("aö")}
+                            onChange={(e) => updateTags("aö", e.target.checked)}
+                        />
+                        <label htmlFor="aö">AÖ</label>
                         </div>
                         {/* Add other checkboxes following the same pattern */}
                     </div>
