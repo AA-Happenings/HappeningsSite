@@ -1,5 +1,6 @@
 .button-style {
     background-color: white;
+    width: 30%;
     color: black;
     border: 1px solid gray;
     border-radius: 8px;
@@ -8,11 +9,11 @@
     cursor: pointer;
     transition: background-color 0.3s;
     text-decoration: none; /* Removes underline */
-    margin-right: 10px; /* Space between button and edge */
 }
 
 .button-style-cancel {
     background-color: rgb(199, 199, 199);
+    width: 30%;
     color: black;
     border: none;
     border-radius: 8px;
@@ -21,7 +22,6 @@
     cursor: pointer;
     transition: background-color 0.3s;
     text-decoration: none; /* Removes underline */
-    margin-right: 10px; /* Space between button and edge */
 }
 
 .dialog-container {
@@ -122,9 +122,11 @@
 
 .dialog-buttons {
     display: flex;
-    justify-content: center; /* Space out buttons */
+    justify-content: center; /* Center the buttons as a group */
+    align-items: center;
+    gap: 20px;               /* Adds equal space between the buttons */
     background-color: #EDEDED;
-    padding: 10px 20px; /* Inner spacing */
+    padding: 10px 20px;
 }
 
 .dialog-buttons .button-style {
