@@ -19,3 +19,68 @@
 .faq-button:hover {
   background-color: #d6d6d6;
 }
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+  /* Center all elements in a column */
+  .main-container {
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 20px;
+      margin: 0 auto;
+      max-width: 100%;
+      overflow-x: hidden;
+  }
+
+  /* Make the search bar and filters stack vertically */
+  .filters-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+      max-width: 90%;
+  }
+
+  .filter-button {
+      width: 100%; /* Make filter buttons full-width */
+      text-align: center;
+  }
+
+  /* Adjust event list for mobile */
+  .event-list-container {
+      width: 90%;
+      max-width: 100%;
+      height: auto;
+      max-height: unset;
+      overflow-y: visible;
+  }
+
+  /* Place calendar below event list */
+  .calendar-event-container {
+      flex-direction: column-reverse;
+      gap: 20px;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      max-width: 90%;
+  }
+
+  .react-calendar {
+      transform: scale(1); /* Reset scaling */
+      max-width: 95%;
+  }
+
+  /* Adjust FAQ button positioning */
+  .faq-container {
+      position: relative;
+      bottom: unset;
+      left: unset;
+      margin-top: 20px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+  }
+}
+

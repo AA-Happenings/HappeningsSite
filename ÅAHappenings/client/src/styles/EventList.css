@@ -172,3 +172,51 @@
   line-height: 0.5; /* Align the "+" vertically */
 }
 
+
+/* Mobile Adjustments */
+@media screen and (max-width: 768px) {
+  .event-list-container {
+    width: 100%;
+    max-width: 104vw !important; /* Works on all phones i tested with this (goofy as hell on tablets so only temporary solution) */
+    min-width: 280px; /* Prevents it from getting too small */
+    padding: 0.8rem;
+    margin: 0 auto; 
+    overflow-x: hidden;
+    box-sizing: border-box; 
+  }
+
+  .event-card {
+    width: 100%; /* Ensures cards fit inside the container */
+    padding: 1.5rem; /* Reduce padding */
+    margin: 0.5rem 0; /* Space between cards */
+    font-size: 0.85rem;
+    box-sizing: border-box;
+    border-radius: 8px; /* Keeps styling smooth */
+    white-space: normal; /* Allows text wrapping */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .event-details h3 {
+    font-size: 1rem;
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .event-location,
+  .event-time {
+    font-size: 0.9rem;
+  }
+
+  .event-icon {
+    font-size: 1.4rem; /* Adjust icon size */
+    margin-right: 0.4rem;
+  }
+
+  .calendar-event-container {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+

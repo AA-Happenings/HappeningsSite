@@ -143,6 +143,7 @@ body {
     border-radius: 8px;
     width: 90%;
   }
+
   .error-message {
     color: red;
     font-size: 14px;
@@ -160,3 +161,41 @@ body {
   input.error {
     border: 1px solid var(--error);
   }
+
+  /* For mobile phones */
+  @media screen and (max-width: 768px) {
+    .wrapper {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .form-box {
+        width: 100%; 
+        max-width: 350px; 
+        padding: 15px;
+    }
+
+    .input-box input {
+        font-size: 14px; 
+        padding: 8px 8px 8px 35px;
+    }
+
+    .loggain-button {
+        width: 100%; 
+        padding: 12px;
+        font-size: 14px;
+    }
+
+    .forgot-password-link {
+        text-align: center;
+        font-size: 13px;
+        margin-top: 15px;
+    }
+
+    .disclaimer {
+        font-size: 11px;
+        text-align: center;
+        padding: 10px;
+    }
+}  
+
