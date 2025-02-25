@@ -29,7 +29,7 @@ const organizerSchema = new Schema({
     }
 })
 
-organizerSchema.static.signup = async function(email, username, password){
+organizerSchema.statics.signup = async function(email, username, password){
     
     // validation for signup
 
@@ -43,8 +43,8 @@ organizerSchema.static.signup = async function(email, username, password){
         throw Error('Password is not strong enough')
     }
 
-    const emailExists = await this.findOne({ email })
-    const usernameExists = await this.findOne({ username })
+    const emailExists = await this.findOne({ email });
+    const usernameExists = await this.findOne({ username });
     const isWhitelisted = await Whitelist.findOne({ email });
 
     if (!isWhitelisted){
@@ -67,7 +67,7 @@ organizerSchema.static.signup = async function(email, username, password){
 }
 
 // static login method
-organizerSchema.static.login = async function(email, password){
+organizerSchema.statics.login = async function(email, password){
     
     if (!email || !password){
         throw Error('All fields must be filled')

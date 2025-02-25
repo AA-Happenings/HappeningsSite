@@ -6,10 +6,16 @@ import { GoCalendar } from "react-icons/go";
 import { GoPerson } from "react-icons/go";
 import { GoChecklist } from "react-icons/go";
 import { GoSignOut } from "react-icons/go";
+import { useLogout } from '../hooks/useLogout';
 
 const BurgerMenu = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef(null);
+  const { logout } = useLogout();
+
+  const handleLogout = () => {
+    logout();
+  }
 
   // Close the menu if clicked outside
   useEffect(() => {
@@ -65,12 +71,13 @@ const BurgerMenu = () => {
                 <GoChecklist style={{ verticalAlign: "middle" }} />
                 <span>Regler</span>
             </a>
-            <a 
+            <button 
+                onClick={handleLogout}
                 className="bm-item" 
                 href="/">
                 <GoSignOut style={{ verticalAlign: "middle" }} />
                 <span>Logga ut</span>
-            </a>
+            </button>
           </nav>
         </div>
       </Menu>

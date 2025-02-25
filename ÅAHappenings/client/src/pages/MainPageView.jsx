@@ -18,7 +18,9 @@ export default function MainPageView() {
 
   useEffect(() => {
     async function getEvents() {
-      const response = await fetch(`http://localhost:5050/event/`);
+      //const response = await fetch(`/api/event/`);              Will fix smile
+      const response = await fetch("http://localhost:5050/event/");
+      console.log(response)
       if (!response.ok) {
         const message = `An error occurred: ${response.statusText}`;
         console.error(message);
@@ -44,7 +46,7 @@ export default function MainPageView() {
   //filter by searchquery
   const textSearchFilter = (eventsToFilter) => {
     if(searchQuery.length != 0) {
-      return eventsToFilter.filter((event) => (event.title.toLowerCase()).includes(searchQuery.toLowerCase()));
+      return eventsToFilter.filter((event) => event.title.includes(searchQuery));
     }
     return eventsToFilter;
   }
@@ -240,6 +242,7 @@ export default function MainPageView() {
                   className="react-calendar" /* Apply custom styling */
                   tileContent={renderTileContent} // Add tile content
                   locale="sv"
+
               />
           <EventList events={filteredEvents}/>
       </div>

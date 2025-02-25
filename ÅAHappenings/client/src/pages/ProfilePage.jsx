@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import "../styles/background.css";
-import "../styles/profile.css"; // Ensure this CSS file exists
+import "../styles/profile.css"; 
 
 const profilepage = () => {
   const [name, setName] = useState("");
@@ -8,10 +7,19 @@ const profilepage = () => {
   const [link, setLink] = useState("");
   const [profilePic, setProfilePic] = useState(null);
   const [color, setColor] = useState("#3498db"); // Default color
+  const [error, setError] = useState("");
 
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
+    const validImageTypes = ["image/png", "image/jpeg", "image/jpg"]; // Allowed image formats
+
     if (file) {
+      if (!validImageTypes.includes(file.type)) {
+        setError("Endast bildfiler (PNG, JPEG, JPG) är tillåtna.");
+        return; 
+      }
+
+      setError(""); 
       const reader = new FileReader();
       reader.onloadend = () => {
         setProfilePic(reader.result);
@@ -22,7 +30,6 @@ const profilepage = () => {
 
   return (
     <>
-      <div className="background-image"></div>
       <div className="profile-container">
         {/* Profile Picture Box */}
         <div className="profile-pic-container">
@@ -34,8 +41,9 @@ const profilepage = () => {
             )}
           </div>
           <div className="chooseFile">
-          <input type="file" accept="image/*" onChange={handleImageUpload} />
+            <input type="file" accept="image/png, image/jpeg, image/jpg" onChange={handleImageUpload} />
           </div>
+          {error && <p className="error-message">{error}</p>} {/* Error message display */}
         </div>
 
         {/* Textboxes for Profile Info */}
@@ -55,7 +63,7 @@ const profilepage = () => {
           />
           <input
             type="text"
-            placeholder="Link"
+            placeholder="Länk"
             value={link}
             onChange={(e) => setLink(e.target.value)}
             className="profile-input"
