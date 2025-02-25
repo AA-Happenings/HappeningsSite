@@ -7,11 +7,13 @@ import { GoPerson } from "react-icons/go";
 import { GoChecklist } from "react-icons/go";
 import { GoSignOut } from "react-icons/go";
 import { useLogout } from '../hooks/useLogout';
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const BurgerMenu = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef(null);
   const { logout } = useLogout();
+  const { user } = useAuthContext();
 
   const handleLogout = () => {
     logout();
@@ -44,6 +46,12 @@ const BurgerMenu = () => {
         isOpen={menuOpen}
         onStateChange={({ isOpen }) => setMenuOpen(isOpen)} // Sync state
       >
+        {user && (
+            <div className="user-email">
+                {user.email}
+            </div>
+        )}
+
         <div className="bm-menu">
           <nav className="bm-item-list">
             <a 

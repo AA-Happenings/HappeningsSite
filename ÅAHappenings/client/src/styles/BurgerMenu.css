@@ -36,7 +36,7 @@
     position: fixed;
     right: 0px;
     z-index: 1100;
-    width: 400px;
+    width: 500px;
     height: 100%;
     transition: transform 0.8s cubic-bezier(0.7, 0, 0.3, 1);
   }
@@ -62,8 +62,11 @@
     color: #b8b7ad;
     height: 100%;
     width: 100%;
-    display: block;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Ensures icons are properly aligned */
+    gap: 12px; /* Ensures spacing between menu items */
   }
   
   /* Individual item */
@@ -72,11 +75,21 @@
     align-items: center;
     gap: 8px; /* Space between the icon and text */
     text-decoration: none;
-    color: white; /* Default text and icon color */
-    transition: color 0.3s ease; /* Smooth color transition */
+    color: white;
+    transition: color 0.3s ease;
     padding: 0.8em;
+    white-space: nowrap; /* Prevent text from breaking into a new line */
+    min-height: 50px; /* Ensures enough height for icons */
+    width: 100%;
+}
+
+  .bm-item svg {
+    width: 24px !important;
+    height: 24px !important;
+    flex-shrink: 0;
+    min-width: 24px; /* Ensures the icon won't collapse */
   }
-  
+
   .bm-item span {
     text-decoration: underline; /* Add underline to the text */
   }
@@ -90,3 +103,12 @@
   .bm-overlay {
     background: rgba(0, 0, 0, 0.3);
   }
+
+  .user-email {
+    pointer-events: none; /* Prevent hover */
+    cursor: default; /* Prevent pointer effect */
+    margin-left: 20px; /* Adjust alignment to the left */
+    text-align: left; /* Ensure it's positioned correctly */
+    display: block; /* Make sure it respects margins */
+}
+
