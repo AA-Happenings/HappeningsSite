@@ -33,7 +33,7 @@
     background-color: #EDEDED;
   }
   
-  .dialog-footer {
+.dialog-footer {
     display: flex;
     justify-content: space-between; /* Align buttons on left and right */
     padding: 10px 20px; /* Inner spacing */
@@ -41,9 +41,8 @@
     background-color: #EDEDED; /* Matches the dialog's background */
     margin: 0; /* Ensure no extra margin */
     box-sizing: border-box; /* Include padding in dimensions */
-  }
-  
-  
+}
+
 .item-container-left {
     padding: 20px;
     padding-left: 30px;
@@ -123,7 +122,7 @@
 
 .dialog-buttons {
     display: flex;
-    justify-content: space-between; /* Space out buttons */
+    justify-content: center; /* Space out buttons */
     background-color: #EDEDED;
     padding: 10px 20px; /* Inner spacing */
 }

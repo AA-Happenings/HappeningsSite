@@ -1,77 +1,85 @@
 .event-list-container {
-    background-color: transparent;
-    padding: 1rem;
-    border-radius: 12px;
-    max-width: 650px;
-    margin: 0 auto; /* Center the container */
-    width: 40vw;
-    max-height: calc(4 * 7vw + 4 * 1rem + 2rem); /* Adjust height to fit 4 events */
-    overflow-x: hidden;
-    overflow-y: auto;
+  background-color: transparent;
+  padding: 1rem;
+  border-radius: 12px;
+  max-width: 650px;
+  margin: 0 auto; /* Center the container */
+  width: 40vw;
+  max-height: calc(4 * 7vw + 4 * 1rem + 2rem); /* Adjust height to fit 4 events */
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
   
-  .event-card {
-    display: flex;
-    align-items: center;
-    background-color: #f4f4f8;
-    margin-bottom: 1rem;
-    padding: 1rem;
-    border-radius: 10px;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-  }
-  
-  .event-icon {
-    font-size: 2rem;
-    margin-right: 1rem;
-  }
-  
-  .event-details h3 {
-    margin: 0;
-    font-size: 1.2rem;
-    font-weight: bold;
-  }
-  
-  .event-location {
-    margin: 0.2rem 0;
-    color: #666;
-  }
-  
-  .event-time {
-    margin: 0;
-    color: #888;
-    display: flex;
-    align-items: center;
-  }
-  
-  .event-time::before {
-    content: '';
-    display: inline-block;
-    margin-right: 0.5rem;
-  }
-  
-  .main-container {
-    display: flex;
-    justify-content: center;
-    /*align-items: center;*/
-    height: 100vh; /* Full height of the viewport */
-    width: 100vw; /* Full width of the viewport */
-    position: relative; /* Needed if the div inside is positioned */
-    background-color: transparent; /* Or any background styling */
-    overflow-x: hidden;
-    margin-top: 2vw;
+.event-card {
+  display: flex;
+  align-items: center;
+  background-color: #f4f4f8;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  border: 5px solid #929292;
+  border-radius: 20px;
+}
+.event-card:hover {
+  background-color: #d6d6d6;
+}
+
+.event-icon {
+  font-size: 2rem;
+  margin-right: 2rem;
+  border: 2px solid #000000a6;
+  border-radius: 10px;
+  border-width: 2px 2px 2px 2px;
+}
+
+.event-details h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.event-location {
+  margin: 0.2rem 0;
+  color: #666;
+}
+
+.event-time {
+  margin: 0;
+  color: #888;
+  display: flex;
+  align-items: center;
+}
+
+.event-time::before {
+  content: '';
+  display: inline-block;
+  margin-right: 0.5rem;
+}
+
+.main-container {
+  display: flex;
+  justify-content: center;
+  /*align-items: center;*/
+  height: 100vh; /* Full height of the viewport */
+  width: 100vw; /* Full width of the viewport */
+  position: relative; /* Needed if the div inside is positioned */
+  background-color: transparent; /* Or any background styling */
+  overflow-x: hidden;
+  margin-top: 2vw;
 }
 
 .calendar-event-container {
-    display: flex;
-    flex-direction: row; /* Align calendar and events side-by-side */
-    gap: 10rem; /* Space between calendar and event list */
-    background-color: transparent; /* Optional background for better visibility */
-    /*padding: 2rem;*/
-    border-radius: 12px;
-    max-width: 90%; /* Prevent it from getting too wide */
-    max-height: 90%; /* Prevent it from getting too tall */
-    overflow: show; /* Handle overflow if needed */
+  display: flex;
+  flex-direction: row; /* Align calendar and events side-by-side */
+  gap: 10rem; /* Space between calendar and event list */
+  background-color: transparent; /* Optional background for better visibility */
+  /*padding: 2rem;*/
+  border-radius: 12px;
+  max-width: 90%; /* Prevent it from getting too wide */
+  max-height: 90%; /* Prevent it from getting too tall */
+  overflow: show; /* Handle overflow if needed */
 }
 
 :root {
@@ -79,11 +87,16 @@
 }
 
 /* Custom styling for the Calendar */
+.react-calendar__navigation__label {
+  text-transform: capitalize;
+}
+
 .react-calendar {
+  border: 4px solid #929292 !important;
+  border-radius: 20px; /* Changed from 12px to 20px */
   transform: scale(var(--calendar-scale-factor)); /* Scale the calendar */
   transform-origin: top left; /* Anchor scaling to the top-left corner */
   margin-top: 1rem; /* Space above the calendar */
-  border-radius: 12px; /* Rounded corners */
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); /* Add shadow */
   padding: 0.8rem; /* Reduce padding to avoid excess height */
   max-height: 300px; /* Constrain maximum height */
@@ -117,19 +130,19 @@
 }
 
 .react-calendar__tile--now:enabled:hover {
-    background-color: #e0e0e0 !important; /* Highlight on hover */
+  background-color: #e0e0e0 !important; /* Highlight on hover */
 }
 
 .react-calendar__tile--now:enabled:focus {
-    background-color: #d6d6d6 !important; /* Highlight on focus */
+  background-color: #d6d6d6 !important; /* Highlight on focus */
 }
 
 .react-calendar__tile--active:enabled:hover {
-    background-color: #0c6cd7 !important; /* Darker blue on hover */
+  background-color: #0c6cd7 !important; /* Darker blue on hover */
 }
 
 .react-calendar__tile--active:enabled:focus {
-    background-color: #0b5bb5 !important; /* Slightly darker blue on focus */
+  background-color: #0b5bb5 !important; /* Slightly darker blue on focus */
 }
 
 .tile-dots {

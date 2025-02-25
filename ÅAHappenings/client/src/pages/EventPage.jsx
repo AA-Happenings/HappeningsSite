@@ -26,19 +26,18 @@ export default function Event() {
     const params = useParams();
     const navigate = useNavigate();
 
-    function editEvent() {
-        if (isEO) {
-            return (
-                <div>
-                    <button 
-                        onClick={() => setOpen(true)} 
-                        className="button-style flex items-center gap-2"
-                    >
-                        Edit <GoPencil size={18} />
-                    </button>
-                    <EventForm isOpen={isOpen} setOpen={handleOpenChange} isNew={false} />
-                </div>
-            );
+    async function removeEvent() {
+        if (!window.confirm("Are you sure you want to remove this event?")) return;
+        const id = params.id?.toString();
+        if (!id) return;
+        try {
+            const response = await fetch(`http://localhost:5050/event/${id}`, { method: "DELETE" });
+            if (!response.ok) {
+                throw new Error("Failed to remove event");
+            }
+            navigate("/");
+        } catch (error) {
+            console.error("Error removing event:", error);
         }
     }
 
@@ -48,8 +47,7 @@ export default function Event() {
             if (!id) return;
             const response = await fetch(`http://localhost:5050/event/${id}`);
             if (!response.ok) {
-                const message = `An error has occurred: ${response.statusText}`;
-                console.error(message);
+                console.error(`An error has occurred: ${response.statusText}`);
                 return;
             }
             const eventData = await response.json();
@@ -103,9 +101,6 @@ export default function Event() {
                                 </p>
                             </div>
                         </div>
-                        <div className="edit-button">
-                            {editEvent()}
-                        </div>
                     </div>
 
                     {/* Right Column: Evenemangsbeskrivning and registration link */}
@@ -134,6 +129,25 @@ export default function Event() {
                     </div>
                 </div>
             </div>
+
+            {/* Fixed buttons container for EO */}
+            {isEO && (
+                <div className="fixed-buttons">
+                    <button 
+                        onClick={() => setOpen(true)} 
+                        className="edit-button"
+                    >
+                        Edit <GoPencil size={18} />
+                    </button>
+                    <button 
+                        onClick={removeEvent} 
+                        className="remove-button"
+                    >
+                        Remove
+                    </button>
+                    <EventForm isOpen={isOpen} setOpen={setOpen} isNew={false} />
+                </div>
+            )}
         </>
     );
 }

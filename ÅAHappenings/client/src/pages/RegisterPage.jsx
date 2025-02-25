@@ -6,13 +6,15 @@ import { FaEnvelope } from "react-icons/fa";
 import { FaBuilding } from "react-icons/fa";
 import "../styles/RegisterPage.css";
 import  { useState} from 'react'
+import { useSignup } from "../hooks/useSignup"
 
 const RegisterPage = () => {
   const [email, setEmail] = useState('')
       const [password, setPassword] = useState('')
       const [confirmPassword, setConfirmPassword] = useState('')
       const [username, setUsername] = useState('')
-  
+      const {signup, error, isLoading} = useSignup()
+
       const handleSubmit = async (e) => {
           e.preventDefault()
 
@@ -22,7 +24,10 @@ const RegisterPage = () => {
           }
   
           console.log(email, username, password)
+          await signup(email, username, password)
       } 
+
+     
 
   return (
     //Needs topbar without login
@@ -74,9 +79,13 @@ const RegisterPage = () => {
           </div>
 
           <div>
-            <button className="register-button" type="submit">   {/* Den här ska säkert ändras till en redirect */}
+            <button 
+            dissabled={isLoading}
+            className="register-button" 
+            type="submit">   {/* Den här ska säkert ändras till en redirect */}
               Registrera      
             </button>
+            {error && <div className="error">{error}</div>}
           </div>
         </form>
       </div>

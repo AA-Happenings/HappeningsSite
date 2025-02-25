@@ -5,6 +5,7 @@ import 'react-calendar/dist/Calendar.css';
 import EventList from '../components/EventList';
 import { NavLink } from "react-router-dom";
 import "../styles/MainPageView.css"
+import { sv } from "date-fns/locale";
 
 export default function MainPageView() {
 
@@ -17,7 +18,9 @@ export default function MainPageView() {
 
   useEffect(() => {
     async function getEvents() {
-      const response = await fetch(`http://localhost:5050/event/`);
+      //const response = await fetch(`/api/event/`);              Will fix smile
+      const response = await fetch("http://localhost:5050/event/");
+      console.log(response)
       if (!response.ok) {
         const message = `An error occurred: ${response.statusText}`;
         console.error(message);
@@ -43,7 +46,7 @@ export default function MainPageView() {
   //filter by searchquery
   const textSearchFilter = (eventsToFilter) => {
     if(searchQuery.length != 0) {
-      return eventsToFilter.filter((event) => (event.title.toLowerCase()).includes(searchQuery.toLowerCase()));
+      return eventsToFilter.filter((event) => event.title.includes(searchQuery));
     }
     return eventsToFilter;
   }
@@ -75,7 +78,17 @@ export default function MainPageView() {
   const [value, setValue] = useState(new Date());
   const handleDateChange = (newValue) => {
     setValue(newValue); // Update the selected date
+
+    // Format the selected date
+    const selectedDate = formatDateAsLocal(newValue);
+
+    // Filter events based on the selected date
+    const filteredByDate = apiEvents.filter(event => event.date === selectedDate);
+
+    // Update the filtered events state
+    setFilteredEvents(filteredByDate);
   };
+
 
   const getEventsForDate = (date) => {
     const formattedDate = formatDateAsLocal(date); // Format the date as local YYYY-MM-DD
@@ -107,8 +120,6 @@ export default function MainPageView() {
     }
     return null;
   };
-  
-  
 
   return (
     <div className="main-container">
@@ -231,6 +242,8 @@ export default function MainPageView() {
                   value={value}
                   className="react-calendar" /* Apply custom styling */
                   tileContent={renderTileContent} // Add tile content
+                  locale="sv"
+
               />
           <EventList events={filteredEvents}/>
       </div>
