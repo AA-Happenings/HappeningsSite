@@ -132,47 +132,46 @@ export default function MainPageView() {
         margin: "10px",
       }}
     >
-      {/* Filter Buttons */}
-      <div style={{ display: "flex", justifyContent: "center", marginBottom: "0.2vw"}}>
-      <div
-          style={{
-            display: "inline-block",
-            margin: "0 10px",
-            position: "relative",
-          }}
-        >
-        <input 
-          style={{
-            padding: "10px 15px",
-            borderRadius: "8px",
-            border: "1px solid #ccc",
-            background: "#fff",
-          }}
-          placeholder="Type to search"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-        >
-        </input>
-      </div>
-        <FilterButton
-          name="Evenemangstyp"
-          availableFilters={availableFilters.evenemangstyp}
-          selectedFilters={selectedTags}
-          onFilterUpdate={setSelectedTags}
-        />
-        <FilterButton
-          name="Taggar"
-          availableFilters={availableFilters.taggar}
-          selectedFilters={selectedTags}
-          onFilterUpdate={setSelectedTags}
-        />
-        <FilterButton
-          name="Förening"
-          availableFilters={availableFilters.förening}
-          selectedFilters={selectedAssociations}
-          onFilterUpdate={setSelectedAssociations}
-        />
-      </div>
+        {/*  Search & Filters Wrapped  */}
+        <div className="search-filter-container">
+          
+          <div className="search-container">
+            <input
+              style={{
+                padding: "10px 15px",
+                borderRadius: "8px",
+                border: "1px solid #ccc",
+                background: "#fff",
+              }}
+              placeholder="Type to search"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+          </div>
+
+          {/* filters-container */}
+          <div className="filters-container">
+            <FilterButton
+              name="Evenemangstyp"
+              availableFilters={availableFilters.evenemangstyp}
+              selectedFilters={selectedTags}
+              onFilterUpdate={setSelectedTags}
+            />
+            <FilterButton
+              name="Taggar"
+              availableFilters={availableFilters.taggar}
+              selectedFilters={selectedTags}
+              onFilterUpdate={setSelectedTags}
+            />
+            <FilterButton
+              name="Förening"
+              availableFilters={availableFilters.förening}
+              selectedFilters={selectedAssociations}
+              onFilterUpdate={setSelectedAssociations}
+            />
+          </div>
+
+        </div>
 
       {/* Selected Filters */}
       <div style={{ display: "flex", justifyContent: "center", flexWrap: "wrap" }}>
