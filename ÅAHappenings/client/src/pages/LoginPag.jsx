@@ -2,26 +2,28 @@ import React, { useState, useEffect } from 'react';
 import '../styles/background.css';
 import { FaUser, FaLock } from "react-icons/fa";
 import "../styles/LoginPage.css";
-import { NavLink } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 import { useLogin } from '../hooks/useLogin';
 
 const LoginPage = () => {
   const { login, error, isLoading } = useLogin();
-
-  // State for email and password
+  const navigate = useNavigate();
+  
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  
-  // Force a re-render when error changes
   const [loginError, setLoginError] = useState(null);
+
   useEffect(() => {
     setLoginError(error);
   }, [error]);
 
-  // Handle form submit
   const handleSubmit = async (event) => {
-    event.preventDefault(); // Prevent page refresh
-    await login(email, password);
+    event.preventDefault();
+    const user = await login(email, password);
+    if (user) {
+      // Redirect to /myevents on successful login
+      navigate('/myevents');
+    }
   };
 
   return (
@@ -53,7 +55,7 @@ const LoginPage = () => {
           </div>
 
           {/* Show error message */}
-          {error && <div className="error">{error}</div>}
+          {loginError && <div className="error">{loginError}</div>}
 
           <button className="loggain-button" type="submit" disabled={isLoading}>
             {isLoading ? "Loggar in..." : "Logga in"}
