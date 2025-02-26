@@ -33,32 +33,6 @@
   margin-left: auto;
   margin-right: auto;
 }
-/* Container for the FAQ button on the left */
-.navbar-left-buttons {
-  display: flex;
-  justify-content: flex-start; /* Align FAQ button to the left */
-  align-items: center;
-  position: absolute;
-  left: 20px;
-}
-
-/* Style for the FAQ button */
-.faq-button {
-  background-color: white;
-  color: black;
-  border: none;
-  border-radius: 8px;
-  padding: 5px 10px;
-  font-size: 1vw;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  text-decoration: none; /* Removes underline */
-  margin-right: 10px; /* Space between button and edge */
-}
-
-.faq-button:hover {
-  background-color: #bab8b8;
-}
 
 /* Container for Arrangörsinloggning and Logga in button */
 .navbar-buttons {
