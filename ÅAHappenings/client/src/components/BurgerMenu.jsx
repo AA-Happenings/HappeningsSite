@@ -71,7 +71,7 @@ const BurgerMenu = () => {
 
             <NavLink 
               className="bm-item" 
-              to="/info" 
+              to="/profile" 
               onClick={() => setMenuOpen(false)}
             >
               <GoPerson style={{ verticalAlign: "middle" }} />
