@@ -1,3 +1,39 @@
+import express from 'express'
+
+import {
+  getEvents,
+  getEvent,
+  getMyEvents,
+  createEvent,
+  deleteEvent,
+  updateEvent
+} from '../controllers/eventController.js'
+
+//const requireAuth = require('../middleware/requireAuth')
+
+const router = express.Router()
+
+//get all workouts
+router.get('/', getEvents)
+
+//get all events for logged in organizer
+router.get('/', getMyEvents)
+
+//get a single event
+router.get('/:id', getEvent)
+
+//post a new event
+router.get('/', createEvent)
+
+//delete an event
+router.delete('/:id', deleteEvent)
+
+//update an event
+router.patch('/:id', updateEvent)
+
+export default router;
+
+/*
 import express from "express";
 import db from "../db/connection.js";
 import { ObjectId } from "mongodb";
@@ -89,3 +125,4 @@ router.delete("/:id", async (req, res) => {
 });
 
 export default router;
+*/
