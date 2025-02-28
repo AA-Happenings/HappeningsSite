@@ -76,7 +76,7 @@ export default function EditProfileDialog({ isOpen, setOpen, profile, setProfile
               
               {error && <p className="error-message">{error}</p>}
               
-              <label className="dialog-label">Välj färg</label>
+              <label className="dialog-label">Ange föreningens färg</label>
               <input 
                 type="color" 
                 value={form.color} 
