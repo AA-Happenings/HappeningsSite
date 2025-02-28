@@ -5,16 +5,7 @@
     font-family: Arial, sans-serif;
     padding-top: 6vw; /* Space for the fixed top bar */
     overflow-y: auto;
-}
-  
-/* Fixed Rules Header */
-.event-title {
-    text-align: center;
-    margin-bottom: 0px; /* Add spacing below the title */
-    font-size: 3rem;
-    font-weight: bold;
-    margin-top: -40px;
-} 
+}  
   
 /* Rules Sections */
 .event-tldr-section,
@@ -40,7 +31,7 @@
   
 /* Section Titles */
 .section-title {
-    font-size: 1.5rem;
+    font-size: 2.5rem;
     font-weight: bold;
     margin-bottom: 10px;
     text-align: center;
@@ -48,9 +39,13 @@
   
 /* Mobile and Small Screens */
 @media (max-width: 768px) {
+    .rules-page {
+        padding-top: 30vw; 
+    }
+
     .event-title {
         font-size: 2rem; /* Smaller font size for small screens */
-        padding: 8px 0;
+        padding: 100px;
     }
   
     .event-content {

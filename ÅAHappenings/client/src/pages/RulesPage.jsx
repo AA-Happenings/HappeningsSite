@@ -9,15 +9,13 @@ const RulesPage = () => {
     <div className="rules-page">
       {/* Main Rules Content */}
       <div className="event-page">
-        {/* Title */}
-        <div className="event-title">
-          <h1>Regler</h1>
-        </div>
+
+
 
 
           {/* Submission Guidelines Section */}
           <div className="event-description-section">
-            <h2 className="section-title">Submission Guidelines</h2>
+            <h2 className="section-title">Regler</h2>
             <div className="event-description">
               <p><strong>-</strong> Nämn inte alkohol i någon form i evenemangsbeskrivningen</p>
               <p><strong>-</strong> Nämn inte explicit "AÖ"</p>
