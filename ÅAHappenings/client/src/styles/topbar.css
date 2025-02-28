@@ -6,6 +6,7 @@
   position: fixed;
   top: 0;
   left: 0;
+  right: 0;
   width: 100%;
   height: 6vw; /* Adjust the height as needed */
   padding: 0 20px;
@@ -23,15 +24,6 @@
   font-weight: bold;
   color: black;
   position: absolute;
-}
-
-.navbar-title-no-login {
-  font-family: Syncopate, sans-serif;
-  font-size: 3vw;
-  font-weight: bold;
-  color: black;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 /* Container for Arrangörsinloggning and Logga in button */

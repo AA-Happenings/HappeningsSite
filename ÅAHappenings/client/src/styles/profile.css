@@ -1,92 +1,135 @@
+/* Overall Page Wrapper */
+.profile-page-wrapper {
+  width: 100%;
+  min-height: 100vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 60px;
+}
+
+/* Profile Header */
+.profile-title-outside {
+  text-align: center;
+  font-size: 3rem;
+  font-weight: bold;
+  color: black;
+  margin: 20px 0 10px 0;
+}
+
+/* Main Profile Container */
 .profile-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    padding: 20px;
-    background-color: rgba(255, 255, 255, 1);
-    border-radius: 10px;
-    width: 450px;
-  }
-  
-  .profile-pic-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .profile-pic-box {
-    width: 250px;  
-    height: 250px; 
-    object-fit: contain; 
-    border-radius: 10px; 
-    border: 1px solid #333; 
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); 
-    filter: none;
-    background-color: white;
-  }
-  
-  .profile-pic {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
+  background-color: #f9f9f9;
+  width: 95%;
+  margin: 0 auto 20px auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  border: 5px solid #929292;
+  border-radius: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
 
-  .error-message {   /* Error message styling for wrong file format. Might need some further styling?? */
-    color: red;
-    font-size: 14px;
-    margin-top: 5px;
-    text-align: center;
-  }
-  
-  .placeholder-text {
-    font-size: 14px;
-    color: #aaa;
-    text-align: center;
-  }
-  
-  .profile-info {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    width: 300px;
-  }
-  
-  .profile-input,
-  .profile-textarea {
-    width: 100%;
-    padding: 8px;
-    border: 2px solid #ddd;
-    border-radius: 5px;
-    font-size: 16px;
-  }
-  
-  .profile-textarea {
-    height: 100px;
-    resize: none;
+/* Two-Column Layout */
+.profile-content {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 20px;
+}
 
-  }
-  
-  .color-picker-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .color-picker-container input {
-    width: 50px;
-    height: 30px;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .chooseFile {
-    width: 300px;
-    height: 40px;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    font-size: 12px;
-    padding-left: 70px;
-  }
+/* Sidebar (Left Column) */
+.profile-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border: 2px solid #c7c7c7;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  text-align: center;
+}
+
+/* Profile Picture Box */
+.profile-pic-box {
+  width: 250px;
+  height: 250px;
+  border: 1px solid #333;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 0 auto;
+  background-color: white;
+}
+
+.profile-pic {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.placeholder-text {
+  font-size: 14px;
+  color: #aaa;
+  text-align: center;
+  line-height: 250px;
+}
+
+/* Quick Info */
+.profile-quick-info {
+  font-size: 1rem;
+}
+
+/* Right Column Wrapper */
+.profile-main-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* "About Us" Subheader */
+.profile-subheader {
+  font-size: 1.8rem;
+  color: #333;
+  margin: 0;
+  text-align: left;
+}
+
+/* Main Content Box with Border (Right Column) */
+.profile-main {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border: 2px solid #c7c7c7;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+}
+
+/* Fixed Edit Button */
+.fixed-buttons {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1000;
+}
+
+.edit-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #ffffff;
+  border: 5px solid #929292;
+  border-radius: 20px;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.edit-button:hover {
+  background-color: #d6d6d6;
+}

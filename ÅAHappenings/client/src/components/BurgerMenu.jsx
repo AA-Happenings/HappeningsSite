@@ -1,13 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { stack as Menu } from 'react-burger-menu';
 import "../styles/BurgerMenu.css";
-import { GoHome } from "react-icons/go";
-import { GoCalendar } from "react-icons/go";
-import { GoPerson } from "react-icons/go";
-import { GoChecklist } from "react-icons/go";
-import { GoSignOut } from "react-icons/go";
+import { GoHome, GoCalendar, GoPerson, GoChecklist, GoSignOut } from "react-icons/go";
 import { useLogout } from '../hooks/useLogout';
 import { useAuthContext } from "../hooks/useAuthContext";
+import { NavLink } from "react-router-dom";
 
 const BurgerMenu = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -17,13 +14,13 @@ const BurgerMenu = () => {
 
   const handleLogout = () => {
     logout();
-  }
+  };
 
   // Close the menu if clicked outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
-        setMenuOpen(false); // Close the menu
+        setMenuOpen(false);
       }
     };
 
@@ -44,47 +41,58 @@ const BurgerMenu = () => {
         right 
         noOverlay
         isOpen={menuOpen}
-        onStateChange={({ isOpen }) => setMenuOpen(isOpen)} // Sync state
+        onStateChange={({ isOpen }) => setMenuOpen(isOpen)}
       >
         {user && (
-            <div className="user-email">
-                {user.email}
-            </div>
+          <div className="user-email">
+            {user.email}
+          </div>
         )}
 
         <div className="bm-menu">
           <nav className="bm-item-list">
-            <a 
-                className="bm-item" 
-                href="/">
-                <GoHome style={{ verticalAlign: "middle" }} />
-                <span>Hem</span>
-            </a>
+            <NavLink 
+              className="bm-item" 
+              to="/" 
+              onClick={() => setMenuOpen(false)}
+            >
+              <GoHome style={{ verticalAlign: "middle" }} />
+              <span>Hem</span>
+            </NavLink>
 
-            <a 
-                className="bm-item" 
-                href="/myevents">
-                <GoCalendar style={{ verticalAlign: "middle" }} />
-                <span>Mina Evenemang</span>
-            </a>
-            <a 
-                className="bm-item" 
-                href="/info" >
-                <GoPerson style={{ verticalAlign: "middle" }} />
-                <span>Min Info</span>
-            </a>
-            <a 
-                className="bm-item" 
-                href="/rules">
-                <GoChecklist style={{ verticalAlign: "middle" }} />
-                <span>Regler</span>
-            </a>
+            <NavLink 
+              className="bm-item" 
+              to="/myevents" 
+              onClick={() => setMenuOpen(false)}
+            >
+              <GoCalendar style={{ verticalAlign: "middle" }} />
+              <span>Mina Evenemang</span>
+            </NavLink>
+
+            <NavLink 
+              className="bm-item" 
+              to="/profile" 
+              onClick={() => setMenuOpen(false)}
+            >
+              <GoPerson style={{ verticalAlign: "middle" }} />
+              <span>Min Info</span>
+            </NavLink>
+
+            <NavLink 
+              className="bm-item" 
+              to="/rules" 
+              onClick={() => setMenuOpen(false)}
+            >
+              <GoChecklist style={{ verticalAlign: "middle" }} />
+              <span>Regler</span>
+            </NavLink>
+            
             <button 
-                onClick={handleLogout}
-                className="bm-item" 
-                href="/">
-                <GoSignOut style={{ verticalAlign: "middle" }} />
-                <span>Logga ut</span>
+              onClick={handleLogout}
+              className="bm-item"
+            >
+              <GoSignOut style={{ verticalAlign: "middle" }} />
+              <span>Logga ut</span>
             </button>
           </nav>
         </div>
