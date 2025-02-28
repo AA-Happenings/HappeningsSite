@@ -54,3 +54,37 @@
 .login-button:hover {
   background-color: #bab8b8;
 }
+
+@media screen and (max-width: 768px) {
+  .navbar {
+    height: 20vw; 
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    padding: 0 5vw; 
+    position: fixed;
+  }
+
+  .navbar-title {
+    font-size: 5vw; 
+    position: absolute;
+  }
+
+  .navbar-buttons {
+    position: absolute;
+    top: 5vw; 
+    right: 2vw; 
+  }
+
+  .login-button {
+    font-size: 3vw; 
+    padding: 10px 9px; 
+    width: auto; 
+    height: auto;
+    text-align: center;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

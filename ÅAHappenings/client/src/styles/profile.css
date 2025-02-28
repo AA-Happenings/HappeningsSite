@@ -133,3 +133,54 @@
 .edit-button:hover {
   background-color: #d6d6d6;
 }
+
+
+@media screen and (max-width: 768px) {
+  .profile-page-wrapper {
+    padding-top: 15vw; 
+  }
+
+  /* title */
+  .profile-title-outside {
+    text-align: center;
+    font-size: 6vw; 
+  }
+
+  /*mobile layout*/
+  .profile-content {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    text-align: center;
+  }
+
+  .profile-sidebar {
+    width: 90%;
+    max-width: 300px;
+  }
+
+  .profile-pic-box {
+    width: 80vw; 
+    height: 80vw;
+    max-width: 250px; 
+    max-height: 250px;
+    margin-bottom: 15px; 
+  }
+
+  .profile-main-wrapper {
+    width: 90%;
+  }
+
+  .profile-main {
+    text-align: center;
+    padding: 15px;
+    font-size: 4vw; 
+  }
+
+  /* Edit Button Placement */
+  .fixed-buttons {
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
