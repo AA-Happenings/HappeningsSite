@@ -20,6 +20,7 @@ import Profile from "./pages/ProfilePage";
 import AdminPage from "./pages/AdminPage"
 import "./styles/BurgerMenu.css";
 import { AuthContextProvider } from "./context/authContext";
+import { EventsContextProvider } from "./context/eventContext";
 import Login from "./pages/LoginTestPage";
 import Signup from "./pages/SignupTestPage";
 
@@ -48,7 +49,9 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <AuthContextProvider>
-    <RouterProvider router={router} />
+      <EventsContextProvider>
+        <RouterProvider router={router} />
+      </EventsContextProvider>
     </AuthContextProvider>
   </React.StrictMode>
 );

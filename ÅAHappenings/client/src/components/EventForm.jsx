@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Dialog } from 'react-dialog-element';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useEventsContext } from '../context/eventContext';
+import { useEventsContext } from '../hooks/useEventsContext.jsx';
 
 export default function EventForm({isOpen, setOpen, isNew}) {
 
