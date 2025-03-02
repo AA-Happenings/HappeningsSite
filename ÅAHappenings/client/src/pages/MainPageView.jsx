@@ -5,38 +5,39 @@ import 'react-calendar/dist/Calendar.css';
 import EventList from '../components/EventList';
 import { NavLink } from "react-router-dom";
 import "../styles/MainPageView.css"
+import { useEventsContext } from "../hooks/useEventsContext";
 import { sv } from "date-fns/locale";
 
 export default function MainPageView() {
 
   //filter useState
-  const [apiEvents, setApiEvents] = useState([]);
+  //const [apiEvents, setApiEvents] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedAssociations, setSelectedAssociations] = useState([]);
   const [selectedTags, setSelectedTags] = useState([]);
   const [filteredEvents, setFilteredEvents] = useState([]);
+  const {events, dispatch} = useEventsContext();
 
   useEffect(() => {
-    async function getEvents() {
-      //const response = await fetch(`/api/event/`);              Will fix smile
-      const response = await fetch("http://localhost:5050/event/");
+    const fetchEvents = async () =>  {
+      const response = await fetch("api/event/");
       console.log(response)
+      const json = await response.json();
+
       if (!response.ok) {
         const message = `An error occurred: ${response.statusText}`;
         console.error(message);
         return;
       }
-      const events = await response.json();
-      setApiEvents(events);
-      setFilteredEvents(events);
+      dispatch({type: "SET_EVENTS", payload: json})
     }
-    getEvents();
+    fetchEvents();
     return;
-  }, []);
+  }, [dispatch]);
 
   //filters every time searchquery, tags or association is updated
   useEffect(() => {
-    const search_filtered = textSearchFilter(apiEvents);
+    const search_filtered = textSearchFilter(events);
     const association_filtered = selectedAssociationsFilter(search_filtered);
     const tag_filtered = filterByTags(association_filtered);
     console.log(searchQuery);
