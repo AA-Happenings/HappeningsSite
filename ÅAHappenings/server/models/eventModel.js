@@ -29,7 +29,7 @@ const eventSchema = new Schema({
         type: String,
     },
     membersOnly: {
-        type: Boolean,
+        type: String,
     },
     tags: {
         type: [String],

@@ -49,7 +49,6 @@ const createEvent = async (req, res) => {
   
     // add doc to db
     try {
-      const user_id = req.user._id
       const event = await Event.create({title, description, location, date, time, how, price, link, membersOnly, tags})
       res.status(200).json(event)
     } catch (error) {
@@ -58,7 +57,6 @@ const createEvent = async (req, res) => {
   }
 
 //delete event
-
 const deleteEvent = async (req, res) => {
     const { id } = req.params
     

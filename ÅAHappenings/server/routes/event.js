@@ -9,7 +9,7 @@ import {
   updateEvent
 } from '../controllers/eventController.js'
 
-//const requireAuth = require('../middleware/requireAuth')
+import {requireAuth} from '../middleware/requireAuth.js'
 
 const router = express.Router()
 
@@ -23,7 +23,7 @@ router.get('/', getMyEvents)
 router.get('/:id', getEvent)
 
 //post a new event
-router.get('/', createEvent)
+router.post('/', requireAuth, createEvent)
 
 //delete an event
 router.delete('/:id', deleteEvent)
