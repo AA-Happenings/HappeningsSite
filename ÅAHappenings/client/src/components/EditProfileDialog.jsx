@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Dialog } from 'react-dialog-element';
-import "../styles/editprofiledialog.css";
+import "../styles/Dialog.css";
 
 export default function EditProfileDialog({ isOpen, setOpen, profile, setProfile }) {
   const [form, setForm] = useState({

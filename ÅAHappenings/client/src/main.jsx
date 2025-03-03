@@ -13,9 +13,7 @@ import RulesPage from "./pages/RulesPage"; // Import the RulesPage
 import RegisterPage from "./pages/RegisterPage"; // Import the RegisterPage
 import ForgotPasswordPage from "./pages/ForgotPasswordPage"; // Import the ForgotPasswordPage
 import MyEvents from "./pages/MyEventsPage";
-import SAinfo from "./pages/SAinfo";
 import "../index.css";
-import "./styles/DialogButton.css";
 import Profile from "./pages/ProfilePage";
 import AdminPage from "./pages/AdminPage"
 import "./styles/BurgerMenu.css";
