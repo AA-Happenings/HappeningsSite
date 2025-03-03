@@ -1,46 +1,56 @@
-.button-style {
-    background-color: white;
+/* General button styles */
+.button-style,
+.button-style-cancel {
     width: 30%;
-    color: black;
-    border: 1px solid gray;
-    border-radius: 8px;
     padding: 5px 10px;
     font-size: 1vw;
     cursor: pointer;
     transition: background-color 0.3s;
-    text-decoration: none;
+    text-decoration: none; /* Removes underline */
+    border-radius: 8px;
+}
+
+.button-style {
+    background-color: white;
+    border: 1px solid gray;
 }
 
 .button-style-cancel {
     background-color: rgb(199, 199, 199);
-    width: 30%;
-    color: black;
     border: none;
-    border-radius: 8px;
-    padding: 5px 10px;
-    font-size: 1vw;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    text-decoration: none;
 }
 
+/* Dialog container */
 .dialog-container {
     display: flex;
-    gap: 20px; /* 20px gap between columns */
+    gap: 20px; /* Space between the two item containers */
     padding: 20px;
     width: 100%;
     max-width: 800px;
     background-color: #EDEDED;
     margin: 0 auto;
+    flex-wrap: wrap; /* Wrap content on smaller screens */
 }
 
 .item-container-left,
 .item-container-right {
-    flex: 1; /* Each column takes equal space */
+    flex: 1;
     padding: 20px;
     box-sizing: border-box;
+    width: 40%;
 }
 
+.item-container-left {
+    padding-left: 30px;
+    margin-right: auto;
+}
+
+.item-container-right {
+    padding-right: 30px;
+    margin-left: auto;
+}
+
+/* Header */
 .dialog-header {
     font-size: 2.2rem;
     font-weight: bold;
@@ -50,6 +60,7 @@
     padding: 10px 0;
 }
 
+/* Form elements */
 .dialog-label {
     display: block;
     font-size: 1rem;
@@ -58,10 +69,11 @@
 
 .dialog-input,
 .dialog-textarea,
-.dialog-select {
+.dialog-select,
+.dialog-select-co {
     width: 100%;
     padding: 10px;
-    border: 1px solid #EDEDED;
+    border: 1px solid #000000;
     border-radius: 5px;
     font-size: 1rem;
     box-sizing: border-box;
@@ -74,7 +86,6 @@
     resize: both;
 }
 
-/* Style for the color input specifically */
 input[type="color"].dialog-input.color-input {
     width: 50px;
     height: 40px;
@@ -122,6 +133,7 @@ input[type="color"].dialog-input.color-input {
     cursor: pointer;
 }
 
+/* Error message */
 .error-message {
     color: red;
     font-size: 0.9rem;
@@ -134,16 +146,16 @@ input[type="color"].dialog-input.color-input {
     text-align: center;
 }
 
-/* File input wrapper to reserve fixed height */
+/* File input wrapper */
 .file-input-wrapper {
-    height: 50px; /* Adjust the fixed height as needed */
+    height: 50px;
 }
 
-/* Hide file input via visibility so the space is still reserved */
 .hidden-file-input {
     visibility: hidden;
 }
 
+/* Buttons in dialog */
 .dialog-buttons {
     display: flex;
     justify-content: center;
@@ -163,4 +175,44 @@ input[type="color"].dialog-input.color-input {
 
 .dialog-buttons .button-style:hover {
     background-color: #DDD;
+}
+
+/* Select dropdown */
+.dialog-select-ao {
+    margin-left: 10px;
+    padding: 3px 20px 3px 3px;
+    border: 1px solid #747474;
+    border-radius: 5px;
+}
+
+/* Checkbox styles */
+.dialog-checkbox-container {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.dialog-checkbox {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.dialog-checkbox input {
+    margin-right: 10px;
+}
+
+/* Date input */
+.dialog-date {
+    background-color: #F7F7FF;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.dialog-date input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #CCC;
 }
