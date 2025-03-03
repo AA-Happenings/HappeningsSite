@@ -14,7 +14,7 @@ const eventSchema = new Schema({
         type: String,
     },
     date: {
-        type: Date,
+        type: String,
     },
     time: {
         type: String,
@@ -39,7 +39,7 @@ const eventSchema = new Schema({
     },
     user_id: {
         type: String,
-        requried: true
+        required: true
     }
 }, { timestamps: true })
 
