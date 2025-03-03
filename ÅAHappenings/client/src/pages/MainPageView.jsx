@@ -5,38 +5,39 @@ import 'react-calendar/dist/Calendar.css';
 import EventList from '../components/EventList';
 import { NavLink } from "react-router-dom";
 import "../styles/MainPageView.css"
+import { useEventsContext } from "../hooks/useEventsContext";
 import { sv } from "date-fns/locale";
 
 export default function MainPageView() {
 
   //filter useState
-  const [apiEvents, setApiEvents] = useState([]);
+  const {events, dispatch} = useEventsContext();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedAssociations, setSelectedAssociations] = useState([]);
   const [selectedTags, setSelectedTags] = useState([]);
   const [filteredEvents, setFilteredEvents] = useState([]);
 
   useEffect(() => {
-    async function getEvents() {
-      //const response = await fetch(`/api/event/`);              Will fix smile
-      const response = await fetch("http://localhost:5050/event/");
+    const fetchEvents = async () =>  {
+      const response = await fetch("http://localhost:5050/event");
       console.log(response)
+      const json = await response.json();
+
       if (!response.ok) {
         const message = `An error occurred: ${response.statusText}`;
         console.error(message);
         return;
       }
-      const events = await response.json();
-      setApiEvents(events);
-      setFilteredEvents(events);
+      dispatch({type: "SET_EVENTS", payload: json})
+      setFilteredEvents(json);
     }
-    getEvents();
+    fetchEvents();
     return;
-  }, []);
+  }, [dispatch]);
 
   //filters every time searchquery, tags or association is updated
   useEffect(() => {
-    const search_filtered = textSearchFilter(apiEvents);
+    const search_filtered = textSearchFilter(events);
     const association_filtered = selectedAssociationsFilter(search_filtered);
     const tag_filtered = filterByTags(association_filtered);
     console.log(searchQuery);
@@ -83,7 +84,7 @@ export default function MainPageView() {
     const selectedDate = formatDateAsLocal(newValue);
 
     // Filter events based on the selected date
-    const filteredByDate = apiEvents.filter(event => event.date === selectedDate);
+    const filteredByDate = events.filter(event => event.date === selectedDate);
 
     // Update the filtered events state
     setFilteredEvents(filteredByDate);
@@ -92,7 +93,7 @@ export default function MainPageView() {
 
   const getEventsForDate = (date) => {
     const formattedDate = formatDateAsLocal(date); // Format the date as local YYYY-MM-DD
-    return apiEvents.filter(event => event.date === formattedDate); // Match against event dates
+    return events.filter(event => event.date === formattedDate); // Match against event dates
   };
   
   // Helper function to format a Date object as YYYY-MM-DD in local time
@@ -105,16 +106,16 @@ export default function MainPageView() {
 
   // Render dots for tiles with events
   const renderTileContent = ({ date }) => {
-    const events = getEventsForDate(date); // Get events for the current tile date
-    if (events.length > 0) {
-      let dotsToShow = events.length === 3 ? events : events.slice(0, 2); // Show 3 dots if exactly 3 events, otherwise 2 dots
+    const dateEvents = getEventsForDate(date); // Get events for the current tile date
+    if (dateEvents.length > 0) {
+      let dotsToShow = dateEvents.length === 3 ? dateEvents : dateEvents.slice(0, 2); // Show 3 dots if exactly 3 events, otherwise 2 dots
       
       return (
         <div className="tile-dots">
           {dotsToShow.map((_, index) => (
             <span key={index} className="dot"></span>
           ))}
-          {events.length > 3 && <span className="more-dots">+{events.length - 2}</span>} {/* Show +N if 4 or more */}
+          {dateEvents.length > 3 && <span className="more-dots">+{dateEvents.length - 2}</span>} {/* Show +N if 4 or more */}
         </div>
       );
     }
@@ -237,14 +238,14 @@ export default function MainPageView() {
       </div>
       <div className="calendar-event-container">
           <Calendar
-                  onChange={handleDateChange}
+                  //onChange={handleDateChange}
                   value={value}
                   className="react-calendar" /* Apply custom styling */
-                  tileContent={renderTileContent} // Add tile content
+                  //tileContent={renderTileContent} // Add tile content
                   locale="sv"
 
               />
-          <EventList events={filteredEvents}/>
+          {filteredEvents && <EventList events={filteredEvents}/>}
       </div>
       <div className="faq-container">
         <NavLink to="/faq" className="faq-button">

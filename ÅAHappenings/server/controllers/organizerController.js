@@ -28,10 +28,10 @@ const loginOrganizer = async (req, res) => {
 
 // signup a organizer
 const signupOrganizer = async (req, res) => {
-    const {email, username, password} = req.body
+    const {email, username, password, admin} = req.body
 
     try {
-        const organizer = await Organizer.signup(email, username, password)
+        const organizer = await Organizer.signup(email, username, password, admin)
 
         // create jwt token
         const token = createToken(organizer._id)

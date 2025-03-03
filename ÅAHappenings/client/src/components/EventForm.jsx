@@ -1,8 +1,13 @@
 import { useState, useEffect } from 'react';
 import { Dialog } from 'react-dialog-element';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useEventsContext } from '../hooks/useEventsContext.jsx';
+import { useAuthContext } from '../hooks/useAuthContext.jsx';
 
 export default function EventForm({isOpen, setOpen, isNew}) {
+
+    const {dispatch} = useEventsContext();
+    const {user} = useAuthContext();
 
     const [form, setForm] = useState({
         title: "",
@@ -36,7 +41,7 @@ export default function EventForm({isOpen, setOpen, isNew}) {
           const event = await response.json();
           console.log(event)
           if (!event) {
-            console.warn(`Record with id ${id} not found`);
+            console.warn(`Event with id ${id} not found`);
             navigate("/");
             return;
           }
@@ -68,18 +73,22 @@ export default function EventForm({isOpen, setOpen, isNew}) {
         if (isNew) {
             // if we are adding a new event we will POST to /event.
             response = await fetch("http://localhost:5050/event", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(event),
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${user.token}`
+                },
+                body: JSON.stringify(event),
             });
+            const json = response.json();
+            dispatch({type: "CREATE_EVENT", payload: json});
         } else {
-            // if we are updating a record we will PATCH to /record/:id.
+            // if we are updating an event we will PATCH to /event/:id.
             response = await fetch(`http://localhost:5050/event/${params.id.toString()}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
+                "Authorization": `Bearer ${user.token}`
             },
             body: JSON.stringify(event),
             });
@@ -89,7 +98,7 @@ export default function EventForm({isOpen, setOpen, isNew}) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
         } catch (error) {
-        console.error('A problem occurred adding or updating a record: ', error);
+        console.error('A problem occurred adding or updating an event: ', error);
         } finally {
             setForm({title: "", description: "", location: "", date: "", time: "", how: "", price: "", link: "", membersOnly: "", tags: {}})
             navigate("/");
