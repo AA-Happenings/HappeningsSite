@@ -21,6 +21,8 @@ import './styles/FaqPage.css';
 import './styles/RulesPage.css';
 import './styles/RegisterPage.css';
 import './styles/BurgerMenu.css';
+import "../index.css";
+
 
 const App = () => {
   const { user, isLoading, admin } = useAuthContext();
