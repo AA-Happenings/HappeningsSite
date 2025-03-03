@@ -28,7 +28,7 @@ export default function AssociationProfile() {
               {profile.profilePic ? (
                 <img src={profile.profilePic} alt="Profile" className="profile-pic" />
               ) : (
-                <span className="placeholder-text">No Profile Picture</span>
+                <span className="placeholder-text">Ingen profilbild vald</span>
               )}
             </div>
             <div className="profile-quick-info">
@@ -43,7 +43,7 @@ export default function AssociationProfile() {
 
           {/* Right Column: Header Above the Bordered Box */}
           <div className="profile-main-wrapper">
-            <h2 className="profile-subheader">About Us</h2>
+            <h2 className="profile-subheader">Om vår förening</h2>
             <div className="profile-main">
               <p>{profile.description}</p>
             </div>

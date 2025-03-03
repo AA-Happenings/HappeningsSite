@@ -16,8 +16,6 @@
   font-size: 3rem;
   font-weight: bold;
   color: black;
-  
-  
 }
 
 /* Main Profile Container */
@@ -25,7 +23,7 @@
   background-color: #f9f9f9;
   width: 95%;
   margin: 0 auto 20px auto;
-  padding: 20px;
+  padding: 40px;
   font-family: Arial, sans-serif;
   border: 5px solid #929292;
   border-radius: 20px;
@@ -77,7 +75,7 @@
 
 /* Quick Info */
 .profile-quick-info {
-  font-size: 1rem;
+  font-size: 1.4rem;
 }
 
 /* Right Column Wrapper */
@@ -89,10 +87,10 @@
 
 /* "About Us" Subheader */
 .profile-subheader {
+  text-align: center;
   font-size: 1.8rem;
-  color: #333;
+  color: #000000;
   margin: 0;
-  text-align: left;
 }
 
 /* Main Content Box with Border (Right Column) */
@@ -104,6 +102,7 @@
   border-radius: 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   padding: 10px;
+  min-height: 308px
 }
 
 /* Fixed Edit Button */
