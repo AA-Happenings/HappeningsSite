@@ -7,6 +7,9 @@ import { FaBuilding } from "react-icons/fa";
 import "../styles/RegisterPage.css";
 import  { useState} from 'react'
 import { useSignup } from "../hooks/useSignup"
+import { useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom"; 
+
 
 const RegisterPage = () => {
   const [email, setEmail] = useState('')
@@ -14,18 +17,23 @@ const RegisterPage = () => {
       const [confirmPassword, setConfirmPassword] = useState('')
       const [username, setUsername] = useState('')
       const {signup, error, isLoading} = useSignup()
+      const navigate = useNavigate();
 
       const handleSubmit = async (e) => {
-          e.preventDefault()
+        e.preventDefault();
 
-          if (password !== confirmPassword) {
+        if (password !== confirmPassword) {
             alert("Lösenorden matchar inte!"); // "Passwords do not match!"
             return;
-          }
-  
-          console.log(email, username, password)
-          await signup(email, username, password)
-      } 
+        }
+
+        console.log(email, username, password);
+        const success = await signup(email, username, password);
+
+        if (!success) {
+            navigate("/profile");
+        } 
+};
 
      
 
@@ -79,7 +87,7 @@ const RegisterPage = () => {
           </div>
 
           <div>
-            <button 
+          <button 
             dissabled={isLoading}
             className="register-button" 
             type="submit">   {/* Den här ska säkert ändras till en redirect */}
