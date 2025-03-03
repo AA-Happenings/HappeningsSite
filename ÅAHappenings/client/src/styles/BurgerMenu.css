@@ -1,15 +1,21 @@
 /* Position and sizing of burger button */
 .bm-burger-button {
-  position: fixed;
-  width: 36px;
-  height: 30px;
-  right: 36px;
-  top: calc((6vw - 30px) / 2); /* Center icon vertically within a 6vw high topbar */
+  position: relative; /* Relative to flex container */
+  max-width: 35px;
+  min-width: 22px;
+  width: 2.2vw;
+  max-height: 30px;
+  min-height: 17px;
+  height: 2vw;
+  margin-left: auto; /* Pushes to right */
+  margin-right: 15px;
 }
+
+
 
 /* Color/shape of burger icon bars */
 .bm-burger-bars {
-  background: #373a47;
+  background: #262626;
 }
 
 /* Color/shape of burger icon bars on hover*/
@@ -44,7 +50,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
 /* General sidebar styles */
 .bm-menu {
-  background: #696b70;
+  background: rgb(148, 148, 148);
   padding: 1em 1em 0;
   font-size: 1.15em;
   height: 100%;
@@ -76,7 +82,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
   align-items: center;
   gap: 8px; /* Space between the icon and text */
   text-decoration: none;
-  color: white;
+  color: #262626;
   transition: color 0.3s ease;
   padding: 0.8em;
   white-space: nowrap; /* Prevent text from breaking into a new line */
@@ -95,7 +101,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
 }
 
 .bm-item:hover {
-  color: rgb(0, 0, 0); /* Change both text and icon color on hover */
+  color: rgb(206, 206, 206); /* Change both text and icon color on hover */
 }
 
 /* Styling of overlay */
