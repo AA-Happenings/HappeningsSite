@@ -33,7 +33,14 @@ const eventSchema = new Schema({
     },
     tags: {
         type: [String],
+    },
+    ao: {
+        type: [String],
+    },
+    user_id: {
+        type: String,
+        requried: true
     }
-})
+}, { timestamps: true })
 
 export default mongoose.model("Event", eventSchema)

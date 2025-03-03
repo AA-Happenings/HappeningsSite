@@ -2,8 +2,11 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import EventForm from "../components/EventForm";
 import { GoPencil } from "react-icons/go";
+import { useAuthContext } from "../hooks/useAuthContext.jsx";
+import { useEventsContext } from '../hooks/useEventsContext.jsx';
 
 export default function Event() {
+    const {user} = useAuthContext()
     const isEO = true;
     const [isOpen, setOpen] = useState(false);
     const handleOpenChange = (newValue) => {
@@ -31,7 +34,14 @@ export default function Event() {
         const id = params.id?.toString();
         if (!id) return;
         try {
-            const response = await fetch(`http://localhost:5050/event/${id}`, { method: "DELETE" });
+            const response = await fetch(`http://localhost:5050/event/${id}`, { 
+                 method: "DELETE",
+                 headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${user.token}`
+                 }
+                
+             });
             if (!response.ok) {
                 throw new Error("Failed to remove event");
             }
@@ -40,6 +50,7 @@ export default function Event() {
             console.error("Error removing event:", error);
         }
     }
+
 
     useEffect(() => {
         async function fetchData() {

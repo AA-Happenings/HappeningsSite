@@ -87,6 +87,7 @@ export default function EventForm({isOpen, setOpen, isNew}) {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
+                "Authorization": `Bearer ${user.token}`
             },
             body: JSON.stringify(event),
             });

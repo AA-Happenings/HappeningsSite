@@ -11,12 +11,6 @@ export default function MyEvents() {
   const { user } = useAuthContext();
   const navigate = useNavigate();
 
-  // Redirect to the main page if the user is logged out.
-  useEffect(() => {
-    if (!user) {
-      navigate('/');
-    }
-  }, [user, navigate]);
 
   const [apiEvents, setApiEvents] = useState([]);
   const [isOpen, setOpen] = useState(false);

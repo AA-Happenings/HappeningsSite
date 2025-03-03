@@ -1,37 +1,37 @@
-import {createContext, useReducer, useEffect} from 'react'
+import { createContext, useReducer, useEffect, useState } from 'react';
 
-export const AuthContext = createContext()
+export const AuthContext = createContext();
 
-export  const authReducer = (state, action) => {
-    switch (action.type) {
-        case 'LOGIN':
-            return { user: action.payload }
-        case 'LOGOUT':
-            return { user: null }
-        default:
-            return state
-    }
-}
+export const authReducer = (state, action) => {
+  switch (action.type) {
+    case 'LOGIN':
+      return { user: action.payload };
+    case 'LOGOUT':
+      return { user: null };
+    default:
+      return state;
+  }
+};
 
 export const AuthContextProvider = ({ children }) => {
-    const [state, dispatch] = useReducer(authReducer, {
-        user: null
-    })
+  const [state, dispatch] = useReducer(authReducer, { user: null });
+  const [isLoading, setIsLoading] = useState(true); // Add loading state
 
-    // if user has logged in but refreshed, they will be automaticaly logged in again from stored authContext
-    useEffect(() => {
-        const user = JSON.parse(localStorage.getItem('user'))
-        
-        if (user){
-            dispatch({type: 'LOGIN', payload: user})
-        }
-    }, [])
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('user'));
 
-    console.log('AuthContext state: ', state)
+    if (user) {
+      dispatch({ type: 'LOGIN', payload: user });
+    }
 
-    return (
-        <AuthContext.Provider value={{...state, dispatch}}>
-            { children }
-        </AuthContext.Provider>
-    )
-}
+    setIsLoading(false); // Set loading to false once the data is fetched
+  }, []);
+
+  console.log('AuthContext state:', state);
+
+  return (
+    <AuthContext.Provider value={{ ...state, dispatch, isLoading }}>
+      {children}
+    </AuthContext.Provider>
+  );
+};

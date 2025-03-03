@@ -26,10 +26,14 @@ const organizerSchema = new Schema({
     password: {
         type: String,
         required: true
+    },
+    admin: {
+        type: Boolean,
+        default: false
     }
 })
 
-organizerSchema.statics.signup = async function(email, username, password){
+organizerSchema.statics.signup = async function(email, username, password, admin){
     
     // validation for signup
 
@@ -61,7 +65,7 @@ organizerSchema.statics.signup = async function(email, username, password){
     const salt = await bcrypt.genSalt(10)
     const hash = await bcrypt.hash(password, salt)
 
-    const organizer = await this.create({ email, username, password : hash})
+    const organizer = await this.create({ email, username, password : hash, admin})
 
     return organizer 
 }

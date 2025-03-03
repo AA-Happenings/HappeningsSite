@@ -26,10 +26,10 @@ router.get('/:id', getEvent)
 router.post('/', requireAuth, createEvent)
 
 //delete an event
-router.delete('/:id', deleteEvent)
+router.delete('/:id', requireAuth ,deleteEvent)
 
 //update an event
-router.patch('/:id', updateEvent)
+router.patch('/:id', requireAuth, updateEvent)
 
 export default router;
 
