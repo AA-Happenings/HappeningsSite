@@ -64,7 +64,7 @@
   display: flex;
   justify-content: center;
   /*align-items: center;*/
-  height: 100vh; /* Full height of the viewport */
+  /*height: 100vh; /* Full height of the viewport */
   width: 100vw; /* Full width of the viewport */
   position: relative; /* Needed if the div inside is positioned */
   background-color: transparent; /* Or any background styling */
