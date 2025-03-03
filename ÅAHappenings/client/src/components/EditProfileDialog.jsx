@@ -43,7 +43,7 @@ export default function EditProfileDialog({ isOpen, setOpen, profile, setProfile
         <Dialog 
           isOpen={isOpen} 
           setOpen={setOpen} 
-          style={{ borderRadius: "10px", border: "5px solid black" }}
+          style={{ borderRadius: "10px", border: "3px solid rgb(92, 91, 91)" }}
         >
           <h1 className="dialog-header">Redigera Föreningsprofil</h1>
           <div className="dialog-container">
@@ -76,7 +76,7 @@ export default function EditProfileDialog({ isOpen, setOpen, profile, setProfile
               
               {error && <p className="error-message">{error}</p>}
               
-              <label className="dialog-label">Ange föreningens färg</label>
+              <label className="dialog-label" style={{marginTop:"10px"}}>Ange föreningens färg</label>
               <input 
                 type="color" 
                 value={form.color} 
