@@ -25,7 +25,7 @@ export const AuthContextProvider = ({ children }) => {
       dispatch({ type: 'LOGIN', payload: user });
     }
 
-    if (user.admin) [
+    if (user && user.admin) [
         setAdmin(true)
     ]
 
