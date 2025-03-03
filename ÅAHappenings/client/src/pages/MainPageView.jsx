@@ -238,10 +238,10 @@ export default function MainPageView() {
       </div>
       <div className="calendar-event-container">
           <Calendar
-                  //onChange={handleDateChange}
+                  onChange={handleDateChange}
                   value={value}
                   className="react-calendar" /* Apply custom styling */
-                  //tileContent={renderTileContent} // Add tile content
+                  tileContent={renderTileContent} // Add tile content
                   locale="sv"
 
               />
