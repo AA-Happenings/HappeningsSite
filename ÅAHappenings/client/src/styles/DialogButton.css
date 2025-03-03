@@ -32,16 +32,6 @@
     flex-wrap: wrap; /* Wrap content on smaller screens */
     background-color: #EDEDED;
   }
-  
-.dialog-footer {
-    display: flex;
-    justify-content: space-between; /* Align buttons on left and right */
-    padding: 10px 20px; /* Inner spacing */
-    border-top: 1px solid #CCC; /* Optional: separates the footer visually */
-    background-color: #EDEDED; /* Matches the dialog's background */
-    margin: 0; /* Ensure no extra margin */
-    box-sizing: border-box; /* Include padding in dimensions */
-}
 
 .item-container-left {
     padding: 20px;
@@ -72,10 +62,10 @@
 
 .dialog-input,
 .dialog-textarea,
-.dialog-select {
+.dialog-select-co {
     width: 100%; /* Full width for inputs */
     padding: 10px; /* Inner spacing for usability */
-    border: 1px solid #EDEDED; /* Subtle border */
+    border: 1px solid #da0101; /* Subtle border */
     border-radius: 5px; /* Rounded edges for softness */
     font-size: 1rem;
     box-sizing: border-box; /* Avoid overflow */
@@ -145,4 +135,11 @@
 
 .dialog-buttons .button-style:hover {
     background-color: #DDD; /* Subtle hover effect */
+}
+
+.dialog-select-ao {
+    margin-left: 10px;
+    padding: 3px 20px 3px 3px;
+    border: 1px solid #747474;
+    border-radius: 5px;
 }
