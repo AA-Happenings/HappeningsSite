@@ -100,7 +100,7 @@ export default function EventForm({isOpen, setOpen, isNew}) {
         <div>
             {/* Dialog component */}
             {isOpen && (
-                <Dialog isOpen={isOpen} setOpen={setOpen} style={{borderRadius: "10px"}}>
+                <Dialog isOpen={isOpen} setOpen={setOpen} style={{borderRadius: "10px", border: "3px solid rgb(92, 91, 91)" }}>
                 <h1 className="dialog-header">Skapa Ditt Evenemang</h1>
                 <div className="dialog-container">
                     <div className="item-container-left">

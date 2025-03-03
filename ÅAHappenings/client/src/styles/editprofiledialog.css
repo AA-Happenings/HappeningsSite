@@ -65,6 +65,7 @@
     display: block;
     font-size: 1rem;
     margin-bottom: 5px;
+    margin-top: 3px
 }
 
 .dialog-input,
@@ -73,7 +74,7 @@
 .dialog-select-co {
     width: 100%;
     padding: 10px;
-    border: 1px solid #000000;
+    border: 2px solid #747474;
     border-radius: 5px;
     font-size: 1rem;
     box-sizing: border-box;
