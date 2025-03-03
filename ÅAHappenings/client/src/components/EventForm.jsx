@@ -20,6 +20,7 @@ export default function EventForm({isOpen, setOpen, isNew}) {
         link: "",
         membersOnly: "",
         tags: [""],
+        aöChoice: "K",
     });
 
     const params = useParams();
@@ -108,7 +109,7 @@ export default function EventForm({isOpen, setOpen, isNew}) {
         <div>
             {/* Dialog component */}
             {isOpen && (
-                <Dialog isOpen={isOpen} setOpen={setOpen} style={{borderRadius: "10px"}}>
+                <Dialog isOpen={isOpen} setOpen={setOpen} style={{borderRadius: "10px", border: "3px solid rgb(92, 91, 91)" }}>
                 <h1 className="dialog-header">Skapa Ditt Evenemang</h1>
                 <div className="dialog-container">
                     <div className="item-container-left">
@@ -171,7 +172,7 @@ export default function EventForm({isOpen, setOpen, isNew}) {
                     <div className="item-container-right">
                     {/* Co-organizer Dropdown */}
                     <label className="dialog-label">Välj medorganisatör</label>
-                    <select className="dialog-select">
+                    <select className="dialog-select-co">
                         <option value="">Välj</option>
                         {/* Add more options dynamically if needed */}
                     </select>
@@ -256,12 +257,24 @@ export default function EventForm({isOpen, setOpen, isNew}) {
                         <label htmlFor="gratis">Gratis</label>
                         </div>
                         <div className="dialog-checkbox">
-                        <input
-                            type="checkbox" id="aö"
-                            checked={form.tags.includes("aö")}
-                            onChange={(e) => updateTags("aö", e.target.checked)}
-                        />
-                        <label htmlFor="aö">AÖ</label>
+                            <input
+                                type="checkbox"
+                                id="aö"
+                                checked={form.tags.includes("aö")}
+                                onChange={(e) => updateTags("aö", e.target.checked)}
+                            />
+                            <label htmlFor="aö">AÖ</label>
+                            {form.tags.includes("aö") && (
+                                <select
+                                    value = {form.aöChoice}
+                                    onChange = {(e) => updateForm({ aöChoice: e.target.value})}
+                                    className = "dialog-select-ao"
+                                >
+                                    <option value = "F">F</option>
+                                    <option value = "MK">MK</option>
+                                    <option value = "K">K</option>
+                                </select>
+                            )}
                         </div>
                         {/* Add other checkboxes following the same pattern */}
                     </div>

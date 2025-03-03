@@ -1,3 +1,5 @@
+
+/* Upcoming event list */
 .event-list-container {
   background-color: transparent;
   padding: 1rem;
@@ -10,14 +12,13 @@
   overflow-y: auto;
 }
 
-  
+/* Individual event cards */
 .event-card {
   display: flex;
   align-items: center;
   background-color: #f4f4f8;
   margin-bottom: 1rem;
   padding: 1rem;
-  border-radius: 10px;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
   border: 5px solid #929292;
   border-radius: 20px;
@@ -26,6 +27,7 @@
   background-color: #d6d6d6;
 }
 
+/* Icon on the left side of event card */ /* jsx file reference in components - Eventlist */
 .event-icon {
   font-size: 2rem;
   margin-right: 2rem;
@@ -62,7 +64,7 @@
   display: flex;
   justify-content: center;
   /*align-items: center;*/
-  height: 100vh; /* Full height of the viewport */
+  /*height: 100vh; /* Full height of the viewport */
   width: 100vw; /* Full width of the viewport */
   position: relative; /* Needed if the div inside is positioned */
   background-color: transparent; /* Or any background styling */

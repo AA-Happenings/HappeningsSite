@@ -4,9 +4,7 @@ import * as ReactDOM from "react-dom/client";
 import { AuthContextProvider } from "./context/authContext";
 import { EventsContextProvider } from "./context/eventContext";
 import App from "./App";
-import "./styles/DialogButton.css";
-import "./styles/BurgerMenu.css";
-import "../index.css";
+
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

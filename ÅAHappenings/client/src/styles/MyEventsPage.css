@@ -1,0 +1,16 @@
+.create-event-button {
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    padding: 10px 15px;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    display: inline-block;
+    border: 5px solid #929292;
+    border-radius: 20px;
+  }
+  
+  /* Hover effect */
+  .create-event-button:hover {
+    background-color: #d6d6d6;
+  }

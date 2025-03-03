@@ -6,6 +6,7 @@ import 'react-calendar/dist/Calendar.css';
 import EventForm from '../components/EventForm';
 import { useAuthContext } from '../hooks/useAuthContext';
 import { useNavigate } from 'react-router-dom';
+import '../styles/MyEventsPage.css';
 
 export default function MyEvents() {
   const { user } = useAuthContext();
@@ -72,7 +73,7 @@ export default function MyEvents() {
         }}
       >
         <div style={{ display: "flex", justifyContent: "center", marginBottom: "0.5vw" }}>
-          <button onClick={() => setOpen(true)} className="button-style">
+          <button onClick={() => setOpen(true)} className="create-event-button">
             Skapa Evenemang
           </button>
           <EventForm isOpen={isOpen} setOpen={handleOpenChange} isNew={true} />
