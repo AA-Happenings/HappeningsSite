@@ -23,6 +23,15 @@ const organizerSchema = new Schema({
         required: true,
         unique: true
     },
+    description: {
+        type: String,
+    },
+    linkToWebsite: {
+        type: String,
+    },
+    color: {
+        type: String,
+    },
     password: {
         type: String,
         required: true

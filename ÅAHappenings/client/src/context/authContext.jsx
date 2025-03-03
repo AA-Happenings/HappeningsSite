@@ -16,6 +16,7 @@ export const authReducer = (state, action) => {
 export const AuthContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(authReducer, { user: null });
   const [isLoading, setIsLoading] = useState(true); // Add loading state
+  const [admin, setAdmin] = useState(true);
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'));
@@ -24,13 +25,17 @@ export const AuthContextProvider = ({ children }) => {
       dispatch({ type: 'LOGIN', payload: user });
     }
 
+    if (user.admin) [
+        setAdmin(true)
+    ]
+
     setIsLoading(false); // Set loading to false once the data is fetched
   }, []);
 
   console.log('AuthContext state:', state);
 
   return (
-    <AuthContext.Provider value={{ ...state, dispatch, isLoading }}>
+    <AuthContext.Provider value={{ ...state, dispatch, isLoading, admin }}>
       {children}
     </AuthContext.Provider>
   );

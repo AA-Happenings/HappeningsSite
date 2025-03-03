@@ -23,8 +23,9 @@ import './styles/RegisterPage.css';
 import './styles/BurgerMenu.css';
 
 const App = () => {
-  const { user, isLoading } = useAuthContext();
-  console.log('User:', user); // Debugging line
+  const { user, isLoading, admin } = useAuthContext();
+
+  
   
   if (isLoading) {
     return <div>Loading...</div>; // You can show a loading spinner here
@@ -44,7 +45,7 @@ const App = () => {
             {/* TODO: adminpage needs more protection to check for admin credentials instead of user */}
             <Route
               path="/adminpage"
-              element={user && user.admin ? <AdminPage /> : <Navigate to="/login" />}
+              element={user && admin ? <AdminPage /> : <Navigate to="/login" />}
             />
 
 
