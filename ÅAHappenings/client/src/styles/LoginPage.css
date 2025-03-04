@@ -6,13 +6,6 @@ body {
     min-height: 100vh;
 }
 
-
-
-.wrapper .form-box {
-    width: 100%;
-    padding: 40px;
-}
-
 .input-box {
     display: flex; 
     align-items: center; 
