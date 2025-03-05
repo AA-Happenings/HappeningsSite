@@ -20,7 +20,7 @@ const loginOrganizer = async (req, res) => {
         // create jwt token
         const token = createToken(organizer._id)
 
-        res.status(200).json({email, token})
+        res.status(200).json({email, username: organizer.username, token})
     } catch (error) {
         res.status(400).json({error: error.message})
     }
@@ -36,7 +36,7 @@ const signupOrganizer = async (req, res) => {
         // create jwt token
         const token = createToken(organizer._id)
 
-        res.status(200).json({email, token})
+        res.status(200).json({email, username: organizer.username, token})
     } catch (error) {
         res.status(400).json({error: error.message})
     }
