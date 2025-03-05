@@ -17,22 +17,21 @@ const EventCard = (props) => (
           </Link>
 );
 
-const EventList = ({events}) => {
+const EventList = ({ events }) => {
+  const today = new Date(); // Get the current date
 
-  //return event list container with cards
+  const upcomingEvents = events
+    .filter(event => new Date(event.date) >= today) // Remove past events
+    .sort((a, b) => new Date(`${a.date}T${a.time}`) - new Date(`${b.date}T${b.time}`)); // Sort by date & time
+
   return (
-      <div className="event-list-container">
-        {events.map((event) => {
-          return (
-            <EventCard
-            event={event}
-            key={event._id}
-            />
-          );
-        })
-        }
-      </div>
+    <div className="event-list-container">
+      {
+        upcomingEvents.map((event) => <EventCard event={event} key={event._id} />)
+      }
+    </div>
   );
-}
+};
+
 
 export default EventList;
