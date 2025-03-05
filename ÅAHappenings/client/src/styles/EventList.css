@@ -74,18 +74,18 @@
 
 .calendar-event-container {
   display: flex;
-  flex-direction: row; /* Align calendar and events side-by-side */
-  gap: 10rem; /* Space between calendar and event list */
+  align-items: flex-start; /* Align calendar and events side-by-side */
+  gap: 3vw; /* Space between calendar and event list */
   background-color: transparent; /* Optional background for better visibility */
   /*padding: 2rem;*/
   border-radius: 12px;
   max-width: 90%; /* Prevent it from getting too wide */
-  max-height: 90%; /* Prevent it from getting too tall */
   overflow: show; /* Handle overflow if needed */
+  margin: 0 auto;
 }
 
 :root {
-  --calendar-scale-factor: 1.4; /* Adjust to control scaling */
+  --calendar-scale-factor: 1.3; /* Scaling factor */
 }
 
 /* Custom styling for the Calendar */
@@ -94,22 +94,26 @@
 }
 
 .react-calendar {
+  width: clamp(300px, 38vw, 800px);
+  /* Make everything bigger on large screens, but still shrink as needed */
+  font-size: clamp(6px, 1.5vw, 33px);
+  margin-top: 1rem;
+  padding: 0.8rem;
   border: 4px solid #929292 !important;
-  border-radius: 20px; /* Changed from 12px to 20px */
-  transform: scale(var(--calendar-scale-factor)); /* Scale the calendar */
-  transform-origin: top left; /* Anchor scaling to the top-left corner */
-  margin-top: 1rem; /* Space above the calendar */
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); /* Add shadow */
-  padding: 0.8rem; /* Reduce padding to avoid excess height */
-  max-height: 300px; /* Constrain maximum height */
-  overflow: hidden; /* Prevent overflow */
+  border-radius: 20px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  /* And let it overflow normally: */
+  overflow: visible;
 }
 
 .react-calendar__tile {
-  position: relative; /* Ensure the tile is a positioning context for dots */
-  font-size: 1rem; /* Keep date text size consistent */
-  padding: 1rem; /* Adjust padding to avoid overlaps */
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 }
+
 
 .react-calendar__tile--now {
   background-color: #1087ff !important; /* Highlight today's date */
@@ -155,11 +159,12 @@
   bottom: 4px; /* Position the dots below the date */
   left: 0;
   right: 0;
+  font-size: 1em;
 }
 
 .dot {
-  width: 4px;
-  height: 4px;
+  width: 0.25em;
+  height: 0.25em;
   background-color: #000000;
   border-radius: 50%; /* Ensure the dots are circular */
   margin: 0; /* Remove any default margin */
@@ -168,7 +173,7 @@
 }
 
 .more-dots {
-  font-size: 0.5rem; /* Smaller font size for the "+" indicator */
+  font-size: 0.25em; /* Smaller font size for the "+" indicator */
   color: #000000; /* Match dot color */
   margin-left: 1px; /* Add a gap after the last dot */
   line-height: 0.5; /* Align the "+" vertically */
