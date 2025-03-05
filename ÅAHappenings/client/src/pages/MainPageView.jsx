@@ -16,6 +16,8 @@ export default function MainPageView() {
   const [selectedAssociations, setSelectedAssociations] = useState([]);
   const [selectedTags, setSelectedTags] = useState([]);
   const [filteredEvents, setFilteredEvents] = useState([]);
+  const [calendarKey, setCalendarKey] = useState(Date.now());
+
 
   useEffect(() => {
     const fetchEvents = async () =>  {
@@ -90,6 +92,15 @@ export default function MainPageView() {
     setFilteredEvents(filteredByDate);
   };
 
+  // Handler to clear the date filter
+  const handleClearDates = () => {
+    const today = new Date();
+    setValue(today);
+    setFilteredEvents(events);
+    setCalendarKey(Date.now());
+  };
+  
+
 
   const getEventsForDate = (date) => {
     const formattedDate = formatDateAsLocal(date); // Format the date as local YYYY-MM-DD
@@ -106,6 +117,8 @@ export default function MainPageView() {
 
   // Render dots for tiles with events
   const renderTileContent = ({ date }) => {
+    //TODO change this to user colors!!!!!!!
+    const dotColor = "black"; // For now, all dots are black, will be changed to organizer colors later
     const dateEvents = getEventsForDate(date); // Get events for the current tile date
     if (dateEvents.length > 0) {
       let dotsToShow = dateEvents.length === 3 ? dateEvents : dateEvents.slice(0, 2); // Show 3 dots if exactly 3 events, otherwise 2 dots
@@ -113,7 +126,7 @@ export default function MainPageView() {
       return (
         <div className="tile-dots">
           {dotsToShow.map((_, index) => (
-            <span key={index} className="dot"></span>
+            <span key={index} className="dot" style={{backgroundColor: dotColor}}></span>
           ))}
           {dateEvents.length > 3 && <span className="more-dots">+{dateEvents.length - 2}</span>} {/* Show +N if 4 or more */}
         </div>
@@ -135,7 +148,21 @@ export default function MainPageView() {
     >
         {/*  Search & Filters Wrapped  */}
         <div className="search-filter-container">
-          
+        { formatDateAsLocal(value) !== formatDateAsLocal(new Date()) && (
+          <button 
+            onClick={handleClearDates} 
+            style={{
+            marginRight: "1rem", 
+            padding: "10px 15px", 
+            borderRadius: "8px", 
+            border: "1px solid #ccc", 
+            background: "#fff",
+            cursor: "pointer"
+        }}
+      >
+        Clear Dates ✖
+      </button>
+  )}
           <div className="search-container">
             <input
               style={{
@@ -238,6 +265,7 @@ export default function MainPageView() {
       </div>
       <div className="calendar-event-container">
           <Calendar
+                  key={calendarKey}
                   onChange={handleDateChange}
                   value={value}
                   className="react-calendar" /* Apply custom styling */
