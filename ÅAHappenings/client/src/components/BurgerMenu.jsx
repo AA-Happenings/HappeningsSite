@@ -18,6 +18,7 @@ const BurgerMenu = () => {
 
   // Close the menu if clicked outside
   useEffect(() => {
+    console.log("User object:", user);
     const handleClickOutside = (event) => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
         setMenuOpen(false);
@@ -45,7 +46,7 @@ const BurgerMenu = () => {
       >
         {user && (
           <div className="user-email">
-            {user.email}
+            {user.username}
           </div>
         )}
 
