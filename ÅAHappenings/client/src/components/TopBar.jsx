@@ -1,6 +1,7 @@
 import { NavLink, useLocation } from "react-router-dom";
 import BurgerMenu from '../components/BurgerMenu';
 import { useAuthContext } from "../hooks/useAuthContext";
+import '../styles/topbar.css';
 
 export default function TopBar() {
   const { user } = useAuthContext();

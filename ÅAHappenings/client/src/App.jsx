@@ -13,7 +13,6 @@ import SAinfo from './pages/SAinfo';
 import Profile from './pages/ProfilePage';
 import AdminPage from './pages/AdminPage';
 import './styles/background.css';
-import './styles/topbar.css';
 import './styles/EventList.css';
 import './styles/FilterButton.css';
 import './styles/Event.css';
