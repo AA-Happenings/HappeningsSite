@@ -137,15 +137,7 @@ export default function MainPageView() {
 
   return (
     <div className="main-container">
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        padding: "50px",
-        margin: "10px",
-      }}
-    >
+    <div>
         {/*  Search & Filters Wrapped  */}
         <div className="search-filter-container">
         { formatDateAsLocal(value) !== formatDateAsLocal(new Date()) && (

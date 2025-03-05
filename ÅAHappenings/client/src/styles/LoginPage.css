@@ -6,11 +6,8 @@ body {
     min-height: 100vh;
 }
 
-
-
-.wrapper .form-box {
-    width: 100%;
-    padding: 40px;
+.wrapper {
+  margin-top: 5vh;
 }
 
 .input-box {
@@ -99,6 +96,8 @@ body {
 .disclaimer {
     margin-top: 30px;
     font-size: 12px;
+    display: flex;
+    justify-content: center;
 }
 
 .infobox {
