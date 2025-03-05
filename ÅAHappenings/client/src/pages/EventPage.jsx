@@ -85,7 +85,7 @@ export default function Event() {
                     {/* Left Column: Student association info and TLDR */}
                     <div className="event-sidebar">
                         <div className="event-organizer-section">
-                            <h2 className="section-title">PLACEHOLDER FOR EO NAME</h2>
+                            <h2 className="section-title">{event.username || "PLACEHOLDER FOR EO NAME"}</h2>
                             <img
                                 src="https://www.studyinfinland.fi/sites/default/files/styles/logo_image/public/2019-09/Abo%20Akademi%20UUSI.png?itok=mDVmnidZ"
                                 alt="Event Organizer"
