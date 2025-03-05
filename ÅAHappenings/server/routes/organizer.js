@@ -10,7 +10,7 @@ router.post('/signup', signupOrganizer)
 
 router.get('/', getOrganizers)
 
-router.get('/organizer/:id', getOrganizerById);
+router.get('/:id', getOrganizerById);
 
 router.get('/color', getColor);
 
