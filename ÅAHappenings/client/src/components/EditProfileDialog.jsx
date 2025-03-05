@@ -14,6 +14,41 @@ export default function EditProfileDialog({ isOpen, setOpen, profile, setProfile
     profilePic: ""
   });
 
+  // Function to fetch organizer profile details
+  async function fetchProfile() {
+    if (!user || !user._id) return;
+
+    try {
+      const response = await fetch(`http://localhost:5050/organizer/${user._id}`, {
+        headers: {
+          "Authorization": `Bearer ${user.token}`
+        }
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      setProfile({
+        name: data.username,
+        description: data.description || "",
+        link: data.linkToWebsite || "",
+        color: data.color || "#ffffff",
+        profilePic: data.profilePic || ""
+      });
+    } catch (error) {
+      console.error("Error fetching organizer profile:", error);
+    }
+  }
+
+  // Fetch profile data when the dialog opens
+  useEffect(() => {
+    if (isOpen) {
+      fetchProfile();
+    }
+  }, [isOpen]);
+
   useEffect(() => {
     setForm({
       name: profile.name || "",
@@ -30,7 +65,7 @@ export default function EditProfileDialog({ isOpen, setOpen, profile, setProfile
 
   async function onSubmit() {
     try {
-      const response = await fetch("http://localhost:5050/organizer/update", {
+      const response = await fetch(`http://localhost:5050/organizer/update/${user._id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -43,9 +78,11 @@ export default function EditProfileDialog({ isOpen, setOpen, profile, setProfile
           profilePic: form.profilePic
         })
       });
+
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
+
       const updatedOrganizer = await response.json();
       setProfile({
         name: updatedOrganizer.username,
@@ -125,7 +162,7 @@ export default function EditProfileDialog({ isOpen, setOpen, profile, setProfile
             <button onClick={() => setOpen(false)} className="button-style-cancel">
               Avbryt
             </button>
-            <button onClick={() => { onSubmit(); }} className="button-style">
+            <button onClick={onSubmit} className="button-style">
               Spara ändringar
             </button>
           </div>
