@@ -50,7 +50,8 @@ const createEvent = async (req, res) => {
     // add doc to db
     try {
       const user_id = req.user._id
-      const event = await Event.create({title, description, location, date, time, how, price, link, membersOnly, tags, ao, user_id})
+      const username = req.user.username
+      const event = await Event.create({title, description, location, date, time, how, price, link, membersOnly, tags, ao, user_id, username})
       res.status(200).json(event)
     } catch (error) {
       res.status(400).json({error: error.message})
