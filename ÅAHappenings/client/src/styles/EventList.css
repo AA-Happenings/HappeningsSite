@@ -173,7 +173,7 @@
 }
 
 .more-dots {
-  font-size: 0.25em; /* Smaller font size for the "+" indicator */
+  font-size: 0.8em; /* Smaller font size for the "+" indicator */
   color: #000000; /* Match dot color */
   margin-left: 1px; /* Add a gap after the last dot */
   line-height: 0.5; /* Align the "+" vertically */
