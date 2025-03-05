@@ -7,9 +7,16 @@
   max-width: 650px;
   margin: 0 auto; /* Center the container */
   width: 40vw;
-  max-height: calc(4 * 7vw + 4 * 1rem + 2rem); /* Adjust height to fit 4 events */
+  max-height: 80vh; /* Adjust height to 80% of viewport*/
   overflow-x: hidden;
   overflow-y: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/*hide scrollbar on chrome, safari and opera */
+.event-list-container::-webkit-scrollbar {
+  display: none;
 }
 
 /* Individual event cards */
@@ -68,7 +75,6 @@
   width: 100vw; /* Full width of the viewport */
   position: relative; /* Needed if the div inside is positioned */
   background-color: transparent; /* Or any background styling */
-  overflow-x: hidden;
   margin-top: 2vw;
 }
 

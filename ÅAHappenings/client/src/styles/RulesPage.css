@@ -5,6 +5,8 @@
     font-family: Arial, sans-serif;
     padding-top: 6vw; /* Space for the fixed top bar */
     overflow-y: auto;
+    display: flex;
+    justify-content: center;
 }  
   
 /* Rules Sections */

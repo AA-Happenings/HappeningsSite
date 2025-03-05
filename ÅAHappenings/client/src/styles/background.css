@@ -27,6 +27,11 @@
   width: 100vw;
 }
 
+/* blur background when modal windows are opened */
+.app-container:has(dialog[open]) {
+  filter: blur(4px)
+}
+
 .pages {
   height: auto;
 }
