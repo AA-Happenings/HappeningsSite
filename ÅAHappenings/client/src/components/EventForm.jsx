@@ -20,7 +20,7 @@ export default function EventForm({isOpen, setOpen, isNew}) {
         link: "",
         membersOnly: "",
         tags: [""],
-        aöChoice: "K",
+        ao: "",
     });
 
     const params = useParams();
@@ -58,13 +58,15 @@ export default function EventForm({isOpen, setOpen, isNew}) {
     }
 
     function updateTags(tag, checked) {
-        console.log(tag, checked)
+        // When checking the aö checkbox, also set a default value if not already set
+        if (tag === "aö" && checked && !form.ao) {
+            updateForm({ ao: "F" });
+        }
         const oldTags = form.tags;
-        const newTags = checked ? [...oldTags, tag] : oldTags.filter((t) => t != tag);
-        return setForm((prev) => {
-            return { ...prev, tags: newTags };
-        });
+        const newTags = checked ? [...oldTags, tag] : oldTags.filter((t) => t !== tag);
+        setForm((prev) => ({ ...prev, tags: newTags }));
     }
+    
 
     async function onSubmit() {
         const event = { ...form };
@@ -100,7 +102,7 @@ export default function EventForm({isOpen, setOpen, isNew}) {
         } catch (error) {
         console.error('A problem occurred adding or updating an event: ', error);
         } finally {
-            setForm({title: "", description: "", location: "", date: "", time: "", how: "", price: "", link: "", membersOnly: "", tags: {}})
+            setForm({title: "", description: "", location: "", date: "", time: "", how: "", price: "", link: "", membersOnly: "", tags: [], ao: ""})
             navigate("/");
         }
     }
@@ -266,8 +268,8 @@ export default function EventForm({isOpen, setOpen, isNew}) {
                             <label htmlFor="aö">AÖ</label>
                             {form.tags.includes("aö") && (
                                 <select
-                                    value = {form.aöChoice}
-                                    onChange = {(e) => updateForm({ aöChoice: e.target.value})}
+                                    value = {form.ao}
+                                    onChange = {(e) => updateForm({ ao: e.target.value})}
                                     className = "dialog-select-ao"
                                 >
                                     <option value = "F">F</option>
