@@ -85,6 +85,7 @@ const App = () => {
             <Route path="event/:id" element={<Event />} />
             <Route path="info" element={<SAinfo />} />
             <Route path="faq" element={<FaqPage />} />
+            <Route path="profile/:id" element={<Profile />} />
 
           </Routes>
         </div>
