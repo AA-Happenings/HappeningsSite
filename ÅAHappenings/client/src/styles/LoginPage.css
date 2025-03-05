@@ -6,6 +6,10 @@ body {
     min-height: 100vh;
 }
 
+.wrapper {
+  margin-top: 5vh;
+}
+
 .input-box {
     display: flex; 
     align-items: center; 
@@ -92,6 +96,8 @@ body {
 .disclaimer {
     margin-top: 30px;
     font-size: 12px;
+    display: flex;
+    justify-content: center;
 }
 
 .infobox {
