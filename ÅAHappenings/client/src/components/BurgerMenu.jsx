@@ -76,7 +76,7 @@ const BurgerMenu = () => {
               onClick={() => setMenuOpen(false)}
             >
               <GoPerson style={{ verticalAlign: "middle" }} />
-              <span>Min Info</span>
+              <span>Min Profil</span>
             </NavLink>
 
             <NavLink 
