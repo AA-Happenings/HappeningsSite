@@ -7,128 +7,152 @@ import { NavLink } from "react-router-dom";
 import "../styles/MainPageView.css"
 import { useEventsContext } from "../hooks/useEventsContext";
 import { sv } from "date-fns/locale";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 export default function MainPageView() {
+  const { events, dispatch } = useEventsContext();
+  const { user } = useAuthContext();
 
-  //filter useState
-  const {events, dispatch} = useEventsContext();
+  // Filter state
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedAssociations, setSelectedAssociations] = useState([]);
   const [selectedTags, setSelectedTags] = useState([]);
   const [filteredEvents, setFilteredEvents] = useState([]);
   const [calendarKey, setCalendarKey] = useState(Date.now());
 
+  // Available filters with förening (will be filled later)
+  const [availableFilters, setAvailableFilters] = useState({
+    evenemangstyp: ["sport", "kultur", "sittning", "gratis"],
+    taggar: ["Gulisevenemang", "BYOB", "Endast Medlemmar"],
+    förening: []
+  });
 
+  // Users state (organizers)
+  const [users, setUsers] = useState([]);
+
+  // Fetch events
   useEffect(() => {
     const fetchEvents = async () =>  {
       const response = await fetch("http://localhost:5050/event");
-      console.log(response)
       const json = await response.json();
 
       if (!response.ok) {
-        const message = `An error occurred: ${response.statusText}`;
-        console.error(message);
+        console.error(`An error occurred: ${response.statusText}`);
         return;
       }
-      dispatch({type: "SET_EVENTS", payload: json})
+      dispatch({ type: "SET_EVENTS", payload: json });
       setFilteredEvents(json);
     }
     fetchEvents();
-    return;
   }, [dispatch]);
 
-  //filters every time searchquery, tags or association is updated
+  // Filter events when search, tags, or associations change
   useEffect(() => {
     const search_filtered = textSearchFilter(events);
     const association_filtered = selectedAssociationsFilter(search_filtered);
     const tag_filtered = filterByTags(association_filtered);
-    console.log(searchQuery);
     setFilteredEvents(tag_filtered);
   }, [searchQuery, selectedTags, selectedAssociations]);
 
-  //filter by searchquery
   const textSearchFilter = (eventsToFilter) => {
-    if(searchQuery.length != 0) {
+    if (searchQuery.length !== 0) {
       return eventsToFilter.filter((event) => event.title.includes(searchQuery));
     }
     return eventsToFilter;
-  }
-
-  //filters by association
-  const selectedAssociationsFilter = (eventsToFilter) => {
-    if(selectedAssociations.length != 0) {
-      return eventsToFilter.filter((event) => selectedAssociations.some((association) => event.tags.includes(association)));
-    }
-    return eventsToFilter;
-  }
-
-  //filters by tags
-  const filterByTags = (eventsToFilter) => {
-    if(selectedTags.length != 0) {
-      return eventsToFilter.filter((event) => selectedTags.every((tag) => event.tags.includes(tag)));
-    }
-    return eventsToFilter;
-  }
-
-  //Available filters
-  const availableFilters = {
-    evenemangstyp: ["sport", "kultur", "sittning", "gratis"],
-    taggar: ["Gulisevenemang", "BYOB", "Endast Medlemmar"],
-    förening: ["KK", "DaTe", "SF-Klubben", "MK", "Humanistiska Föreningen"]
   };
 
-  //Date values useState and date chane handler
+  const selectedAssociationsFilter = (eventsToFilter) => {
+    if (selectedAssociations.length !== 0) {
+      return eventsToFilter.filter(event =>
+        selectedAssociations.some(
+          (association) => event.username === association
+        )
+      );
+    }
+    return eventsToFilter;
+  };
+  
+  
+
+  const filterByTags = (eventsToFilter) => {
+    if (selectedTags.length !== 0) {
+      return eventsToFilter.filter((event) =>
+        selectedTags.every((tag) => event.tags.includes(tag))
+      );
+    }
+    return eventsToFilter;
+  };
+
+  // Fetch organizers (users) and update förening filter
+  useEffect(() => {
+    const fetchUsers = async () =>  {
+      const response = await fetch("http://localhost:5050/organizer", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${user.token}`
+        }
+      });
+      const json = await response.json();
+
+      if (!response.ok) {
+        console.error(`An error occurred: ${response.statusText}`);
+        return;
+      }
+      setUsers(json);
+      // Update availableFilters.förening with the usernames from the fetched users
+      setAvailableFilters(prev => ({
+        ...prev,
+        förening: json.map(u => u.username)
+      }));
+    };
+    if (user) {
+      fetchUsers();
+    }
+  }, [user]);
+
+  // Date state and handlers
   const [value, setValue] = useState(new Date());
   const handleDateChange = (newValue) => {
-    setValue(newValue); // Update the selected date
-
-    // Format the selected date
+    setValue(newValue);
     const selectedDate = formatDateAsLocal(newValue);
-
-    // Filter events based on the selected date
     const filteredByDate = events.filter(event => event.date === selectedDate);
-
-    // Update the filtered events state
     setFilteredEvents(filteredByDate);
   };
 
-  // Handler to clear the date filter
   const handleClearDates = () => {
     const today = new Date();
     setValue(today);
     setFilteredEvents(events);
     setCalendarKey(Date.now());
   };
-  
-
 
   const getEventsForDate = (date) => {
-    const formattedDate = formatDateAsLocal(date); // Format the date as local YYYY-MM-DD
-    return events.filter(event => event.date === formattedDate); // Match against event dates
+    const formattedDate = formatDateAsLocal(date);
+    return events.filter(event => event.date === formattedDate);
   };
-  
-  // Helper function to format a Date object as YYYY-MM-DD in local time
+
   const formatDateAsLocal = (date) => {
     const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+    const month = String(date.getMonth() + 1).padStart(2, '0');
     const day = String(date.getDate()).padStart(2, '0');
     return `${year}-${month}-${day}`;
-  }; 
+  };
 
-  // Render dots for tiles with events
   const renderTileContent = ({ date }) => {
-    //TODO change this to user colors!!!!!!!
-    const dotColor = "black"; // For now, all dots are black, will be changed to organizer colors later
-    const dateEvents = getEventsForDate(date); // Get events for the current tile date
+    // For now, all dots are black – later, this can depend on the user/organizer
+    const dotColor = "black";
+    const dateEvents = getEventsForDate(date);
     if (dateEvents.length > 0) {
-      let dotsToShow = dateEvents.length === 3 ? dateEvents : dateEvents.slice(0, 2); // Show 3 dots if exactly 3 events, otherwise 2 dots
-      
+      let dotsToShow = dateEvents.length === 3 ? dateEvents : dateEvents.slice(0, 2);
       return (
         <div className="tile-dots">
           {dotsToShow.map((_, index) => (
-            <span key={index} className="dot" style={{backgroundColor: dotColor}}></span>
+            <span key={index} className="dot" style={{ backgroundColor: dotColor }}></span>
           ))}
-          {dateEvents.length > 3 && <span className="more-dots">+{dateEvents.length - 2}</span>} {/* Show +N if 4 or more */}
+          {dateEvents.length > 3 && (
+            <span className="more-dots">+{dateEvents.length - 2}</span>
+          )}
         </div>
       );
     }
@@ -137,24 +161,23 @@ export default function MainPageView() {
 
   return (
     <div className="main-container">
-    <div>
-        {/*  Search & Filters Wrapped  */}
+      <div>
         <div className="search-filter-container">
-        { formatDateAsLocal(value) !== formatDateAsLocal(new Date()) && (
-          <button 
-            onClick={handleClearDates} 
-            style={{
-            marginRight: "1rem", 
-            padding: "10px 15px", 
-            borderRadius: "8px", 
-            border: "1px solid #ccc", 
-            background: "#fff",
-            cursor: "pointer"
-        }}
-      >
-        Rensa datum ✖
-      </button>
-  )}
+          { formatDateAsLocal(value) !== formatDateAsLocal(new Date()) && (
+            <button 
+              onClick={handleClearDates} 
+              style={{
+                marginRight: "1rem", 
+                padding: "10px 15px", 
+                borderRadius: "8px", 
+                border: "1px solid #ccc", 
+                background: "#fff",
+                cursor: "pointer"
+              }}
+            >
+              Rensa datum ✖
+            </button>
+          )}
           <div className="search-container">
             <input
               style={{
@@ -168,8 +191,6 @@ export default function MainPageView() {
               onChange={(e) => setSearchQuery(e.target.value)}
             />
           </div>
-
-          {/* filters-container */}
           <div className="filters-container">
             <FilterButton
               name="Evenemangstyp"
@@ -190,12 +211,9 @@ export default function MainPageView() {
               onFilterUpdate={setSelectedAssociations}
             />
           </div>
-
         </div>
-
-      {/* Selected Filters */}
-      <div style={{ display: "flex", justifyContent: "center", flexWrap: "wrap" }}>
-        {selectedTags.map((filter) => (
+        <div style={{ display: "flex", justifyContent: "center", flexWrap: "wrap" }}>
+          {selectedTags.map((filter) => (
             <div
               key={filter}
               style={{
@@ -222,10 +240,8 @@ export default function MainPageView() {
                 ✖
               </span>
             </div>
-          ))
-        }
-        {
-          selectedAssociations.map((filter) => (
+          ))}
+          {selectedAssociations.map((filter) => (
             <div
               key={filter}
               style={{
@@ -252,28 +268,25 @@ export default function MainPageView() {
                 ✖
               </span>
             </div>
-          ))
-        }
-      </div>
-      <div className="calendar-event-container">
+          ))}
+        </div>
+        <div className="calendar-event-container">
           <Calendar
-                  key={calendarKey}
-                  onChange={handleDateChange}
-                  value={value}
-                  className="react-calendar" /* Apply custom styling */
-                  tileContent={renderTileContent} // Add tile content
-                  locale="sv"
-
-              />
-          {filteredEvents && <EventList events={filteredEvents}/>}
+            key={calendarKey}
+            onChange={handleDateChange}
+            value={value}
+            className="react-calendar"
+            tileContent={renderTileContent}
+            locale="sv"
+          />
+          {filteredEvents && <EventList events={filteredEvents} />}
+        </div>
+        <div className="faq-container">
+          <NavLink to="/faq" className="faq-button">
+            FAQ
+          </NavLink>
+        </div>
       </div>
-      <div className="faq-container">
-        <NavLink to="/faq" className="faq-button">
-          FAQ
-        </NavLink>
     </div>
-    </div>
-    </div>
-    
   );
 }
