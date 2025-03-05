@@ -1,17 +1,30 @@
 import React, { useState } from "react";
 import EditProfileDialog from "../components/EditProfileDialog";
 import { GoPencil } from "react-icons/go";
+import { useAuthContext } from "../hooks/useAuthContext";
 import "../styles/profile.css"; 
 
-export default function AssociationProfile() {
-  const [profile, setProfile] = useState({
-    name: "Association Name",
-    description:
-      "This is a brief description about the association. It can be updated later via the edit dialog.",
-    link: "http://association.example.com",
-    profilePic: null,
-    color: "#3498db"
-  });
+export default function ProfilePage() {
+  const { user } = useAuthContext();
+
+  // Use the logged-in organizer's details if available.
+  const initialProfile = user
+    ? {
+        name: user.username,
+        description: user.description || "No description provided",
+        link: user.linkToWebsite || "",
+        color: user.color || "#3498db",
+        profilePic: user.profilePic || ""
+      }
+    : {
+        name: "Association Name",
+        description: "This is a brief description about the association.",
+        link: "http://association.example.com",
+        color: "#3498db",
+        profilePic: null
+      };
+
+  const [profile, setProfile] = useState(initialProfile);
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -41,7 +54,7 @@ export default function AssociationProfile() {
             </div>
           </div>
 
-          {/* Right Column: Header Above the Bordered Box */}
+          {/* Right Column: Profile Description */}
           <div className="profile-main-wrapper">
             <h2 className="profile-subheader">Om vår förening</h2>
             <div className="profile-main">

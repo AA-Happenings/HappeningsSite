@@ -1,113 +1,136 @@
-import React, { useState } from 'react';
-import { Dialog } from 'react-dialog-element';
+import { useState, useEffect } from "react";
+import { Dialog } from "react-dialog-element";
+import { useAuthContext } from "../hooks/useAuthContext.jsx";
 import "../styles/Dialog.css";
 
 export default function EditProfileDialog({ isOpen, setOpen, profile, setProfile }) {
+  const { user } = useAuthContext();
+
   const [form, setForm] = useState({
-    description: profile.description || "",
-    link: profile.link || "",
-    profilePic: profile.profilePic || null,
-    color: profile.color || "#3498db"
+    name: "",
+    description: "",
+    link: "",
+    color: "",
+    profilePic: ""
   });
-  const [error, setError] = useState("");
+
+  useEffect(() => {
+    setForm({
+      name: profile.name || "",
+      description: profile.description || "",
+      link: profile.link || "",
+      color: profile.color || "",
+      profilePic: profile.profilePic || ""
+    });
+  }, [profile]);
 
   function updateForm(value) {
-    setForm(prev => ({ ...prev, ...value }));
+    setForm((prev) => ({ ...prev, ...value }));
   }
 
-  const handleImageUpload = (event) => {
-    const file = event.target.files[0];
-    const validImageTypes = ["image/png", "image/jpeg", "image/jpg"];
-    if (file) {
-      if (!validImageTypes.includes(file.type)) {
-        setError("Endast bildfiler (PNG, JPEG, JPG) är tillåtna.");
-        return;
+  async function onSubmit() {
+    try {
+      const response = await fetch("http://localhost:5050/organizer", {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${user.token}`
+        },
+        body: JSON.stringify({
+          description: form.description,
+          linkToWebsite: form.link,
+          color: form.color,
+          profilePic: form.profilePic
+        })
+      });
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
-      setError("");
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        updateForm({ profilePic: reader.result });
-      };
-      reader.readAsDataURL(file);
+      const updatedOrganizer = await response.json();
+      setProfile({
+        name: updatedOrganizer.username,
+        description: updatedOrganizer.description,
+        link: updatedOrganizer.linkToWebsite,
+        color: updatedOrganizer.color,
+        profilePic: updatedOrganizer.profilePic
+      });
+    } catch (error) {
+      console.error("Error updating organizer profile:", error);
+    } finally {
+      setOpen(false);
     }
-  };
-
-  function onSubmit() {
-    setProfile(prev => ({ ...prev, ...form }));
-    setOpen(false);
   }
 
   return (
-    <>
+    <div>
       {isOpen && (
-        <Dialog 
-          isOpen={isOpen} 
-          setOpen={setOpen} 
-          style={{ borderRadius: "10px", border: "3px solid rgb(92, 91, 91)" }}
-        >
-          <h1 className="dialog-header">Redigera Föreningsprofil</h1>
+        <Dialog isOpen={isOpen} setOpen={setOpen} style={{ borderRadius: "10px", border: "3px solid rgb(92, 91, 91)" }}>
+          <h1 className="dialog-header">Edit Profile</h1>
           <div className="dialog-container">
             <div className="item-container-left">
-              <label className="dialog-label">Föreningens logo</label>
-              <div className="logo-upload">
-                {form.profilePic ? (
-                  <div className="logo-container">
-                    <img src={form.profilePic} alt="Logo" className="logo-preview" />
-                    <button 
-                      onClick={() => updateForm({ profilePic: null })} 
-                      className="remove-logo-button"
-                    >
-                      Ta bort logotyp
-                    </button>
-                  </div>
-                ) : (
-                  <span className="placeholder-text">Ingen logotyp vald</span>
-                )}
-              </div>
-              {/* Always reserve space for the file input */}
-              <div className="file-input-wrapper">
-                <input 
-                  type="file" 
-                  accept="image/png, image/jpeg, image/jpg" 
-                  onChange={handleImageUpload} 
-                  className={`dialog-input ${form.profilePic ? "hidden-file-input" : ""}`} 
-                />
-              </div>
-              
-              {error && <p className="error-message">{error}</p>}
-              
-              <label className="dialog-label" style={{marginTop:"10px"}}>Ange föreningens färg</label>
-              <input 
-                type="color" 
-                value={form.color} 
-                onChange={(e) => updateForm({ color: e.target.value })}
-                className="dialog-input color-input"
+              {/* Name (read-only) */}
+              <label className="dialog-label">Name:</label>
+              <input
+                required
+                type="text"
+                name="name"
+                placeholder="Association Name"
+                className="dialog-input"
+                value={form.name}
+                readOnly
               />
-            </div>
-            <div className="item-container-right">
-              <label className="dialog-label">Kort om föreningen</label>
-              <textarea 
-                placeholder="Skriv en beskrivning av din förening" 
-                className="dialog-textarea" 
+              {/* Description */}
+              <label className="dialog-label">Beskrivning:</label>
+              <textarea
+                name="description"
+                placeholder="Ange en beskrivning"
+                className="dialog-textarea"
                 value={form.description}
                 onChange={(e) => updateForm({ description: e.target.value })}
               />
-              <label className="dialog-label">Länk till hemsida</label>
-              <input 
-                type="text" 
-                placeholder="Länk till föreningens hemsida" 
+              {/* Website Link */}
+              <label className="dialog-label">Länk:</label>
+              <input
+                type="url"
+                name="link"
+                placeholder="Ange din webbplats"
                 className="dialog-input"
                 value={form.link}
                 onChange={(e) => updateForm({ link: e.target.value })}
               />
             </div>
+            <div className="item-container-right">
+              {/* Color */}
+              <label className="dialog-label">Färg:</label>
+              <input
+                type="color"
+                name="color"
+                className="dialog-input"
+                value={form.color}
+                onChange={(e) => updateForm({ color: e.target.value })}
+              />
+              {/* Profile Picture URL */}
+              <label className="dialog-label">Profilbild URL:</label>
+              <input
+                type="url"
+                name="profilePic"
+                placeholder="Ange URL för profilbild"
+                className="dialog-input"
+                value={form.profilePic}
+                onChange={(e) => updateForm({ profilePic: e.target.value })}
+              />
+            </div>
           </div>
           <div className="dialog-buttons">
-            <button onClick={() => setOpen(false)} className="button-style-cancel">Avbryt</button>
-            <button onClick={onSubmit} className="button-style">Spara ändringar</button>
+            <button onClick={() => setOpen(false)} className="button-style-cancel">
+              Avbryt
+            </button>
+            <button onClick={() => { onSubmit(); }} className="button-style">
+              Spara ändringar
+            </button>
           </div>
         </Dialog>
       )}
-    </>
+    </div>
   );
 }

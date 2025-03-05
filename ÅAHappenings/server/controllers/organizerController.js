@@ -75,8 +75,36 @@ const updateColor = async (req, res) => {
     }
 };
 
-
-
+const updateOrganizer = async (req, res) => {
+    const { id } = req.params;
+  
+    // Check if the provided id is a valid ObjectId.
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(404).json({ error: 'No such organizer' });
+    }
+  
+    // Ensure that the logged-in organizer is updating their own profile.
+    if (req.user._id !== id) {
+      return res.status(401).json({ error: 'Not authorized to update this organizer' });
+    }
+  
+    // Verify that the organizer exists.
+    const organizer = await Organizer.findById(id);
+    if (!organizer) {
+      return res.status(400).json({ error: 'No such organizer' });
+    }
+  
+    // Update the organizer with the fields in req.body.
+    // For example, updating description, linkToWebsite, color, profilePic, etc.
+    const updatedOrganizer = await Organizer.findOneAndUpdate(
+      { _id: id },
+      { ...req.body },
+      { new: true }
+    );
+  
+    res.status(200).json(updatedOrganizer);
+  };
+  
 
 //module.exports = {signupOrganizer, loginOrganizer}
-export { signupOrganizer, loginOrganizer, getOrganizers,  getColor, updateColor };
+export { signupOrganizer, loginOrganizer, getOrganizers,  getColor, updateColor, updateOrganizer };

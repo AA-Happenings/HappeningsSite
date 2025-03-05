@@ -1,5 +1,5 @@
 import express from "express";
-import {loginOrganizer, signupOrganizer, getOrganizers, getColor, updateColor} from '../controllers/organizerController.js'
+import {loginOrganizer, signupOrganizer, getOrganizers, getColor, updateColor, updateOrganizer} from '../controllers/organizerController.js'
 
 const router = express.Router()
 
@@ -10,6 +10,8 @@ router.post('/signup', signupOrganizer)
 router.get('/', getOrganizers)
 
 router.get('/color', getColor);
+
+router.patch('/', updateOrganizer)
 
 // Update organizer color
 router.put('/color', updateColor);
