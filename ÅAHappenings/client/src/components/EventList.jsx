@@ -18,17 +18,22 @@ const EventCard = (props) => (
 );
 
 const EventList = ({ events }) => {
-  const today = new Date(); // Get the current date
+  const today = new Date();
+  today.setHours(0, 0, 0, 0); // Set time to midnight to compare only dates
 
-  const upcomingEvents = events
-    .filter(event => new Date(event.date) >= today) // Remove past events
-    .sort((a, b) => new Date(`${a.date}T${a.time}`) - new Date(`${b.date}T${b.time}`)); // Sort by date & time
+  // Filter out past events (ignore time)
+  const upcomingEvents = events.filter(event => new Date(event.date) >= today);
+
+  // Sort only by date (ignores time)
+  const sortedEvents = upcomingEvents.sort((a, b) => new Date(a.date) - new Date(b.date));
 
   return (
     <div className="event-list-container">
-      {
-        upcomingEvents.map((event) => <EventCard event={event} key={event._id} />)
-      }
+      {sortedEvents.length > 0 ? (
+        sortedEvents.map((event) => <EventCard event={event} key={event._id} />)
+      ) : (
+        <p>No upcoming events</p>
+      )}
     </div>
   );
 };
