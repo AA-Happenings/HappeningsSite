@@ -20,7 +20,7 @@ const loginOrganizer = async (req, res) => {
         // create jwt token
         const token = createToken(organizer._id)
 
-        res.status(200).json({email, username: organizer.username, token})
+        res.status(200).json({email, username: organizer.username, _id: organizer._id ,token})
     } catch (error) {
         res.status(400).json({error: error.message})
     }
@@ -48,5 +48,35 @@ const getOrganizers = async (req, res) => {
     
 }
 
+const getColor = async (req, res) => {
+    try {
+        const organizer = await Organizer.findById(req.user.id);
+        if (!organizer) return res.status(404).json({ error: 'Organizer not found' });
+
+        res.json({ color: organizer.color });
+    } catch (error) {
+        res.status(500).json({ error: 'Server error' });
+    }
+};
+
+// Update the color of the authenticated organizer
+const updateColor = async (req, res) => {
+    try {
+        const { color } = req.body;
+        const organizer = await Organizer.findById(req.user.id);
+        if (!organizer) return res.status(404).json({ error: 'Organizer not found' });
+
+        organizer.color = color;
+        await organizer.save();
+
+        res.json({ message: 'Color updated', color: organizer.color });
+    } catch (error) {
+        res.status(500).json({ error: 'Server error' });
+    }
+};
+
+
+
+
 //module.exports = {signupOrganizer, loginOrganizer}
-export { signupOrganizer, loginOrganizer, getOrganizers };
+export { signupOrganizer, loginOrganizer, getOrganizers,  getColor, updateColor };
