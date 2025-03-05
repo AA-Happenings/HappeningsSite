@@ -94,9 +94,9 @@
 }
 
 .react-calendar {
-  width: clamp(300px, 38vw, 800px);
+  width: clamp(300px, 34vw, 800px);
   /* Make everything bigger on large screens, but still shrink as needed */
-  font-size: clamp(6px, 1.5vw, 33px);
+  font-size: clamp(6px, 1.2vw, 33px);
   margin-top: 1rem;
   padding: 0.8rem;
   border: 4px solid #929292 !important;
