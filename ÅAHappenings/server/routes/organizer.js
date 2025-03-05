@@ -11,7 +11,7 @@ router.get('/', getOrganizers)
 
 router.get('/color', getColor);
 
-router.patch('/', updateOrganizer)
+router.patch('/update', updateOrganizer)
 
 // Update organizer color
 router.put('/color', updateColor);

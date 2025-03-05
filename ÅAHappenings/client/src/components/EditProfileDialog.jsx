@@ -30,7 +30,7 @@ export default function EditProfileDialog({ isOpen, setOpen, profile, setProfile
 
   async function onSubmit() {
     try {
-      const response = await fetch("http://localhost:5050/organizer", {
+      const response = await fetch("http://localhost:5050/organizer/update", {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
