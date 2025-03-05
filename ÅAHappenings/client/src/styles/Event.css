@@ -9,7 +9,7 @@
 /* Container that holds the event content */
 .event-container {
     background-color: #f9f9f9;
-    width: 95%;
+    width: 75%;
     margin: 0 auto;
     padding: 20px;
     font-family: Arial, sans-serif;
@@ -75,11 +75,13 @@
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
+.section-title {
+    text-align: center;
+}
 
 .event-description-section {
-    text-align: left;
+    text-align: center;
     margin: 10px;
-    max-width: 800px;
 }
 
 .event-description {
