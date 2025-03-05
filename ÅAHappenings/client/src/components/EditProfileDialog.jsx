@@ -7,56 +7,23 @@ export default function EditProfileDialog({ isOpen, setOpen, profile, setProfile
   const { user } = useAuthContext();
 
   const [form, setForm] = useState({
-    name: "",
-    description: "",
-    link: "",
-    color: "",
-    profilePic: ""
+    name: profile?.username || "",
+    description: profile?.description || "",
+    linkToWebsite: profile?.linkToWebsite || "",
+    color: profile?.color || "#ffffff",
+    profilePic: profile?.profilePic || "",
   });
 
-  // Function to fetch organizer profile details
-  async function fetchProfile() {
-    if (!user || !user._id) return;
-
-    try {
-      const response = await fetch(`http://localhost:5050/organizer/${user._id}`, {
-        headers: {
-          "Authorization": `Bearer ${user.token}`
-        }
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const data = await response.json();
-      setProfile({
-        name: data.username,
-        description: data.description || "",
-        link: data.linkToWebsite || "",
-        color: data.color || "#ffffff",
-        profilePic: data.profilePic || ""
-      });
-    } catch (error) {
-      console.error("Error fetching organizer profile:", error);
-    }
-  }
-
-  // Fetch profile data when the dialog opens
   useEffect(() => {
-    if (isOpen) {
-      fetchProfile();
+    if (profile) {
+      setForm({
+        name: profile.username || "",
+        description: profile.description || "",
+        linkToWebsite: profile.linkToWebsite || "",
+        color: profile.color || "#ffffff",
+        profilePic: profile.profilePic || "",
+      });
     }
-  }, [isOpen]);
-
-  useEffect(() => {
-    setForm({
-      name: profile.name || "",
-      description: profile.description || "",
-      link: profile.link || "",
-      color: profile.color || "",
-      profilePic: profile.profilePic || ""
-    });
   }, [profile]);
 
   function updateForm(value) {
@@ -69,14 +36,14 @@ export default function EditProfileDialog({ isOpen, setOpen, profile, setProfile
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${user.token}`
+          "Authorization": `Bearer ${user.token}`,
         },
         body: JSON.stringify({
           description: form.description,
-          linkToWebsite: form.link,
+          linkToWebsite: form.linkToWebsite,
           color: form.color,
-          profilePic: form.profilePic
-        })
+          profilePic: form.profilePic,
+        }),
       });
 
       if (!response.ok) {
@@ -84,13 +51,7 @@ export default function EditProfileDialog({ isOpen, setOpen, profile, setProfile
       }
 
       const updatedOrganizer = await response.json();
-      setProfile({
-        name: updatedOrganizer.username,
-        description: updatedOrganizer.description,
-        link: updatedOrganizer.linkToWebsite,
-        color: updatedOrganizer.color,
-        profilePic: updatedOrganizer.profilePic
-      });
+      setProfile(updatedOrganizer);  // Update the profile in parent component
     } catch (error) {
       console.error("Error updating organizer profile:", error);
     } finally {
@@ -105,7 +66,6 @@ export default function EditProfileDialog({ isOpen, setOpen, profile, setProfile
           <h1 className="dialog-header">Edit Profile</h1>
           <div className="dialog-container">
             <div className="item-container-left">
-              {/* Name (read-only) */}
               <label className="dialog-label">Name:</label>
               <input
                 required
@@ -114,31 +74,28 @@ export default function EditProfileDialog({ isOpen, setOpen, profile, setProfile
                 placeholder="Association Name"
                 className="dialog-input"
                 value={form.name}
-                readOnly
+                readOnly // If you don't want users to edit their name
               />
-              {/* Description */}
-              <label className="dialog-label">Beskrivning:</label>
+              <label className="dialog-label">Description:</label>
               <textarea
                 name="description"
-                placeholder="Ange en beskrivning"
+                placeholder="Enter a description"
                 className="dialog-textarea"
                 value={form.description}
                 onChange={(e) => updateForm({ description: e.target.value })}
               />
-              {/* Website Link */}
-              <label className="dialog-label">Länk:</label>
+              <label className="dialog-label">Link:</label>
               <input
                 type="url"
                 name="link"
-                placeholder="Ange din webbplats"
+                placeholder="Enter your website URL"
                 className="dialog-input"
-                value={form.link}
-                onChange={(e) => updateForm({ link: e.target.value })}
+                value={form.linkToWebsite}
+                onChange={(e) => updateForm({ linkToWebsite: e.target.value })}
               />
             </div>
             <div className="item-container-right">
-              {/* Color */}
-              <label className="dialog-label">Färg:</label>
+              <label className="dialog-label">Color:</label>
               <input
                 type="color"
                 name="color"
@@ -146,12 +103,11 @@ export default function EditProfileDialog({ isOpen, setOpen, profile, setProfile
                 value={form.color}
                 onChange={(e) => updateForm({ color: e.target.value })}
               />
-              {/* Profile Picture URL */}
-              <label className="dialog-label">Profilbild URL:</label>
+              <label className="dialog-label">Profile Picture URL:</label>
               <input
                 type="url"
                 name="profilePic"
-                placeholder="Ange URL för profilbild"
+                placeholder="Enter Profile Picture URL"
                 className="dialog-input"
                 value={form.profilePic}
                 onChange={(e) => updateForm({ profilePic: e.target.value })}
@@ -159,12 +115,8 @@ export default function EditProfileDialog({ isOpen, setOpen, profile, setProfile
             </div>
           </div>
           <div className="dialog-buttons">
-            <button onClick={() => setOpen(false)} className="button-style-cancel">
-              Avbryt
-            </button>
-            <button onClick={onSubmit} className="button-style">
-              Spara ändringar
-            </button>
+            <button onClick={() => setOpen(false)} className="button-style-cancel">Cancel</button>
+            <button onClick={onSubmit} className="button-style">Save Changes</button>
           </div>
         </Dialog>
       )}
