@@ -35,7 +35,7 @@ const eventSchema = new Schema({
         type: [String],
     },
     ao: {
-        type: [String],
+        type: String,
     },
     user_id: {
         type: String,

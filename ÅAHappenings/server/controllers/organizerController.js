@@ -3,6 +3,7 @@
 
 import Organizer from '../models/organizerModel.js';
 import jwt from 'jsonwebtoken';
+import mongoose from 'mongoose';
 
 
 const createToken = (_id) => {
@@ -48,6 +49,28 @@ const getOrganizers = async (req, res) => {
     
 }
 
+const getOrganizerById = async (req, res) => {
+    const { id } = req.params;
+
+    // Check if the provided id is a valid MongoDB ObjectId
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(404).json({ error: 'Invalid organizer ID' });
+    }
+
+    try {
+        const organizer = await Organizer.findById(id);
+
+        if (!organizer) {
+            return res.status(404).json({ error: 'Organizer not found' });
+        }
+
+        res.status(200).json(organizer);
+    } catch (error) {
+        res.status(500).json({ error: 'Server error' });
+    }
+};
+
+
 const getColor = async (req, res) => {
     try {
         const organizer = await Organizer.findById(req.user.id);
@@ -75,8 +98,49 @@ const updateColor = async (req, res) => {
     }
 };
 
+const updateOrganizer = async (req, res) => {
+    const { id } = req.params;
+    console.log(id)
 
 
+    console.log("Received ID from params:", id); // Debugging
+
+    if (!id) {
+        return res.status(400).json({ error: 'Missing organizer ID in request' });
+    }
+    // Check if the provided id is a valid ObjectId.
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(400).json({ error: 'Invalid organizer ID' });
+    }
+
+    // Ensure user is authenticated
+    if (!req.user) {
+        return res.status(401).json({ error: 'Unauthorized request' });
+    }
+
+    // Ensure the logged-in user is updating their own profile.
+    if (req.user._id.toString() !== id) {
+        return res.status(403).json({ error: 'Not authorized to update this organizer' });
+    }
+
+    try {
+        // Verify the organizer exists.
+        const organizer = await Organizer.findById(id);
+        if (!organizer) {
+            return res.status(404).json({ error: 'Organizer not found' });
+        }
+
+        // Update organizer's details
+        const updatedOrganizer = await Organizer.findByIdAndUpdate(id, req.body, { new: true });
+
+        res.status(200).json(updatedOrganizer);
+    } catch (error) {
+        console.error("Error updating organizer:", error);
+        res.status(500).json({ error: 'Server error' });
+    }
+};
+
+  
 
 //module.exports = {signupOrganizer, loginOrganizer}
-export { signupOrganizer, loginOrganizer, getOrganizers,  getColor, updateColor };
+export { signupOrganizer, loginOrganizer, getOrganizers,  getColor, updateColor, updateOrganizer , getOrganizerById};

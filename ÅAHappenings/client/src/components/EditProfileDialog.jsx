@@ -1,20 +1,36 @@
-import React, { useState } from 'react';
-import { Dialog } from 'react-dialog-element';
+import { useState, useEffect } from "react";
+import { Dialog } from "react-dialog-element";
+import { useAuthContext } from "../hooks/useAuthContext.jsx";
 import "../styles/Dialog.css";
 
 export default function EditProfileDialog({ isOpen, setOpen, profile, setProfile }) {
+  const { user } = useAuthContext();
+
   const [form, setForm] = useState({
-    description: profile.description || "",
-    link: profile.link || "",
-    profilePic: profile.profilePic || null,
-    color: profile.color || "#3498db"
+    description: profile?.description || "",
+    linkToWebsite: profile?.linkToWebsite || "",
+    profilePic: profile?.profilePic || null,
+    color: profile?.color || "#3498db"
   });
   const [error, setError] = useState("");
 
+  // Update local form state when parent's profile changes
+  useEffect(() => {
+    if (profile) {
+      setForm({
+        description: profile.description || "",
+        linkToWebsite: profile.linkToWebsite || "",
+        profilePic: profile.profilePic || null,
+        color: profile.color || "#3498db"
+      });
+    }
+  }, [profile]);
+
   function updateForm(value) {
-    setForm(prev => ({ ...prev, ...value }));
+    setForm((prev) => ({ ...prev, ...value }));
   }
 
+  // Handle image upload with preview and file type validation
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
     const validImageTypes = ["image/png", "image/jpeg", "image/jpg"];
@@ -32,9 +48,33 @@ export default function EditProfileDialog({ isOpen, setOpen, profile, setProfile
     }
   };
 
-  function onSubmit() {
-    setProfile(prev => ({ ...prev, ...form }));
-    setOpen(false);
+  async function onSubmit() {
+    try {
+      const response = await fetch(`http://localhost:5050/organizer/update/${user._id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${user.token}`
+        },
+        body: JSON.stringify({
+          description: form.description,
+          linkToWebsite: form.linkToWebsite,
+          color: form.color,
+          profilePic: form.profilePic
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const updatedOrganizer = await response.json();
+      setProfile(updatedOrganizer); // Update parent profile state
+    } catch (error) {
+      console.error("Error updating organizer profile:", error);
+    } finally {
+      setOpen(false);
+    }
   }
 
   return (
@@ -73,10 +113,8 @@ export default function EditProfileDialog({ isOpen, setOpen, profile, setProfile
                   className={`dialog-input ${form.profilePic ? "hidden-file-input" : ""}`} 
                 />
               </div>
-              
               {error && <p className="error-message">{error}</p>}
-              
-              <label className="dialog-label" style={{marginTop:"10px"}}>Ange föreningens färg</label>
+              <label className="dialog-label" style={{ marginTop:"10px" }}>Ange föreningens färg</label>
               <input 
                 type="color" 
                 value={form.color} 
@@ -97,8 +135,8 @@ export default function EditProfileDialog({ isOpen, setOpen, profile, setProfile
                 type="text" 
                 placeholder="Länk till föreningens hemsida" 
                 className="dialog-input"
-                value={form.link}
-                onChange={(e) => updateForm({ link: e.target.value })}
+                value={form.linkToWebsite}
+                onChange={(e) => updateForm({ linkToWebsite: e.target.value })}
               />
             </div>
           </div>

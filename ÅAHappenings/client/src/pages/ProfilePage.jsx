@@ -1,70 +1,111 @@
-import React, { useState } from "react";
+import { useAuthContext } from '../hooks/useAuthContext';  // Adjust the path if needed
+import { useState, useEffect, } from "react";
+import { Dialog } from "react-dialog-element";
+import { useNavigate } from 'react-router-dom';
+
+import React from "react";
 import EditProfileDialog from "../components/EditProfileDialog";
 import { GoPencil } from "react-icons/go";
-import "../styles/profile.css"; 
+import "../styles/profile.css";
 
-export default function AssociationProfile() {
-  const [profile, setProfile] = useState({
-    name: "Association Name",
-    description:
-      "This is a brief description about the association. It can be updated later via the edit dialog.",
-    link: "http://association.example.com",
-    profilePic: null,
-    color: "#3498db"
-  });
+
+export default function ProfilePage() {
+  const { user, admin } = useAuthContext();
   const [isOpen, setIsOpen] = useState(false);
+  const [profile, setProfile] = useState(null);
+  const navigate = useNavigate();
+
+  // Fetch profile data when component mounts
+  useEffect(() => {
+    async function fetchProfile() {
+      if (!user) return;
+
+      try {
+        const response = await fetch(`http://localhost:5050/organizer/${user._id}`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${user.token}`,
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch user profile");
+        }
+
+        const data = await response.json();
+        setProfile(data);  // Set profile data
+      } catch (error) {
+        console.error("Error fetching profile:", error);
+      }
+    }
+
+    fetchProfile();
+  }, [user]);
+
+  if (!profile) {
+    return <div>Loading...</div>;
+  }
+
+  const isOwner = user && profile._id && user._id === profile._id;
+  const canEdit = admin || isOwner;
+
+  const handleProfileUpdate = (updatedProfile) => {
+    setProfile(updatedProfile);  // Update the profile state with the new data
+    setIsOpen(false);  // Close the dialog after saving the changes
+  };
 
   return (
-    <div className="profile-page-wrapper">
+    <>
       <div className="profile-title-outside">
-        <h1>{profile.name}</h1>
+        <h1>{profile.username || "Placeholder Profile Name"}</h1>
       </div>
 
       <div className="profile-container">
         <div className="profile-content">
-          {/* Left Column: Sidebar */}
           <div className="profile-sidebar">
             <div className="profile-pic-box">
               {profile.profilePic ? (
                 <img src={profile.profilePic} alt="Profile" className="profile-pic" />
               ) : (
-                <span className="placeholder-text">Ingen profilbild vald</span>
+                <span className="placeholder-text">No profile picture</span>
               )}
             </div>
             <div className="profile-quick-info">
               <p>
                 <strong>Link:</strong>{" "}
-                <a href={profile.link} target="_blank" rel="noopener noreferrer">
-                  {profile.link}
+                <a href={profile.linkToWebsite || "#"} target="_blank" rel="noopener noreferrer">
+                  {profile.linkToWebsite || "No link provided"}
                 </a>
               </p>
             </div>
           </div>
 
-          {/* Right Column: Header Above the Bordered Box */}
           <div className="profile-main-wrapper">
-            <h2 className="profile-subheader">Om vår förening</h2>
+            <h2 className="profile-subheader">About Us</h2>
             <div className="profile-main">
-              <p>{profile.description}</p>
+              <p>{profile.description || "No description provided."}</p>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="fixed-buttons">
-        <button onClick={() => setIsOpen(true)} className="edit-button">
-          Edit <GoPencil size={18} />
-        </button>
-      </div>
+      {canEdit && (
+        <div className="fixed-buttons">
+          <button onClick={() => setIsOpen(true)} className="edit-button">
+            Edit <GoPencil size={18} />
+          </button>
+        </div>
+      )}
 
       {isOpen && (
         <EditProfileDialog
           isOpen={isOpen}
           setOpen={setIsOpen}
           profile={profile}
-          setProfile={setProfile}
+          setProfile={handleProfileUpdate}  // Pass the update function to the dialog
         />
       )}
-    </div>
+    </>
   );
 }
