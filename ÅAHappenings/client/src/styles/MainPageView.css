@@ -31,6 +31,11 @@
 
 /* Responsive adjustments */
 @media screen and (max-width: 768px) {
+
+  html, body {
+    height: auto; 
+    overflow-y: auto !important; 
+  }
   
   /* Center all elements in a column */
   .main-container {
@@ -41,6 +46,7 @@
       margin: 0 auto;
       max-width: 100%;
       overflow-x: hidden;
+      overflow-y: auto;
   }
 
   .search-filter-container {
@@ -83,15 +89,6 @@
     font-size: 14px;
   }
 
-
-  .event-list-container {
-    width: 100%;
-    max-width: 100%; 
-    height: auto;
-    max-height: unset;
-    overflow-y: visible;
-}
-
   /* Place calendar below event list */
   .calendar-event-container {
       display: flex;
@@ -101,11 +98,14 @@
       justify-content: center;
       width: 100%;
       max-width: 100%;
+      overflow: visible !important;
   }
 
   .react-calendar {
-      transform: scale(1); /* Reset scaling */
-      max-width: 100%;
+    max-width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
   }
 
   /* Adjust FAQ button positioning */
