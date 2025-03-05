@@ -12,7 +12,7 @@ import { NavLink } from "react-router-dom";
 
 
 const RegisterPage = () => {
-  const [email, setEmail] = useState('')
+      const [email, setEmail] = useState('')
       const [password, setPassword] = useState('')
       const [confirmPassword, setConfirmPassword] = useState('')
       const [username, setUsername] = useState('')
@@ -88,7 +88,7 @@ const RegisterPage = () => {
 
           <div>
           <button 
-            dissabled={isLoading}
+            disabled={isLoading}
             className="register-button" 
             type="submit">   {/* Den här ska säkert ändras till en redirect */}
               Registrera      
