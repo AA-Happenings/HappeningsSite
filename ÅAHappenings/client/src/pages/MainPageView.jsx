@@ -152,7 +152,7 @@ export default function MainPageView() {
             cursor: "pointer"
         }}
       >
-        Clear Dates ✖
+        Rensa datum ✖
       </button>
   )}
           <div className="search-container">
