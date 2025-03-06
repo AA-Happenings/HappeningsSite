@@ -80,7 +80,7 @@ export default function Event() {
         <div className="event-content">
           {/* Left Column: Student association info and TLDR */}
           <div className="event-sidebar">
-            <div className="event-organizer-section">
+            <div className="event-organizer-section" onClick={() => navigate(`/profile/${event.user_id}`)}>
               <h2 className="section-title">
                 {event.username || "PLACEHOLDER FOR EO NAME"}
               </h2>
