@@ -111,7 +111,9 @@ Note: Beware of modifying this element as it can break the animations - you shou
   cursor: default; /* Prevent pointer effect */
   margin-left: 20px; /* Adjust alignment to the left */
   text-align: left; /* Ensure it's positioned correctly */
-  display: block; /* Make sure it respects margins */
+  white-space: normal;        /* allow wrapping */
+  word-wrap: break-word;      /* or word-break: break-word; */
+  max-width: 100%;
 }
 
 @media screen and (max-width: 768px) {
