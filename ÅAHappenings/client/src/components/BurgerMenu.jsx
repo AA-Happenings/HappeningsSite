@@ -4,13 +4,14 @@ import "../styles/BurgerMenu.css";
 import { GoHome, GoCalendar, GoPerson, GoChecklist, GoSignOut } from "react-icons/go";
 import { useLogout } from '../hooks/useLogout';
 import { useAuthContext } from "../hooks/useAuthContext";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const BurgerMenu = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef(null);
   const { logout } = useLogout();
   const { user } = useAuthContext();
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     logout();
@@ -70,14 +71,16 @@ const BurgerMenu = () => {
               <span>Mina Evenemang</span>
             </NavLink>
 
-            <NavLink 
-              className="bm-item" 
-              to="/profile" 
-              onClick={() => setMenuOpen(false)}
+            <div
+              className="bm-item"
+              onClick={() => {
+                setMenuOpen(false)
+                navigate(`/profile/${user._id}` )
+              }}
             >
               <GoPerson style={{ verticalAlign: "middle" }} />
               <span>Min Profil</span>
-            </NavLink>
+            </div>
 
             <NavLink 
               className="bm-item" 
