@@ -56,10 +56,10 @@ export default function EditProfileDialog({ isOpen, setOpen, profile, setProfile
     if (!image) return;
 
     const formData = new FormData();
-    formData.append(user._id, image);
+    formData.append("image", image);
 
     try {
-      const response = await axios.post("http://localhost:5050/upload", formData, {
+      const response = await axios.post("http://localhost:5050/uploads", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
           "Authorization": `Bearer ${user.token}`
@@ -85,7 +85,7 @@ export default function EditProfileDialog({ isOpen, setOpen, profile, setProfile
           description: form.description,
           linkToWebsite: form.linkToWebsite,
           color: form.color,
-          pfpUrl: form.pfpUrl
+          pfpUrl: user._id
         })
       });
 
