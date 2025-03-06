@@ -1,7 +1,7 @@
 import { useAuthContext } from '../hooks/useAuthContext';  // Adjust the path if needed
 import { useState, useEffect, } from "react";
 import { Dialog } from "react-dialog-element";
-import { useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 import React from "react";
 import EditProfileDialog from "../components/EditProfileDialog";
@@ -14,14 +14,16 @@ export default function ProfilePage() {
   const [isOpen, setIsOpen] = useState(false);
   const [profile, setProfile] = useState(null);
   const navigate = useNavigate();
+  const params = useParams();
 
   // Fetch profile data when component mounts
   useEffect(() => {
     async function fetchProfile() {
       if (!user) return;
-
+      const id = params.id?.toString();
+      
       try {
-        const response = await fetch(`http://localhost:5050/organizer/${user._id}`, {
+        const response = await fetch(`http://localhost:5050/organizer/${id}`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
