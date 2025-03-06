@@ -46,7 +46,7 @@ const App = () => {
             {/* TODO: adminpage needs more protection to check for admin credentials instead of user */}
             <Route
               path="/adminpage"
-              element={user && admin ? <AdminPage /> : <Navigate to="/login" />}
+              element={user && user.admin ? <AdminPage /> : <Navigate to="/login" />}
             />
 
 
