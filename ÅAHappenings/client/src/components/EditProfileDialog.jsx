@@ -1,15 +1,18 @@
 import { useState, useEffect } from "react";
 import { Dialog } from "react-dialog-element";
+import axios from "axios";
 import { useAuthContext } from "../hooks/useAuthContext.jsx";
 import "../styles/Dialog.css";
 
 export default function EditProfileDialog({ isOpen, setOpen, profile, setProfile }) {
   const { user } = useAuthContext();
+  const [image, setImage] = useState(null);
+  const [uploadMessage, setUploadMessage] = useState("");
 
   const [form, setForm] = useState({
     description: profile?.description || "",
     linkToWebsite: profile?.linkToWebsite || "",
-    profilePic: profile?.profilePic || null,
+    pfpUrl: profile?.pfpUrl || null,
     color: profile?.color || "#3498db"
   });
   const [error, setError] = useState("");
@@ -20,7 +23,7 @@ export default function EditProfileDialog({ isOpen, setOpen, profile, setProfile
       setForm({
         description: profile.description || "",
         linkToWebsite: profile.linkToWebsite || "",
-        profilePic: profile.profilePic || null,
+        pfpUrl: profile.pfpUrl || null,
         color: profile.color || "#3498db"
       });
     }
@@ -40,13 +43,35 @@ export default function EditProfileDialog({ isOpen, setOpen, profile, setProfile
         return;
       }
       setError("");
+      setImage(file);
       const reader = new FileReader();
       reader.onloadend = () => {
-        updateForm({ profilePic: reader.result });
+        updateForm({ pfpUrl: reader.result });
       };
       reader.readAsDataURL(file);
     }
   };
+
+  const uploadImage = async () => {
+    if (!image) return;
+
+    const formData = new FormData();
+    formData.append(user._id, image);
+
+    try {
+      const response = await axios.post("http://localhost:5050/upload", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          "Authorization": `Bearer ${user.token}`
+        },
+      });
+
+      setUploadMessage("Upload Successful");
+      console.log(response.data);
+    } catch (error) {
+      setUploadMessage("Upload Failed");
+    }
+  }
 
   async function onSubmit() {
     try {
@@ -60,14 +85,14 @@ export default function EditProfileDialog({ isOpen, setOpen, profile, setProfile
           description: form.description,
           linkToWebsite: form.linkToWebsite,
           color: form.color,
-          profilePic: form.profilePic
+          pfpUrl: form.pfpUrl
         })
       });
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-
+      uploadImage();
       const updatedOrganizer = await response.json();
       setProfile(updatedOrganizer); // Update parent profile state
     } catch (error) {
@@ -90,11 +115,11 @@ export default function EditProfileDialog({ isOpen, setOpen, profile, setProfile
             <div className="item-container-left">
               <label className="dialog-label">Föreningens logo</label>
               <div className="logo-upload">
-                {form.profilePic ? (
+                {form.pfpUrl ? (
                   <div className="logo-container">
-                    <img src={form.profilePic} alt="Logo" className="logo-preview" />
+                    <img src={form.pfpUrl} alt="Logo" className="logo-preview" />
                     <button 
-                      onClick={() => updateForm({ profilePic: null })} 
+                      onClick={() => updateForm({ pfpUrl: null })} 
                       className="remove-logo-button"
                     >
                       Ta bort logotyp
@@ -110,7 +135,7 @@ export default function EditProfileDialog({ isOpen, setOpen, profile, setProfile
                   type="file" 
                   accept="image/png, image/jpeg, image/jpg" 
                   onChange={handleImageUpload} 
-                  className={`dialog-input ${form.profilePic ? "hidden-file-input" : ""}`} 
+                  className={`dialog-input ${form.pfpUrl ? "hidden-file-input" : ""}`} 
                 />
               </div>
               {error && <p className="error-message">{error}</p>}

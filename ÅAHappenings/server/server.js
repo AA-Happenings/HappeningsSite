@@ -4,6 +4,7 @@ import mongoose from "mongoose"
 import events from "./routes/event.js";
 import organizer from "./routes/organizer.js";
 import whitelist from "./routes/whitelist.js";
+import upload from "./routes/upload.js";
 
 const PORT = process.env.PORT || 5050;
 const app = express();
@@ -13,6 +14,7 @@ app.use(express.json());
 app.use("/event", events);
 app.use("/organizer", organizer)
 app.use("/whitelist", whitelist)
+app.use("/uploads", upload)
 
 app.use((req, res, next) => {
   console.log(req.path, req.method)
