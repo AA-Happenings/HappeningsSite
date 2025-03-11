@@ -145,13 +145,25 @@ export default function MainPageView() {
     const dateEvents = getEventsForDate(date);
     if (dateEvents.length > 0) {
       let dotsToShow = dateEvents.length === 3 ? dateEvents : dateEvents.slice(0, 2);
+      const colorByUsername = new Map(users.map(u => [u.username, u.color]));
       return (
         <div className="tile-dots">
-          {dotsToShow.map((_, index) => (
-            <span key={index} className="dot" style={{ backgroundColor: dotColor }}></span>
-          ))}
+          {dotsToShow.map((event, index) => {
+            // Look up color from the user array; default to black if not found
+            const dotColor = colorByUsername.get(event.username) || "black";
+  
+            return (
+              <span 
+                key={index} 
+                className="dot" 
+                style={{ backgroundColor: dotColor }}
+              />
+            );
+          })}
           {dateEvents.length > 3 && (
-            <span className="more-dots">+{dateEvents.length - 2}</span>
+            <span className="more-dots">
+              +{dateEvents.length - 2}
+            </span>
           )}
         </div>
       );
