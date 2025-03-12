@@ -22,8 +22,8 @@ export default function MainPageView() {
 
   // Available filters with förening (will be filled later)
   const [availableFilters, setAvailableFilters] = useState({
-    evenemangstyp: ["sport", "kultur", "sittning", "gratis"],
-    taggar: ["Gulisevenemang", "BYOB", "Endast Medlemmar"],
+    evenemangstyp: ["Sport", "Kultur", "Sittning", "Mässa", "Allmän Tillställning", "Årsfest", "Parkhäng / Sykväll"],
+    taggar: ["Gratis", "Gulisevenemang", "BYOB", "Endast Medlemmar", "Alkoholfritt"],
     förening: []
   });
 
