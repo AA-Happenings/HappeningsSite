@@ -12,6 +12,7 @@ import MyEvents from './pages/MyEventsPage';
 import SAinfo from './pages/SAinfo';
 import Profile from './pages/ProfilePage';
 import AdminPage from './pages/AdminPage';
+import Creators from './pages/CreatorsPage';
 import './styles/background.css';
 import './styles/EventList.css';
 import './styles/FilterButton.css';
@@ -86,6 +87,7 @@ const App = () => {
             <Route path="info" element={<SAinfo />} />
             <Route path="faq" element={<FaqPage />} />
             <Route path="profile/:id" element={<Profile />} />
+            <Route path="/creators" element={<Creators />} />
 
           </Routes>
         </div>

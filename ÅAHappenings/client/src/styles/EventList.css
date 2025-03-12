@@ -120,6 +120,163 @@
   position: relative;
 }
 
+/* Make sure the tile is position: relative so we can absolutely-position the ring */
+.react-calendar__tile.tile-border-segments {
+  position: relative !important;
+  overflow: visible; /* in case the ring extends beyond the tile slightly */
+  z-index: 0;
+}
+
+/* The ring (conic gradient) */
+.react-calendar__tile.tile-border-segments::after {
+  content: "";
+  position: absolute;
+  /* 'inset: 6px' means 6px from each edge => ring is somewhat smaller than the tile.
+     Tweak this to make the ring bigger or smaller. */
+  inset: 9.5px;
+  border-radius: 50%;
+  z-index: 0; /* So it sits behind the tile’s text (day number) */
+  /* We'll define the background and mask in each .tile-border-segments-... combo below */
+}
+
+.tile-border-segments-K::after {
+  aspect-ratio: 1 / 1;
+  background: conic-gradient(red 0deg 360deg);
+  -webkit-mask: radial-gradient(closest-side, transparent 91%, black 94%);
+  mask: radial-gradient(closest-side, transparent 91%, black 94%);
+}
+
+.tile-border-segments-MK::after {
+  aspect-ratio: 1 / 1;
+  background: conic-gradient(yellow 0deg 360deg);
+  -webkit-mask: radial-gradient(closest-side, transparent 91%, black 94%);
+  mask: radial-gradient(closest-side, transparent 91%, black 94%);
+}
+
+.tile-border-segments-F::after {
+  aspect-ratio: 1 / 1;
+  background: conic-gradient(purple 0deg 360deg);
+  -webkit-mask: radial-gradient(closest-side, transparent 91%, black 94%);
+  mask: radial-gradient(closest-side, transparent 91%, black 94%);
+}
+
+.tile-border-segments-B::after {
+  aspect-ratio: 1 / 1;
+  background: conic-gradient(green 0deg 360deg);
+  -webkit-mask: radial-gradient(closest-side, transparent 91%, black 94%);
+  mask: radial-gradient(closest-side, transparent 91%, black 94%);
+}
+
+
+.tile-border-segments-K-MK::after {
+  aspect-ratio: 1 / 1;
+  background: conic-gradient(
+    red 0deg 180deg,
+    yellow 180deg 360deg
+  );
+  -webkit-mask: radial-gradient(closest-side, transparent 91%, black 94%);
+  mask: radial-gradient(closest-side, transparent 91%, black 94%);
+}
+.tile-border-segments-K-F::after {
+  aspect-ratio: 1 / 1;
+  background: conic-gradient(
+    red 0deg 180deg,
+    purple 180deg 360deg
+  );
+  -webkit-mask: radial-gradient(closest-side, transparent 91%, black 94%);
+  mask: radial-gradient(closest-side, transparent 91%, black 94%);
+}
+.tile-border-segments-K-B::after {
+  aspect-ratio: 1 / 1;
+  background: conic-gradient(
+    red 0deg 180deg,
+    green 180deg 360deg
+  );
+  -webkit-mask: radial-gradient(closest-side, transparent 91%, black 94%);
+  mask: radial-gradient(closest-side, transparent 91%, black 94%);
+}
+.tile-border-segments-MK-F::after {
+  aspect-ratio: 1 / 1;
+  background: conic-gradient(
+    yellow 0deg 180deg,
+    purple 180deg 360deg
+  );
+  -webkit-mask: radial-gradient(closest-side, transparent 91%, black 94%);
+  mask: radial-gradient(closest-side, transparent 91%, black 94%);
+}
+.tile-border-segments-MK-B::after {
+  aspect-ratio: 1 / 1;
+  background: conic-gradient(
+    yellow 0deg 180deg,
+    green 180deg 360deg
+  );
+  -webkit-mask: radial-gradient(closest-side, transparent 91%, black 94%);
+  mask: radial-gradient(closest-side, transparent 91%, black 94%);
+}
+.tile-border-segments-F-B::after {
+  aspect-ratio: 1 / 1;
+  background: conic-gradient(
+    purple 0deg 180deg,
+    green 180deg 360deg
+  );
+  -webkit-mask: radial-gradient(closest-side, transparent 91%, black 94%);
+  mask: radial-gradient(closest-side, transparent 91%, black 94%);
+}
+
+.tile-border-segments-K-MK-F::after {
+  aspect-ratio: 1 / 1;
+  background: conic-gradient(
+    red 0deg 120deg,
+    yellow 120deg 240deg,
+    purple 240deg 360deg
+  );
+  -webkit-mask: radial-gradient(closest-side, transparent 91%, black 94%);
+  mask: radial-gradient(closest-side, transparent 91%, black 94%);
+}
+.tile-border-segments-K-MK-B::after {
+  aspect-ratio: 1 / 1;
+  background: conic-gradient(
+    red 0deg 120deg,
+    yellow 120deg 240deg,
+    green 240deg 360deg
+  );
+  -webkit-mask: radial-gradient(closest-side, transparent 91%, black 94%);
+  mask: radial-gradient(closest-side, transparent 91%, black 94%);
+}
+.tile-border-segments-K-F-B::after {
+  aspect-ratio: 1 / 1;
+  background: conic-gradient(
+    red 0deg 120deg,
+    purple 120deg 240deg,
+    green 240deg 360deg
+  );
+  -webkit-mask: radial-gradient(closest-side, transparent 91%, black 94%);
+  mask: radial-gradient(closest-side, transparent 91%, black 94%);
+}
+.tile-border-segments-MK-F-B::after {
+  aspect-ratio: 1 / 1;
+  background: conic-gradient(
+    yellow 0deg 120deg,
+    purple 120deg 240deg,
+    green 240deg 360deg
+  );
+  -webkit-mask: radial-gradient(closest-side, transparent 91%, black 94%);
+  mask: radial-gradient(closest-side, transparent 91%, black 94%);
+}
+
+.tile-border-segments-K-MK-F-B::after {
+  aspect-ratio: 1 / 1;
+  background: conic-gradient(
+    red 0deg 90deg,
+    yellow 90deg 180deg,
+    purple 180deg 270deg,
+    green 270deg 360deg
+  );
+  -webkit-mask: radial-gradient(closest-side, transparent 91%, black 94%);
+  mask: radial-gradient(closest-side, transparent 91%, black 94%);
+}
+
+
 
 .react-calendar__tile--now {
   background-color: #1087ff !important; /* Highlight today's date */
@@ -162,7 +319,7 @@
   justify-content: center; /* Center the dots horizontally */
   gap: 1.5px; /* Consistent spacing between dots */
   position: absolute;
-  bottom: 4px; /* Position the dots below the date */
+  bottom: 7px; /* Position the dots below the date */
   left: 0;
   right: 0;
   font-size: 1em;
@@ -200,6 +357,41 @@
     height: auto;
     min-height: 20vh;
     max-height: 63vh;
+  }
+
+  .tile-dots {
+    display: flex;
+    justify-content: center; /* Center the dots horizontally */
+    gap: 1.5px; /* Consistent spacing between dots */
+    position: absolute;
+    bottom: 10px; /* Position the dots below the date */
+    left: 0;
+    right: 0;
+    font-size: 1em;
+  }
+
+  .react-calendar {
+    width: clamp(300px, 85vw, 700px);
+    /* Make everything bigger on large screens, but still shrink as needed */
+    font-size: clamp(14px, 1.2vw, 33px);
+    margin-top: 1rem;
+    padding: 0.8rem;
+    border: 4px solid #929292 !important;
+    border-radius: 20px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    /* And let it overflow normally: */
+    overflow: visible;
+  }
+
+  .react-calendar__tile.tile-border-segments::after {
+    content: "";
+    position: absolute;
+    /* 'inset: 6px' means 6px from each edge => ring is somewhat smaller than the tile.
+       Tweak this to make the ring bigger or smaller. */
+    inset: 12px 6px 6px 7px;
+    border-radius: 50%;
+    z-index: 0; /* So it sits behind the tile’s text (day number) */
+    /* We'll define the background and mask in each .tile-border-segments-... combo below */
   }
 
   .event-card {

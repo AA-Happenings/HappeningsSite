@@ -272,9 +272,10 @@ export default function EventForm({isOpen, setOpen, isNew}) {
                                     onChange = {(e) => updateForm({ ao: e.target.value})}
                                     className = "dialog-select-ao"
                                 >
-                                    <option value = "F">F</option>
+                                    <option value = "F">F(HF)</option>
                                     <option value = "MK">MK</option>
                                     <option value = "K">K</option>
+                                    <option value = "B">F(KK)</option>
                                 </select>
                             )}
                         </div>

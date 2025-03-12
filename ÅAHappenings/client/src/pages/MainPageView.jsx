@@ -140,9 +140,8 @@ export default function MainPageView() {
   };
 
   const renderTileContent = ({ date }) => {
-    // For now, all dots are black – later, this can depend on the user/organizer
-    const dotColor = "black";
     const dateEvents = getEventsForDate(date);
+    const borderColor = "";
     if (dateEvents.length > 0) {
       let dotsToShow = dateEvents.length === 3 ? dateEvents : dateEvents.slice(0, 2);
       const colorByUsername = new Map(users.map(u => [u.username, u.color]));
@@ -151,7 +150,6 @@ export default function MainPageView() {
           {dotsToShow.map((event, index) => {
             // Look up color from the user array; default to black if not found
             const dotColor = colorByUsername.get(event.username) || "black";
-  
             return (
               <span 
                 key={index} 
@@ -171,6 +169,38 @@ export default function MainPageView() {
     return null;
   };
 
+  function tileBorder({ date, view }) {
+    if (view !== "month") return "";
+  
+    const dateEvents = getEventsForDate(date);
+    if (!dateEvents || dateEvents.length === 0) return "";
+  
+    const validAOs = ["K", "MK", "F", "B"];
+    const aoOrder = { K: 0, MK: 1, F: 2, B: 3 };
+  
+    // Collect unique AOs
+    const uniqueAOs = Array.from(
+      new Set(
+        dateEvents
+          .filter((e) => validAOs.includes(e.ao))
+          .map((e) => e.ao)
+      )
+    );
+  
+    if (uniqueAOs.length === 0) return "";
+  
+    // Sort so we get consistent ordering (K < MK < F < B)
+    uniqueAOs.sort((a, b) => aoOrder[a] - aoOrder[b]);
+  
+    // e.g., "tile-border-segments-K-F"
+    const comboClass = "tile-border-segments-" + uniqueAOs.join("-");
+  
+    // Return BOTH classes:
+    return `tile-border-segments ${comboClass}`;
+  }
+  
+  
+  
   return (
     <div className="main-container">
       <div>
@@ -289,6 +319,7 @@ export default function MainPageView() {
             value={value}
             className="react-calendar"
             tileContent={renderTileContent}
+            tileClassName={tileBorder}
             locale="sv"
           />
           {filteredEvents && <EventList events={filteredEvents} />}
