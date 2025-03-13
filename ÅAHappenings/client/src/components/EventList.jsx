@@ -12,6 +12,9 @@ const EventCard = (props) => (
                   <p className="event-time">
                   🕒 {props.event.date} - {props.event.time}
                   </p>
+                  {props.event.membersOnly === "true" && (
+            <p className="members-only">Endast för medlemmar!</p>
+          )}
               </div>
               </div>
           </Link>
