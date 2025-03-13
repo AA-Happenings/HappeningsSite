@@ -66,8 +66,8 @@ export default function ProfilePage() {
         <div className="profile-content">
           <div className="profile-sidebar">
             <div className="profile-pic-box">
-              {profile.profilePic ? (
-                <img src={`/uploads/${user._id}.*`} alt="Profile" className="profile-pic" />
+              {user != null  ? (
+                <img src={`http://localhost:5050/uploads/${user._id}`} alt="Profile" className="profile-pic" />
               ) : (
                 <span className="placeholder-text">No profile picture</span>
               )}

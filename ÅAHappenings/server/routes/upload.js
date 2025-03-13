@@ -4,9 +4,9 @@ import Image from "../models/imageModel.js"
 import {requireAuth} from '../middleware/requireAuth.js'
 
 const router = express.Router();
-router.use(requireAuth);
+//router.use(requireAuth);
 // Single File Upload
-router.post("/", upload.single("image"), async (req, res) => {
+router.post("/", requireAuth, upload.single("image"), async (req, res) => {
   if (!req.file) {
     return res.status(400).json({ message: "No file uploaded" });
   }

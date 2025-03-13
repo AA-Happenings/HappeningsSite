@@ -8,7 +8,7 @@ const storage = multer.diskStorage({
     cb(null, "uploads/"); // Store in 'uploads' folder
   },
   filename: function (req, file, cb) {
-    cb(null, req.user._id.toString() + path.extname(file.originalname));
+    cb(null, req.user._id.toString());
   },
 });
 

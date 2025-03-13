@@ -16,6 +16,13 @@ app.use("/organizer", organizer)
 app.use("/whitelist", whitelist)
 app.use("/uploads", upload)
 
+import { fileURLToPath } from "url";
+import path from "path";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+
 app.use((req, res, next) => {
   console.log(req.path, req.method)
   next()
