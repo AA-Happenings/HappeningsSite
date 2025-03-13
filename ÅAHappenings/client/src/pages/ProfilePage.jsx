@@ -83,7 +83,7 @@ export default function ProfilePage() {
           </div>
 
           <div className="profile-main-wrapper">
-            <h2 className="profile-subheader">About Us</h2>
+            <h2 className="profile-subheader">Om oss</h2>
             <div className="profile-main">
               <p>{profile.description || "No description provided."}</p>
             </div>
