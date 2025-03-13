@@ -133,7 +133,7 @@
   position: absolute;
   /* 'inset: 6px' means 6px from each edge => ring is somewhat smaller than the tile.
      Tweak this to make the ring bigger or smaller. */
-  inset: 9.5px;
+  inset: 8px 9px 9px 9px;
   border-radius: 50%;
   z-index: 0; /* So it sits behind the tile’s text (day number) */
   /* We'll define the background and mask in each .tile-border-segments-... combo below */
@@ -284,6 +284,11 @@
   border-radius: 8px;
   font-weight: bold;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Optional shadow */
+  border: 5px solid conic-gradient(
+    red 0deg 120deg,
+    rgb(255, 208, 0) 120deg 240deg,
+    green 240deg 360deg
+  );
 }
 
 .react-calendar__tile--active {
@@ -342,6 +347,60 @@
   line-height: 0.5; /* Align the "+" vertically */
 }
 
+/*Calendar fixes for very large screens */
+@media screen and (min-width: 1550px) and (max-width: 1920px) {
+  /* The ring (conic gradient) */
+  .react-calendar__tile.tile-border-segments::after {
+    content: "";
+    position: absolute;
+    /* 'inset: 6px' means 6px from each edge => ring is somewhat smaller than the tile.
+       Tweak this to make the ring bigger or smaller. */
+    inset: 4px 9px 9px 9px;
+    border-radius: 50%;
+    z-index: 0; /* So it sits behind the tile’s text (day number) */
+    /* We'll define the background and mask in each .tile-border-segments-... combo below */
+  }
+  
+  .more-dots {
+    font-size: 0.5em; /* Smaller font size for the "+" indicator */
+    color: #000000; /* Match dot color */
+    margin-left: 1px; /* Add a gap after the last dot */
+    line-height: 0.8; /* Align the "+" vertically */
+  }
+  }
+
+/*Calendar fixes for very large screens */
+@media screen and (min-width: 1920px) {
+/* The ring (conic gradient) */
+.react-calendar__tile.tile-border-segments::after {
+  content: "";
+  position: absolute;
+  /* 'inset: 6px' means 6px from each edge => ring is somewhat smaller than the tile.
+     Tweak this to make the ring bigger or smaller. */
+  inset: 4px 13px 13px 13px;
+  border-radius: 50%;
+  z-index: 0; /* So it sits behind the tile’s text (day number) */
+  /* We'll define the background and mask in each .tile-border-segments-... combo below */
+}
+
+.more-dots {
+  font-size: 0.5em; /* Smaller font size for the "+" indicator */
+  color: #000000; /* Match dot color */
+  margin-left: 1px; /* Add a gap after the last dot */
+  line-height: 0.8; /* Align the "+" vertically */
+}
+
+.tile-dots {
+  display: flex;
+  justify-content: center; /* Center the dots horizontally */
+  gap: 1.5px; /* Consistent spacing between dots */
+  position: absolute;
+  bottom: 7px; /* Position the dots below the date */
+  left: 0;
+  right: 0;
+  font-size: 0.8em;
+}
+}
 
 /* Mobile Adjustments */
 @media screen and (max-width: 768px) {
