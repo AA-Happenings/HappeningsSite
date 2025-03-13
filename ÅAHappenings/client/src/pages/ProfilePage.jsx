@@ -20,10 +20,9 @@ export default function ProfilePage() {
   useEffect(() => {
     async function fetchProfile() {
       if (!user) return;
-      const id = params.id?.toString();
       
       try {
-        const response = await fetch(`http://localhost:5050/organizer/${id}`, {
+        const response = await fetch(`http://localhost:5050/organizer/${user._id}`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
