@@ -37,10 +37,10 @@
 /* Icon on the left side of event card */ /* jsx file reference in components - Eventlist */
 .event-icon {
   font-size: 2rem;
-  margin-right: 2rem;
-  border: 2px solid #000000a6;
-  border-radius: 0px;
-  border-width: 2px 2px 2px 2px;
+  margin-right: 1.5rem;
+  padding: 0px;
+  border: 4px solid #000000;
+  border-radius: 10px;
 }
 
 .event-details h3 {
