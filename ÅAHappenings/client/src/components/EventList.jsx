@@ -1,10 +1,17 @@
+import { PiX } from "react-icons/pi";
 import { Link } from "react-router-dom";
 
 const EventCard = (props) => (
   <Link to={`/event/${props.event._id}`}>
               <div className="event-card">
               <div className="event-icon">
-                  📅 {/* You can replace this with an actual icon if desired */}
+              <img src={`http://localhost:5050/uploads/${props.event.user_id}`}
+                style = {{ 
+                  maxHeight: '60px',
+                  maxWidth: '60px',
+                  borderRadius: '0px'
+                 }}
+              />
               </div>
               <div className="event-details">
                   <h3>{props.event.title}</h3>

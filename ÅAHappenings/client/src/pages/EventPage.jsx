@@ -85,7 +85,16 @@ export default function Event() {
                 {event.username || "PLACEHOLDER FOR EO NAME"}
               </h2>
               <img
-                src="https://www.studyinfinland.fi/sites/default/files/styles/logo_image/public/2019-09/Abo%20Akademi%20UUSI.png?itok=mDVmnidZ"
+                src={`http://localhost:5050/uploads/${event.user_id}`}
+                style = {{
+                  /* Profile Picture Box */  
+                  border: '1px solid #333',
+                  borderRadius: '10px',
+                  overflow: 'hidden',
+                  margin: '0 auto',
+                  backgroundColor: 'white',
+                    
+                }}
                 alt="Event Organizer"
                 className="organizer-image"
               />
