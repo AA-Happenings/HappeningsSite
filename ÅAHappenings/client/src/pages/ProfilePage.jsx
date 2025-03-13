@@ -19,14 +19,11 @@ export default function ProfilePage() {
   // Fetch profile data when component mounts
   useEffect(() => {
     async function fetchProfile() {
-      if (!user) return;
-      
       try {
-        const response = await fetch(`http://localhost:5050/organizer/${user._id}`, {
+        const response = await fetch(`http://localhost:5050/organizer/${params.id}`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${user.token}`,
           },
         });
 
@@ -66,8 +63,8 @@ export default function ProfilePage() {
         <div className="profile-content">
           <div className="profile-sidebar">
             <div className="profile-pic-box">
-              {user != null  ? (
-                <img src={`http://localhost:5050/uploads/${user._id}`} alt="Profile" className="profile-pic" />
+              {profile && profile._id  ? (
+                <img src={`http://localhost:5050/uploads/${params.id}`} alt="Profile" className="profile-pic" />
               ) : (
                 <span className="placeholder-text">No profile picture</span>
               )}
