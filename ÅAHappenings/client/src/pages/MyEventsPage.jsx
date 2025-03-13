@@ -6,11 +6,13 @@ import 'react-calendar/dist/Calendar.css';
 import EventForm from '../components/EventForm';
 import EventList from '../components/EventList';
 import { useAuthContext } from '../hooks/useAuthContext';
+import { useEventsContext } from "../hooks/useEventsContext";
 import { useNavigate } from 'react-router-dom';
 import '../styles/MyEventsPage.css';
 
 export default function MyEvents() {
   const { user } = useAuthContext();
+  const { events, dispatch } = useEventsContext();
   const navigate = useNavigate();
 
   const [apiEvents, setApiEvents] = useState([]);
@@ -18,6 +20,8 @@ export default function MyEvents() {
   const [value, setValue] = useState(new Date());
   const [filteredEvents, setFilteredEvents] = useState([]);
   const [calendarKey, setCalendarKey] = useState(Date.now());
+
+  const [users, setUsers] = useState([]);
 
   // Fetch events and filter them for the logged-in user
   useEffect(() => {
@@ -42,6 +46,34 @@ export default function MyEvents() {
       fetchEvents();
     }
   }, [user]);
+
+  // Fetch organizers (users) and update förening filter
+    useEffect(() => {
+      const fetchUsers = async () =>  {
+        const response = await fetch("http://localhost:5050/organizer", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${user.token}`
+          }
+        });
+        const json = await response.json();
+  
+        if (!response.ok) {
+          console.error(`An error occurred: ${response.statusText}`);
+          return;
+        }
+        setUsers(json);
+        // Update availableFilters.förening with the usernames from the fetched users
+        setAvailableFilters(prev => ({
+          ...prev,
+          förening: json.map(u => u.username)
+        }));
+      };
+      if (user) {
+        fetchUsers();
+      }
+    }, [user]);
 
   const handleOpenChange = (newValue) => {
     setOpen(newValue);
@@ -80,29 +112,72 @@ export default function MyEvents() {
   };
 
   const renderTileContent = ({ date }) => {
-    const events = getEventsForDate(date);
-    if (events.length > 0) {
-      const dotsToShow = events.length === 3 ? events : events.slice(0, 2);
+    const dateEvents = getEventsForDate(date);
+    if (dateEvents.length > 0) {
+      let dotsToShow = dateEvents.length === 3 ? dateEvents : dateEvents.slice(0, 2);
+      const colorByUsername = new Map(users.map(u => [u.username, u.color]));
       return (
         <div className="tile-dots">
-          {dotsToShow.map((_, index) => (
-            <span key={index} className="dot"></span>
-          ))}
-          {events.length > 3 && <span className="more-dots">+{events.length - 2}</span>}
+          {dotsToShow.map((event, index) => {
+            // Look up color from the user array; default to black if not found
+            const dotColor = colorByUsername.get(event.username) || "black";
+            return (
+              <span 
+                key={index} 
+                className="dot" 
+                style={{ backgroundColor: dotColor }}
+              />
+            );
+          })}
+          {dateEvents.length > 3 && (
+            <span className="more-dots">
+              +{dateEvents.length - 2}
+            </span>
+          )}
         </div>
       );
     }
     return null;
   };
 
+  function tileBorder({ date, view }) {
+    if (view !== "month") return "";
+  
+    const dateEvents = getEventsForDate(date);
+    if (!dateEvents || dateEvents.length === 0) return "";
+  
+    const validAOs = ["K", "MK", "F", "B"];
+    const aoOrder = { K: 0, MK: 1, F: 2, B: 3 };
+  
+    // Collect unique AOs
+    const uniqueAOs = Array.from(
+      new Set(
+        dateEvents
+          .filter((e) => validAOs.includes(e.ao))
+          .map((e) => e.ao)
+      )
+    );
+  
+    if (uniqueAOs.length === 0) return "";
+  
+    // Sort so we get consistent ordering (K < MK < F < B)
+    uniqueAOs.sort((a, b) => aoOrder[a] - aoOrder[b]);
+  
+    // e.g., "tile-border-segments-K-F"
+    const comboClass = "tile-border-segments-" + uniqueAOs.join("-");
+  
+    // Return BOTH classes:
+    return `tile-border-segments ${comboClass}`;
+  }
+
   return (
     <>
+    <div className="main-container">
       <div
         style={{
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          padding: "20px",
         }}
       >
         <div style={{ display: "flex", justifyContent: "center", marginBottom: "0.5vw" }}>
@@ -133,10 +208,12 @@ export default function MyEvents() {
             value={value}
             className="react-calendar" /* Apply custom styling */
             tileContent={renderTileContent} // Add tile content
+            tileClassName={tileBorder}
             locale="sv"
           />
           <EventList events={filteredEvents} />
         </div>
+      </div>
       </div>
     </>
   );

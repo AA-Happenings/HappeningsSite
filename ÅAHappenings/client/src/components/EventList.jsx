@@ -7,9 +7,10 @@ const EventCard = (props) => (
               <div className="event-icon">
               <img src={`http://localhost:5050/uploads/${props.event.user_id}`}
                 style = {{ 
-                  maxHeight: '60px',
-                  maxWidth: '60px',
-                  borderRadius: '0px'
+                  height: '60px',
+                  width: '60px',
+                  borderRadius: '5px',
+                  objectFit: 'contain'
                  }}
               />
               </div>
