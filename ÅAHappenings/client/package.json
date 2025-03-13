@@ -19,6 +19,7 @@
     "react-calendar": "^5.1.0",
     "react-dialog-element": "^1.1.0",
     "react-dom": "^18.2.0",
+    "react-icons": "^5.5.0",
     "react-native-dialog": "^9.3.0"
   },
   "devDependencies": {
