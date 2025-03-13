@@ -141,7 +141,6 @@ export default function MainPageView() {
 
   const renderTileContent = ({ date }) => {
     const dateEvents = getEventsForDate(date);
-    const borderColor = "";
     if (dateEvents.length > 0) {
       let dotsToShow = dateEvents.length === 3 ? dateEvents : dateEvents.slice(0, 2);
       const colorByUsername = new Map(users.map(u => [u.username, u.color]));
