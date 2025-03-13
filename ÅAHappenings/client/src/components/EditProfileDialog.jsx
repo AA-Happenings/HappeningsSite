@@ -23,11 +23,13 @@ export default function EditProfileDialog({ isOpen, setOpen, profile, setProfile
       setForm({
         description: profile.description || "",
         linkToWebsite: profile.linkToWebsite || "",
-        pfpUrl: profile.pfpUrl || null,
+        pfpUrl: profile.pfpUrl 
+        ? profile.pfpUrl
+        : `http://localhost:5050/uploads/${user._id}`,
         color: profile.color || "#3498db"
       });
     }
-  }, [profile]);
+  }, [profile, user._id]);
 
   function updateForm(value) {
     setForm((prev) => ({ ...prev, ...value }));
