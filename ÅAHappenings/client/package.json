@@ -19,6 +19,7 @@
     "react-calendar": "^5.1.0",
     "react-dialog-element": "^1.1.0",
     "react-dom": "^18.2.0",
+    "react-icons": "^5.5.0",
     "react-native-dialog": "^9.3.0"
   },
   "devDependencies": {
@@ -34,6 +35,6 @@
     "postcss": "^8.4.34",
     "react-router-dom": "^6.22.0",
     "tailwindcss": "^3.4.1",
-    "vite": "^5.0.8"
+    "vite": "^6.2.1"
   }
 }

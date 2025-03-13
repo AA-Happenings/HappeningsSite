@@ -74,10 +74,7 @@ const deleteEvent = async (req, res) => {
       return res.status(400).json({error: 'No such event'})
   }
 
-    console.log(event.user_id)
-    console.log(user_id)
-
-    if (event.user_id != user_id){
+    if (!req.user.admin && event.user_id != user_id){
       return res.status(401).json({error: 'not authorized for this event'})
     }
 

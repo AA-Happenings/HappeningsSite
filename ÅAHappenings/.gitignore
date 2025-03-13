@@ -22,10 +22,3 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-
-#death to DS store and pictures
-.DS_Store
-*.png
-*.jpeg
-*.jpg
-uploads
