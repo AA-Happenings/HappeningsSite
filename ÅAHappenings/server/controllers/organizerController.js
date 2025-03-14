@@ -1,6 +1,3 @@
-//const Organizer = require('../models/organizerModel')
-//const jwt = require('jsonwebtoken')
-
 import Organizer from '../models/organizerModel.js';
 import jwt from 'jsonwebtoken';
 import mongoose from 'mongoose';

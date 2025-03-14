@@ -87,7 +87,7 @@ const AdminPage = () => {
     fetchEvents();
     fetchUsers();
     fetchWhitelist();
-    return;
+
   }, [dispatch]);
 
   //userfiltering
@@ -167,7 +167,7 @@ const AdminPage = () => {
     if (!response.ok) {
       const message = `An error occurred: ${response.statusText}`;
       console.error(message);
-      return;
+
     }
   };
 
