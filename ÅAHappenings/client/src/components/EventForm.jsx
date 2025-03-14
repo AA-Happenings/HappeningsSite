@@ -48,7 +48,7 @@ export default function EventForm({isOpen, setOpen, isNew}) {
           setForm(event);
         }
         fetchData();
-        return;
+
     }, [params.id, navigate]);
 
     function updateForm(value) {

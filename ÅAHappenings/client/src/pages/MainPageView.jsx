@@ -90,7 +90,7 @@ export default function MainPageView() {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${user.token}`
+          //"Authorization": `Bearer ${user.token}`
         }
       });
       const json = await response.json();
@@ -106,9 +106,9 @@ export default function MainPageView() {
         förening: json.map(u => u.username)
       }));
     };
-    if (user) {
-      fetchUsers();
-    }
+    
+    fetchUsers();
+    
   }, [user]);
 
   // Date state and handlers
