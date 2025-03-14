@@ -18,7 +18,7 @@
 
 /* Color/shape of burger icon bars on hover*/
 .bm-burger-bars-hover {
-  background: #bdc3c7;
+  background: #6f6f6f;
 }
 
 /* Position and sizing of clickable cross button */
@@ -29,7 +29,7 @@
 
 /* Color/shape of close button cross */
 .bm-cross {
-  background: #bdc3c7;
+  background: #595959;
 }
 
 /*
@@ -48,7 +48,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
 /* General sidebar styles */
 .bm-menu {
-  background: #FFFDF0;
+  background: #626262;
   padding: 1em 1em 0;
   font-size: 1.15em;
   height: 100%;

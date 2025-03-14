@@ -9,16 +9,17 @@
   min-height: 50px;
   max-height: 100px;
   padding: 0 20px;
-  background-color: #FFFDF0;
-  color: white;
-  font-family: Arial, sans-serif;
+  background-color: #626262;
+  color: rgb(55, 49, 49);
+  font-family: 'Metal Mania', cursive;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
   z-index: 10;
+  opacity: 0.97;
 }
 
 /* Centered title in the navbar */
 .navbar-title {
-  font-family: ADLaM Display, sans-serif;
+  font-family: 'Metal Mania', cursive;
   font-size: min(4.2vw, 70px);
   font-weight: bold;
   color: #262626;
