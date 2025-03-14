@@ -36,7 +36,7 @@ const getEvent = async (req, res) => {
 
 //create new event
 const createEvent = async (req, res) => {
-    const {title, description, location, date, time, how, price, link, membersOnly, tags, ao} = req.body
+    const {title, description, location, date, time, how, price, link, membersOnly, tags, ao, coOrganizers} = req.body
   
     let emptyFields = []
   
@@ -51,7 +51,7 @@ const createEvent = async (req, res) => {
     try {
       const user_id = req.user._id
       const username = req.user.username
-      const event = await Event.create({title, description, location, date, time, how, price, link, membersOnly, tags, ao, user_id, username})
+      const event = await Event.create({title, description, location, date, time, how, price, link, membersOnly, tags, ao, user_id, username, coOrganizers})
       res.status(200).json(event)
     } catch (error) {
       res.status(400).json({error: error.message})

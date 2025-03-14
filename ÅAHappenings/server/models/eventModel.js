@@ -43,6 +43,9 @@ const eventSchema = new Schema({
     },
     username: {
         type: String
+    },
+    coOrganizers: {
+        type: [String]
     }
 }, { timestamps: true })
 
