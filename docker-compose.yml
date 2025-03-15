@@ -1,0 +1,5 @@
+services:
+  server:
+    build: /ÅAHappenings/server
+  client:
+    build: /ÅAHappenings/client
