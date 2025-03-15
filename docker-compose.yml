@@ -1,5 +1,9 @@
 services:
   server:
-    build: /ÅAHappenings/server
+    build: ÅAHappenings/server
   client:
-    build: /ÅAHappenings/client
+    build: ÅAHappenings/client
+  proxy:
+    image: nginx:stable-alpine
+    ports: 
+      - 80:80
