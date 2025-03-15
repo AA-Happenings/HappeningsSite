@@ -1,9 +1,27 @@
 services:
   server:
     build: ÅAHappenings/server
+  
   client:
     build: ÅAHappenings/client
+  
   proxy:
     image: nginx:stable-alpine
     ports: 
       - 80:80
+    depends_on:
+      - server
+      - client
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+
+  db:
+    restart: always
+    image: mongo:7
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin 
+      - MONGO_INITDB_ROOT_PASSWORD=mamdin
+    volumes:
+      - data:/data/db:rw
+volumes:
+  data:
